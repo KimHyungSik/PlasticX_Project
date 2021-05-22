@@ -8,6 +8,7 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+app.set("view engine", "pug");
 app.set("views", __dirname + "/views");
 
 app.use(logger("dev"));
