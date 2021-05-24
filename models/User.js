@@ -5,6 +5,7 @@ const saltRounds = 10;
 
 const userSchema = mongoose.Schema({
   id: mongoose.Schema.Types.ObjectId,
+  // 회원번호,
   name: {
     type: String,
     maxlength: 50,
@@ -20,11 +21,6 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     minlength: 5,
-    required: true,
-  },
-  telephone: {
-    type: String,
-    unique: 1,
     required: true,
   },
   role: {
@@ -70,6 +66,21 @@ userSchema.methods.generateToken = function (callback) {
   user.save(function (err, user) {
     if (err) return callback(err);
     callback(null, user);
+  });
+};
+
+userSchema.statics.findByToken = function (token, callback) {
+  var user = this;
+
+  // 토큰을 복호화 한다.
+  jwt.verify(token, "secretToken", function (err, decoded) {
+    // 유저 아이디를 이용해서 유저를 찾은 다음에
+    // 클라이언트에서 가져온 token과 DB에 보관된 토큰이 일치하는지 확인
+
+    user.findOne({ _id: decoded, token: token }, function (err, user) {
+      if (err) return callback(err);
+      callback(null, user);
+    });
   });
 };
 
