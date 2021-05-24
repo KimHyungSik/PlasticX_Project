@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 
 const path = require("path");
+
+const web = require("./routes/web");
 const api = require("./routes/api");
 const config = require("./Config/key");
 
@@ -35,6 +37,10 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/web", web);
 app.use("/api", api);
+app.get("/", (req, res) => {
+  res.redirect("/web");
+});
 
 module.exports = app;
