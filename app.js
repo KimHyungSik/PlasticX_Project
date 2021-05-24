@@ -7,8 +7,6 @@ const logger = require("morgan");
 
 const mongoose = require("mongoose");
 
-const path = require("path");
-
 const web = require(path.resolve(__dirname, "routes", "web"));
 const api = require(path.resolve(__dirname, "routes", "api"));
 const config = require(path.resolve(__dirname, "config", "key"));
