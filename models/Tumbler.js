@@ -1,5 +1,3 @@
-const { User } = require("./models/User");
-const { Admin } = require("./models/Admin");
 const mongoose = require("mongoose");
 
 const tumblerSchema = mongoose.Schema({

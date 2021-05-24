@@ -1,8 +1,17 @@
 const express = require("express");
-const adminRegist = require("../../Controller/admin/AdminRegist");
-const adminLogin = require("../../Controller/admin/AdminLogin");
-const adminLogout = require("../../Controller/admin/AdminLogout");
-const { route } = require("./user");
+const path = require("path");
+const controllerPath = path.resolve(__dirname, "..", "..", "controller");
+const adminRegist = require(path.resolve(
+  controllerPath,
+  "admin",
+  "AdminRegist"
+));
+const adminLogin = require(path.resolve(controllerPath, "admin", "AdminLogin"));
+const adminLogout = require(path.resolve(
+  controllerPath,
+  "admin",
+  "AdminLogout"
+));
 const router = express.Router();
 
 // /api/admin

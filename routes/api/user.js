@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-console.log(__dirname);
 const controllerPath = path.resolve(__dirname, "..", "..", "controller");
 const middlewarePath = path.resolve(__dirname, "..", "..", "middleware");
 const userRegist = require(path.resolve(controllerPath, "user", "UserRegist"));

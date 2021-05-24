@@ -1,4 +1,5 @@
-var app = require("./app");
+var path = require("path");
+var app = require(path.resolve(__dirname + "app"));
 var debug = require("debug")("plasticx:server");
 var http = require("http");
 

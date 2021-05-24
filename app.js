@@ -1,5 +1,6 @@
 // 순서 건들지 말것!
 const express = require("express");
+const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
@@ -8,10 +9,10 @@ const mongoose = require("mongoose");
 
 const path = require("path");
 
-const web = require("./routes/web");
-const api = require("./routes/api");
-const config = require("./Config/key");
-const slack = require("./config/slack");
+const web = require(path.resolve(__dirname, "routes", "web"));
+const api = require(path.resolve(__dirname, "routes", "api"));
+const config = require(path.resolve(__dirname, "config", "key"));
+const slack = require(path.resolve(__dirname, "config", "slack"));
 
 const app = express();
 

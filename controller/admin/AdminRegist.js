@@ -1,4 +1,6 @@
-const { Admin } = require("../../models/Admin");
+const path = require("path");
+const modelsPath = path.resolve(__dirname, "..", "..", "models");
+const { Admin } = require(path.resolve(modelsPath, "Admin"));
 
 const callback = (req, res) => {
   const admin = new Admin(req.body);
