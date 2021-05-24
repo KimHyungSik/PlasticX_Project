@@ -6,7 +6,7 @@ const userRegist = require(path.resolve(controllerPath, "user", "UserRegist"));
 const userLogin = require(path.resolve(controllerPath, "user", "UserLogin"));
 const userAuth = require(path.resolve(controllerPath, "user", "UserAuth"));
 const userLogout = require(path.resolve(controllerPath, "user", "UserLogout"));
-const { auth } = require(path.resolve(middlewarePath, "auth"));
+const { auth } = require(path.resolve(middlewarePath, "Auth"));
 const router = express.Router();
 
 // /api/user
