@@ -11,7 +11,8 @@ const web = require(path.resolve(__dirname, "routes", "web"));
 const api = require(path.resolve(__dirname, "routes", "api"));
 const config = require(path.resolve(__dirname, "config", "key"));
 const slack = require(path.resolve(__dirname, "config", "slack"));
-const mylog = require(path.resolve(__dirname, "config", "log"));
+const err_logger = require(path.resolve(__dirname, "config", "log"));
+const err_response = require(path.resolve(__dirname, "config", "error"));
 
 const app = express();
 
@@ -45,7 +46,8 @@ app.get("/", (req, res) => {
   res.redirect("/web");
 });
 
-app.use(mylog);
+app.use(err_logger);
 app.use(slack.sendSlackWebhookError);
+app.use(err_response);
 
 module.exports = app;
