@@ -5,10 +5,6 @@ const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 
 // /web
 
-router.get("/err", (req, res) => {
-  res.render("test", {error: thisiserror});
-});
-
 router.get("/", (req, res) => {
   res.render("home");
 });

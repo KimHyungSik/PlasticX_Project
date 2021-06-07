@@ -26,7 +26,6 @@ mongoose
   })
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
-  
 
 app.set("view engine", "pug");
 app.set("views", __dirname + "/views");
@@ -41,6 +40,9 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
 
+router.get("/err", (req, res) => {
+  res.render("test", { error: thisiserror });
+});
 app.use("/web", web);
 app.use("/api", api);
 app.get("/", (req, res) => {
