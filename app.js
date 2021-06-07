@@ -40,7 +40,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
 
-router.get("/err", (req, res) => {
+app.get("/err", (req, res) => {
   res.render("test", { error: thisiserror });
 });
 app.use("/web", web);
