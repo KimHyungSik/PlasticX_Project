@@ -24,6 +24,7 @@ mongoose
   })
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
+  
 
 app.set("view engine", "pug");
 app.set("views", __dirname + "/views");

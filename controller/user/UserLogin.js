@@ -6,15 +6,15 @@ const callback = (req, res) => {
   User.findOne({ email: req.body.email }, (err, userInfo) => {
     if (!userInfo) {
       return res.json({
-        loginSuccess: false,
-        message: "이메일에 해당하는 유저가 없습니다.",
+        RESULT: 400,
+        MESSAGE: "이메일에 해당하는 유저가 없습니다.",
       });
     }
     userInfo.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
         return res.json({
-          loginSuccess: false,
-          message: "비밀번호가 틀렸습니다.",
+          RESULT: 500,
+          MESSAGE: "비밀번호가 틀렸습니다.",
         });
       }
 
@@ -24,7 +24,7 @@ const callback = (req, res) => {
         res
           .cookie("x_auth", user.token)
           .status(200)
-          .json({ loginSuccess: true, userId: user._id });
+          .json({ RESULT: "로그인 성공", userId: user._id });
       });
     });
   });
