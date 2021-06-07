@@ -4,6 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
+const hbs = require("express-handlebars");
 
 const mongoose = require("mongoose");
 
@@ -27,7 +28,16 @@ mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
-app.set("view engine", "pug");
+app.engine(
+  "hbs",
+  hbs({
+    extname: "hbs",
+    defaultLayout: "layout",
+    layoutsDir: __dirname + "/views/layouts",
+    partialsDir: __dirname + "/views/partials",
+  })
+);
+app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
 app.use(logger("dev"));
@@ -41,7 +51,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/err", (req, res) => {
-  res.render("test", { error: thisiserror });
+  res.render("test", { error: 500 });
 });
 app.use("/web", web);
 app.use("/api", api);

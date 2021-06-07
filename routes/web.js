@@ -6,7 +6,7 @@ const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 // /web
 
 router.get("/", (req, res) => {
-  res.render("home");
+  res.status(200).render("home");
 });
 
 module.exports = router;
