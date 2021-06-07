@@ -9,6 +9,4 @@ const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 router.use("/user", user);
 router.use("/admin", admin);
 
-router.use(slack);
-
 module.exports = router;
