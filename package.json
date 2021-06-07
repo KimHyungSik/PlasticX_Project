@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node web",
+    "start": "nodemon ./bin/www",
     "dev": "nodemon web"
   },
   "dependencies": {
@@ -18,7 +18,8 @@
     "mongoose": "^5.12.12",
     "morgan": "~1.9.1",
     "path": "^0.12.7",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
