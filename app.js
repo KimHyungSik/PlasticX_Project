@@ -44,7 +44,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -57,6 +57,12 @@ app.use("/web", web);
 app.use("/api", api);
 app.get("/", (req, res) => {
   res.redirect("/web");
+});
+app.get("/:id", (req, res) => {
+  return res.json({
+    currentTime: Date(Date.now()),
+    dueTime: Date(Date.now()),
+  });
 });
 
 app.use(err_logger);
