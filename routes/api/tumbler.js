@@ -24,10 +24,10 @@ const router = express.Router();
 
 // /api/tumbler
 
-router.get("/tumblerSelect", tumblerSelect);
+router.get("/", tumblerSelect);
 
-router.post("/register", tumblerInsert);
+router.post("/", tumblerInsert);
 
-router.put("/update", tumblerUpdate);
+router.put("/", tumblerUpdate);
 
 module.exports = router;
