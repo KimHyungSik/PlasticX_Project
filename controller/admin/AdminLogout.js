@@ -7,7 +7,7 @@ const callback = (req, res) => {
     { _id: req.body._id },
     { token: "" },
     (err, adminInfo) => {
-      if (err) return res.json({ success: false, err });
+      if (err) throw err;
       return adminInfo.status(200).send({
         success: true,
       });

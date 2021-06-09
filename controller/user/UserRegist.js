@@ -6,12 +6,7 @@ const callback = (req, res) => {
   const user = new User(req.body);
 
   user.save((err, userInfo) => {
-    if (err) {
-      return res.status(500).json({
-        RESULT: 500,
-        MESSAGE: "실패",
-      });
-    }
+    if (err) throw err;
     return res.status(200).json({
       RESULT: 200,
       MESSAGE: "성공",

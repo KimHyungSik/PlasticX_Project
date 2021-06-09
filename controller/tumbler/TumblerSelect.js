@@ -4,12 +4,8 @@ const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 
 const callback = (req, res) => {
   Tumbler.findOne((err, tumblerInfo) => {
-    if (err) {
-      return res.status(500).json({
-        RESULT: 500,
-        MESSAGE: "실패",
-      });
-    } else if (!tumblerInfo) {
+    if (err) throw err;
+    else if (!tumblerInfo) {
       return res.status(400).json({
         RESULT: 400,
         MESSAGE: "텀블러 없음",

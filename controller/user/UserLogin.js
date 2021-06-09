@@ -20,7 +20,7 @@ const callback = (req, res) => {
 
       // 비밀번호가 맞다면 토큰 생성
       userInfo.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
+        if (err) throw err;
         res
           .cookie("x_auth", user.token)
           .status(200)
