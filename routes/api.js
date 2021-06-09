@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { sendSlackWebhookError } = require("../config/slack");
 const router = express.Router();
 const user = require(path.resolve(__dirname, "api", "user"));
 const admin = require(path.resolve(__dirname, "api", "admin"));
@@ -74,7 +75,8 @@ router.use((err, req, res, next) => {
           }
         ]
       };
-      sendSlackWebhook(payload);
+      slack.sendSlackWebhook(payload);
+      slack.sendSlackWebhookError(err);
     res.status(500).json({
         RESULT: 500,
         MESSAGE: "내부 오류 발생",

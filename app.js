@@ -27,8 +27,8 @@ mongoose
   })
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => {
-    console.log(err)
-    slack.sendSlackWebhookError(err, null, null, null);
+    console.log(err);
+    slack.sendSlackWebhookError(err);
   });
 
 app.engine(
@@ -69,7 +69,10 @@ app.get("/:id", (req, res) => {
 });
 
 app.use(err_logger);
-app.use(slack.sendSlackWebhookError);
+app.use((err, req, res, next) => {
+  slack.sendSlackWebhookError(err);
+  next(err);
+});
 app.use(err_response);
 
 module.exports = app;

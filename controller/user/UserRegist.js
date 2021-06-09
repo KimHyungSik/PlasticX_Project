@@ -7,8 +7,8 @@ const callback = (req, res) => {
 
   user.save((err, userInfo) => {
     if (err) {
-      return res.status(500).json({
-        RESULT: 500,
+      return res.status(400).json({
+        RESULT: 400,
         MESSAGE: "사용자 등록 실패",
       });
     }
