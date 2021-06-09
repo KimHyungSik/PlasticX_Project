@@ -26,7 +26,10 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err)
+    slack.sendSlackWebhookError(err, null, null, null);
+  });
 
 app.engine(
   "hbs",

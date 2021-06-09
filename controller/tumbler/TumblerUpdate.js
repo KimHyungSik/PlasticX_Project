@@ -7,8 +7,12 @@ const callback = (req, res) => {
     _id: req.body._id,
   };
   Tumbler.findOne(filter, (err, tumblerInfo) => {
-    if (err) throw err;
-    else if (!tumblerInfo) {
+    if (err) {
+      return res.status(500).json({
+        RESULT: 500,
+        MESSAGE: "실패",
+      });
+    } else if (!tumblerInfo) {
       return res.status(400).json({
         RESULT: 400,
         MESSAGE: "없음",

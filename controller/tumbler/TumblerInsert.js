@@ -6,7 +6,12 @@ const callback = (req, res) => {
   const tumbler = new Tumbler(req.body);
 
   tumbler.save((err, tumblerInfo) => {
-    if (err) throw err;
+    if (err) {
+      return res.status(500).json({
+        RESULT: 500,
+        MESSAGE: "실패",
+      });
+    }
     return res.status(200).json({
       RESULT: 200,
       MESSAGE: "성공",

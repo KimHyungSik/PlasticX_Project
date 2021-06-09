@@ -7,7 +7,10 @@ const callback = (req, res) => {
     { _id: req.user._id },
     { token: "" },
     (err, userInfo) => {
-      if (err) throw err;
+      if (err) return res.json({
+        success: false,
+        err
+      });
       return res.status(200).send({
         success: true,
       });

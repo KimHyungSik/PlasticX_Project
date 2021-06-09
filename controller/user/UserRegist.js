@@ -6,7 +6,12 @@ const callback = (req, res) => {
   const user = new User(req.body);
 
   user.save((err, userInfo) => {
-    if (err) throw err;
+    if (err) {
+      return res.status(500).json({
+        RESULT: 500,
+        MESSAGE: "사용자 등록 실패",
+      });
+    }
     return res.status(200).json({
       RESULT: 200,
       MESSAGE: "성공",
