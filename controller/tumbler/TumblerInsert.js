@@ -14,7 +14,7 @@ const callback = (req, res) => {
     }
     return res.status(200).json({
       RESULT: 200,
-      MESSAGE: "성공",
+      MESSAGE: "텀블러 생성 성공",
       tumbler_id: tumblerInfo._id,
     });
   });

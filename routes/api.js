@@ -84,6 +84,7 @@ router.use((err, req, res, next) => {
     RESULT: 500,
     MESSAGE: "실패",
   });
+  next(err);
 });
 
 module.exports = router;
