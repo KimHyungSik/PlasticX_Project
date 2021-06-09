@@ -3,10 +3,7 @@ const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 
 const callback = (req, res) => {
-  const filter = {
-    _id: req.body._id,
-  };
-  Tumbler.findOne(filter, (err, tumblerInfo) => {
+  Tumbler.findOne(req.params, (err, tumblerInfo) => {
     if (err) {
       return res.status(500).json({
         RESULT: 500,
@@ -18,11 +15,8 @@ const callback = (req, res) => {
         MESSAGE: "없음",
       });
     }
-    const update = {
-      from_id: tumblerInfo.to_id,
-      to_id: req.body.to_id,
-    };
-    return Tumbler.updateOne(filter, update, (err, updateResult) => {
+    req.body.from_id = tumblerInfo.to_id;
+    return Tumbler.updateOne(req.params, req.body, (err, updateResult) => {
       if (err) {
         return res.status(500).json({
           RESULT: 500,

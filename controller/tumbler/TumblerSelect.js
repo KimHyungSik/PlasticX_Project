@@ -3,11 +3,16 @@ const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 
 const callback = (req, res) => {
-  Tumbler.findOne((err, tumblerInfo) => {
+  if (!Object.keys(req.params).length)
+    return res.status(401).json({
+      RESULT: 401,
+      MESSAGE: "요청 값 없음",
+    });
+  Tumbler.findOne(req.params, (err, tumblerInfo) => {
     if (err) {
       return res.status(500).json({
         RESULT: 500,
-        MESSAGE: "실패",
+        MESSAGE: "내부 오류",
       });
     } else if (!tumblerInfo) {
       return res.status(400).json({
