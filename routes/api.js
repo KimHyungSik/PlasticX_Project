@@ -7,11 +7,7 @@ const admin = require(path.resolve(__dirname, "api", "admin"));
 const tumbler = require(path.resolve(__dirname, "api", "tumbler"));
 const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 
-// /api
-router.use("/user", user);
-router.use("/admin", admin);
-router.use("/tumbler", tumbler);
-router.use((err, req, res, next) => {
+const printReq = (req, res, next) => {
     var payload = {
         "blocks": [
           {
@@ -36,7 +32,7 @@ router.use((err, req, res, next) => {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `\`\`\`${req.body}\`\`\``
+              "text": `\`\`\`${JSON.stringify(req.body, null, '\t')}\`\`\``
             }
           },
           {
@@ -53,7 +49,7 @@ router.use((err, req, res, next) => {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `\`\`\`${req.params}\`\`\``
+              "text": `\`\`\`${JSON.stringify(req.params, null, '\t')}\`\`\``
             }
           },
           {
@@ -70,18 +66,18 @@ router.use((err, req, res, next) => {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `\`\`\`${req.query}\`\`\``
+              "text": `\`\`\`${JSON.stringify(req.query, null, '\t')}\`\`\``
             }
           }
         ]
       };
       slack.sendSlackWebhook(payload);
-      slack.sendSlackWebhookError(err);
-    res.status(500).json({
-        RESULT: 500,
-        MESSAGE: "내부 오류 발생",
-    });
-    next(err);
-});
+    next();
+}
+
+// /api
+router.use("/user", printReq, user);
+router.use("/admin", printReq, admin);
+router.use("/tumbler", printReq, tumbler);
 
 module.exports = router;
