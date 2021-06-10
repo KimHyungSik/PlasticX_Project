@@ -24,7 +24,7 @@ const callback = (req, res) => {
         res
           .cookie("x_auth", user.token)
           .status(200)
-          .json({ RESULT: "로그인 성공", userId: user._id });
+          .json({ RESULT: 200, MESSAGE: "로그인 성공", user_id: user._id });
       });
     });
   });
