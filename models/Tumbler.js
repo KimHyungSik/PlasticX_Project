@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const moment = require("moment");
 
 const tumblerSchema = mongoose.Schema({
   id: mongoose.Schema.Types.ObjectId,
@@ -15,7 +14,6 @@ const tumblerSchema = mongoose.Schema({
   },
   date: {
     type: Date,
-    default: moment().format("YYYY-MM-DD HH:mm:ss"),
   },
 });
 

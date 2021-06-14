@@ -7,6 +7,7 @@ const admin = require(path.resolve(__dirname, "api", "admin"));
 const tumbler = require(path.resolve(__dirname, "api", "tumbler"));
 const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 
+// print slack
 const printReq = (req, res, next) => {
   var payload = {
     blocks: [
@@ -78,7 +79,17 @@ const printReq = (req, res, next) => {
 // /api
 router.use("/user", printReq, user);
 router.use("/admin", printReq, admin);
-router.use("/tumbler", printReq, tumbler);
+router.use(
+  "/tumbler",
+  printReq,
+  (req, res, next) => {
+    var date = new Date();
+    date.setHours(date.getHours() + 9);
+    req.body.date = date.toISOString();
+    next();
+  },
+  tumbler
+);
 router.use((err, req, res, next) => {
   res.status(500).json({
     RESULT: 500,
