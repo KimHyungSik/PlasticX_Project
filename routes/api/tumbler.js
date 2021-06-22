@@ -20,6 +20,12 @@ const tumblerUpdate = require(path.resolve(
   "TumblerUpdate"
 ));
 
+const tumblerQrCreate = require(path.resolve(
+  controllerPath,
+  "tumbler",
+  "TumblerQrCreate"
+));
+
 const router = express.Router();
 
 // /api/tumbler
@@ -28,5 +34,6 @@ router.post("/", tumblerInsert);
 router.get("/:_id", tumblerSelect);
 router.put("/:_id", tumblerUpdate);
 // router.delete("/:_id", tumblerDelete);
+router.post("/:_id", tumblerQrCreate);
 
 module.exports = router;

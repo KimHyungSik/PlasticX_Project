@@ -77,6 +77,7 @@ const printReq = (req, res, next) => {
 };
 
 // /api
+router.use("/tumbler/qr", printReq, tumbler);
 router.use("/user", printReq, user);
 router.use("/admin", printReq, admin);
 router.use(
