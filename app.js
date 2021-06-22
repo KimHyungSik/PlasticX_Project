@@ -26,7 +26,10 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err);
+    slack.sendSlackWebhookError(err);
+  });
 
 app.engine(
   "hbs",
@@ -42,9 +45,9 @@ app.set("views", __dirname + "/views");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -66,7 +69,10 @@ app.get("/:id", (req, res) => {
 });
 
 app.use(err_logger);
-app.use(slack.sendSlackWebhookError);
+app.use((err, req, res, next) => {
+  slack.sendSlackWebhookError(err);
+  next(err);
+});
 app.use(err_response);
 
 module.exports = app;

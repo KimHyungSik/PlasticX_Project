@@ -13,18 +13,18 @@ const callback = (req, res) => {
     userInfo.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
         return res.json({
-          RESULT: 500,
+          RESULT: 401,
           MESSAGE: "비밀번호가 틀렸습니다.",
         });
       }
 
       // 비밀번호가 맞다면 토큰 생성
       userInfo.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
+        if (err) return res.status(500).send(err);
         res
           .cookie("x_auth", user.token)
           .status(200)
-          .json({ RESULT: "로그인 성공", userId: user._id });
+          .json({ RESULT: 200, MESSAGE: "로그인 성공", user_id: user._id });
       });
     });
   });
