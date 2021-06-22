@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const moment = require("moment");
 
 const tumblerSchema = mongoose.Schema({
-  id: mongoose.Schema.Types.ObjectId,
+  id: mongoose.Schema.Types.ObjectId, 
   from_id: {
     type: mongoose.Types.ObjectId,
     default: null,
