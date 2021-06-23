@@ -8,7 +8,7 @@ const callback = (req, res) => {
     { token: "" },
     (err, adminInfo) => {
       if (err) return res.json({ success: false, err });
-      return adminInfo.status(200).send({
+      return res.status(200).send({
         success: true,
       });
     }

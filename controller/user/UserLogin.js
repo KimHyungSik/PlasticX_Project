@@ -5,14 +5,14 @@ const { User } = require(path.resolve(modelsPath, "User"));
 const callback = (req, res) => {
   User.findOne({ email: req.body.email }, (err, userInfo) => {
     if (!userInfo) {
-      return res.json({
+      return res.status(400).json({
         RESULT: 400,
         MESSAGE: "이메일에 해당하는 유저가 없습니다.",
       });
     }
     userInfo.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
-        return res.json({
+        return res.status(401).json({
           RESULT: 401,
           MESSAGE: "비밀번호가 틀렸습니다.",
         });

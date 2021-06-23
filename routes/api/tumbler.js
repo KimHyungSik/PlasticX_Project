@@ -1,6 +1,14 @@
 const express = require("express");
 const path = require("path");
+const { nextTick } = require("process");
 const controllerPath = path.resolve(__dirname, "..", "..", "controller");
+const { sendSlackWebhookRequest } = require(path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "config",
+  "slack"
+));
 
 const tumblerInsert = require(path.resolve(
   controllerPath,
@@ -30,10 +38,52 @@ const router = express.Router();
 
 // /api/tumbler
 
-router.post("/", tumblerInsert);
-router.get("/:_id", tumblerSelect);
-router.put("/:_id", tumblerUpdate);
+router.post(
+  "/:_id",
+  (req, res, next) => {
+    sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerQrCreate
+);
+router.post(
+  "/",
+  (req, res, next) => {
+    sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerInsert
+);
+router.get(
+  "/:_id",
+  (req, res, next) => {
+    sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerSelect
+);
+router.put(
+  "/:_id",
+  (req, res, next) => {
+    sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerUpdate
+);
 // router.delete("/:_id", tumblerDelete);
-router.post("/:_id", tumblerQrCreate);
+
+router.get(
+  "/:id",
+  (req, res, next) => {
+    sendSlackWebhookRequest(req);
+    next();
+  },
+  (req, res) => {
+    return res.json({
+      currentTime: Date(Date.now()),
+      dueTime: Date(Date.now()),
+    });
+  }
+);
 
 module.exports = router;
