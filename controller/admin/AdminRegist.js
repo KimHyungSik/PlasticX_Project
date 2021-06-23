@@ -10,7 +10,7 @@ const callback = (req, res) => {
       if (err.code === 11000 && Object.keys(err.keyPattern).includes("email")) {
         return res.status(400).json({
           RESULT: 400,
-          MESSAGE: "관지라 계정이 이미 존재합니다.",
+          MESSAGE: "관리자 계정이 이미 존재합니다.",
         });
       }
       return res.status(500).json({
