@@ -5,6 +5,7 @@ const router = express.Router();
 const user = require(path.resolve(__dirname, "api", "user"));
 const admin = require(path.resolve(__dirname, "api", "admin"));
 const tumbler = require(path.resolve(__dirname, "api", "tumbler"));
+const returnBox = require(path.resolve(__dirname, "api", "returnbox"));
 const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 
 // print slack
@@ -97,5 +98,6 @@ router.use((err, req, res, next) => {
   });
   next(err);
 });
+router.use("/returnbox", printReq, returnBox);
 
 module.exports = router;
