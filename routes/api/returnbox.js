@@ -17,9 +17,41 @@ const returnBoxInsert = require(path.resolve(
     "ReturnBoxInsert"
 ));
 
+const returnBoxSelect = require(path.resolve(
+    // folder name
+    controllerPath,
+    // folder name
+    "returnbox",
+    // file name
+    "ReturnBoxSelect"
+));
+
+const returnBoxUpdate = require(path.resolve(
+    // folder name
+    controllerPath,
+    // folder name
+    "returnbox",
+    // file name
+    "ReturnBoxUpdate"
+));
+
+const returnBoxDelete = require(path.resolve(
+    // folder name
+    controllerPath,
+    // folder name
+    "returnbox",
+    // file name
+    "ReturnBoxDelete"
+));
+
+// move to controller
 const router = express.Router();
 
+// "/:_id"
 router.post("/insert", returnBoxInsert);
+//router.get("/find-returnbox/:_id", returnBoxSelect);
+//router.put("/update-returnbox/:_id", returnBoxUpdate);
+//router.delete("/delete-returnbox/:_id", returnBoxDelete);
 
 // creating a module for usage in other files
 module.exports = router;
