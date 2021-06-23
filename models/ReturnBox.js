@@ -1,6 +1,6 @@
 // returns the whole schema
 
-// mongoose is an interface to mongodb
+// mongoose is an interface to mongodb      
 const mongoose = require("mongoose");
 
 const returnBoxSchema = mongoose.Schema({
