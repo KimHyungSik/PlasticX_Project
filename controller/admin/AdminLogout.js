@@ -4,11 +4,11 @@ const { Admin } = require(path.resolve(modelsPath, "Admin"));
 
 const callback = (req, res) => {
   Admin.findOneAndUpdate(
-    { _id: req.body._id },
+    { _id: req.admin._id },
     { token: "" },
     (err, adminInfo) => {
       if (err) return res.json({ success: false, err });
-      return adminInfo.status(200).send({
+      return res.status(200).send({
         success: true,
       });
     }

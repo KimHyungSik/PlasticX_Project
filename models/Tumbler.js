@@ -12,6 +12,10 @@ const tumblerSchema = mongoose.Schema({
     default: null,
     required: false,
   },
+  state: {
+    type: Boolean,
+    default: false,
+  },
   date: {
     type: Date,
   },

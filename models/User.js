@@ -30,6 +30,11 @@ const userSchema = mongoose.Schema({
   token: {
     type: String,
   },
+  deposit: {
+    type: Number,
+    default: 10000,
+    required: true,
+  },
 });
 
 // 회원가입 save 되기 전 bcrypt로 비밀번호 암호화
