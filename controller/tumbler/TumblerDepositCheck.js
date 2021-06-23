@@ -71,6 +71,9 @@ const callback = async (req, res) => {
   // 2. user 보증금 >= 5000 인가
   // 3. 위에 두개 만족하면 state = true
   // 4. user 보증금 - 5000
+  // from_id = to_id
+  // to_id = user_id
+  // date 추가
   let tumblerUpdate = new Tumbler(tumbler);
   let userUpdate = new User(user);
   if (tumbler.state == false && user.deposit >= DEPOSIT) {
@@ -127,7 +130,7 @@ const callback = async (req, res) => {
   ) {
     return res.status(200).json({
       RESULT: 200,
-      MESSAGE: "성공",
+      MESSAGE: "텀블러 대여 성공",
       DEPOSIT: userUpdate.deposit,
     });
   } else if (tumbler.state == true) {
@@ -143,8 +146,5 @@ const callback = async (req, res) => {
     });
   } else return res.status(500).json(errorStack);
 };
-// from_id = to_id
-// to_id = user_id
-// date 추가
 
 module.exports = callback;

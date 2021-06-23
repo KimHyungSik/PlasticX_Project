@@ -22,10 +22,10 @@ const tumblerUpdate = require(path.resolve(
   "TumblerUpdate"
 ));
 
-const tumblerQrCreate = require(path.resolve(
+const tumblerDepositCheck = require(path.resolve(
   controllerPath,
   "tumbler",
-  "TumblerQrCreate"
+  "TumblerDepositCheck"
 ));
 
 const router = express.Router();
@@ -38,7 +38,7 @@ router.post(
     slack.sendSlackWebhookRequest(req);
     next();
   },
-  tumblerQrCreate
+  tumblerDepositCheck
 );
 router.post(
   "/",
