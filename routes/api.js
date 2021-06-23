@@ -28,6 +28,6 @@ router.use((err, req, res, next) => {
   });
   next(err);
 });
-router.use("/returnbox", printReq, returnBox);
+router.use("/returnbox", returnBox);
 
 module.exports = router;
