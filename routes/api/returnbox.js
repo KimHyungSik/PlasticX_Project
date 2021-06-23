@@ -47,9 +47,8 @@ const returnBoxDelete = require(path.resolve(
 // move to controller
 const router = express.Router();
 
-// "/:_id"
 router.post("/insert", returnBoxInsert);
-//router.get("/find-returnbox/:_id", returnBoxSelect);
+router.get("/find/:_id", returnBoxSelect);
 //router.put("/update-returnbox/:_id", returnBoxUpdate);
 //router.delete("/delete-returnbox/:_id", returnBoxDelete);
 
