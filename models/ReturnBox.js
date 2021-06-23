@@ -10,62 +10,48 @@ const returnBoxSchema = mongoose.Schema({
   isFull: 
   {
     type: Boolean,
-    default: true,
-    required: false,
+    // default is false because a new returnbox would be empty.
+    default: false,
+    required: true,
     //required: true,
   },
 
   isConnected:
   {
     type: Boolean,
-    default: true,
-    required: false,
-    //required: true,
-    
+    default: false,
+    required: true,
   },
 
   isWorking:
   {
     type: Boolean,
-    default: true,
-    required: false,
+    default: false,
+    required: true,
     //required: true,
   },
   
-  /***
-   *lastUpdated: 
+  lastUpdated: 
   { 
     type: Date, 
     default: Date.now 
   }, 
-   * 
-   */
-  
 
-  
-/**
- * 
- * location:
+  location:
   {
-    // name of location (cafe)
-    //name: String,
-    //required: true,
-
-    // point is a simple GeoJSON structure
     type:
     {
       type: String,
       enum: ['Point'],
-      //required: true
+      required: true
     },
 
-    coordinates:
+    coordindates:
     {
       type: [Number],
-      //required: true
+      required: true
     }
   }
-*/
 });
 
 // model and schema
