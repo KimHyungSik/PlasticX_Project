@@ -9,8 +9,6 @@ const DEPOSIT = 5000;
 const callback = async (req, res) => {
   let user;
   let tumbler;
-  let userOK;
-  let tumblerOK;
   let errorStack = new Array();
 
   try {
@@ -78,9 +76,11 @@ const callback = async (req, res) => {
   if (tumbler.state == false && user.deposit >= DEPOSIT) {
     userUpdate.deposit -= 5000;
     tumblerUpdate.state = true;
+
     var date = new Date();
     date.setHours(date.getHours() + 9);
     tumblerUpdate.date = date.toISOString();
+
     tumblerUpdate.from_id = tumbler.to_id;
     tumblerUpdate.to_id = req.body.to_id;
     try {
