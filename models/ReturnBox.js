@@ -1,3 +1,6 @@
+// returns the whole schema
+
+// mongoose is an interface to mongodb      
 const mongoose = require("mongoose");
 
 const returnBoxSchema = mongoose.Schema({
@@ -6,39 +9,65 @@ const returnBoxSchema = mongoose.Schema({
   // full state > empty state
   isFull: 
   {
-    type: Boolean
+    type: Boolean,
+    default: true,
+    required: false,
+    //required: true,
   },
 
   isConnected:
   {
-    type: Boolean
+    type: Boolean,
+    default: true,
+    required: false,
+    //required: true,
+    
   },
 
   isWorking:
   {
-    type: Boolean
+    type: Boolean,
+    default: true,
+    required: false,
+    //required: true,
   },
   
-  location:
+  /***
+   *lastUpdated: 
+  { 
+    type: Date, 
+    default: Date.now 
+  }, 
+   * 
+   */
+  
+
+  
+/**
+ * 
+ * location:
   {
     // name of location (cafe)
-    name: String,
+    //name: String,
+    //required: true,
+
     // point is a simple GeoJSON structure
     type:
     {
       type: String,
       enum: ['Point'],
-      required: true
+      //required: true
     },
 
     coordinates:
     {
       type: [Number],
-      required: true
+      //required: true
     }
-  },
-
+  }
+*/
 });
 
-const ReturnBox = mongoose.model("returnbox", ReturnBox);
+// model and schema
+const ReturnBox = mongoose.model("returnbox", returnBoxSchema);
 module.exports = { ReturnBox };
