@@ -12,7 +12,7 @@ const returnBoxSchema = mongoose.Schema({
     type: Boolean,
     // default is false because a new returnbox would be empty.
     default: false,
-    required: true,
+    required: false,
     //required: true,
   },
 
@@ -20,21 +20,22 @@ const returnBoxSchema = mongoose.Schema({
   {
     type: Boolean,
     default: false,
-    required: true,
+    required: false,
   },
 
   isWorking:
   {
     type: Boolean,
     default: false,
-    required: true,
+    required: false,
     //required: true,
   },
   
   lastUpdated: 
   { 
     type: Date, 
-    default: Date.now 
+    default: Date.now,
+    required: false
   }, 
 
   location:
@@ -43,13 +44,13 @@ const returnBoxSchema = mongoose.Schema({
     {
       type: String,
       enum: ['Point'],
-      required: true
+      required: false
     },
 
     coordindates:
     {
       type: [Number],
-      required: true
+      required: false
     }
   }
 });
