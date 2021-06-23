@@ -17,9 +17,16 @@ const returnBoxInsert = require(path.resolve(
     "ReturnBoxInsert"
 ));
 
+const returnBoxSelect = require(path.resolve(
+    controllerPath,
+    "returnbox",
+    "ReturnBoxSelect"
+))
+
 const router = express.Router();
 
-router.post("/", returnBoxInsert);
+router.post("/insert", returnBoxInsert);
+router.get("/select/:_id", returnBoxSelect);
 
 // creating a module for usage in other files
 module.exports = router;
