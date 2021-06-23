@@ -47,11 +47,10 @@ const returnBoxDelete = require(path.resolve(
 // move to controller
 const router = express.Router();
 
-// "/:_id"
 router.post("/insert", returnBoxInsert);
-//router.get("/find-returnbox/:_id", returnBoxSelect);
-//router.put("/update-returnbox/:_id", returnBoxUpdate);
-//router.delete("/delete-returnbox/:_id", returnBoxDelete);
+router.get("/find/:_id", returnBoxSelect);
+router.put("/update/:_id", returnBoxUpdate);
+router.delete("/delete/:_id", returnBoxDelete);
 
 // creating a module for usage in other files
 module.exports = router;
