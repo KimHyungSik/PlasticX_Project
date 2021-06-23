@@ -34,6 +34,7 @@ const userSchema = mongoose.Schema({
     type: Number,
     default: 10000,
     required: true,
+    minimum: 0,
   },
 });
 
