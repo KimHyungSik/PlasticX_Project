@@ -2,13 +2,7 @@ const express = require("express");
 const path = require("path");
 const { nextTick } = require("process");
 const controllerPath = path.resolve(__dirname, "..", "..", "controller");
-const { sendSlackWebhookRequest } = require(path.resolve(
-  __dirname,
-  "..",
-  "..",
-  "config",
-  "slack"
-));
+const slack = require(path.resolve(__dirname, "..", "..", "config", "slack"));
 
 const tumblerInsert = require(path.resolve(
   controllerPath,
@@ -41,7 +35,7 @@ const router = express.Router();
 router.post(
   "/:_id",
   (req, res, next) => {
-    sendSlackWebhookRequest(req);
+    slack.sendSlackWebhookRequest(req);
     next();
   },
   tumblerQrCreate
@@ -49,7 +43,13 @@ router.post(
 router.post(
   "/",
   (req, res, next) => {
-    sendSlackWebhookRequest(req);
+    var date = new Date();
+    date.setHours(date.getHours() + 9);
+    req.body.date = date.toISOString();
+    next();
+  },
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
     next();
   },
   tumblerInsert
@@ -57,7 +57,7 @@ router.post(
 router.get(
   "/:_id",
   (req, res, next) => {
-    sendSlackWebhookRequest(req);
+    slack.sendSlackWebhookRequest(req);
     next();
   },
   tumblerSelect
@@ -65,7 +65,13 @@ router.get(
 router.put(
   "/:_id",
   (req, res, next) => {
-    sendSlackWebhookRequest(req);
+    var date = new Date();
+    date.setHours(date.getHours() + 9);
+    req.body.date = date.toISOString();
+    next();
+  },
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
     next();
   },
   tumblerUpdate
@@ -75,7 +81,7 @@ router.put(
 router.get(
   "/:id",
   (req, res, next) => {
-    sendSlackWebhookRequest(req);
+    slack.sendSlackWebhookRequest(req);
     next();
   },
   (req, res) => {
