@@ -49,8 +49,8 @@ const router = express.Router();
 
 router.post("/insert", returnBoxInsert);
 router.get("/find/:_id", returnBoxSelect);
-//router.put("/update-returnbox/:_id", returnBoxUpdate);
-//router.delete("/delete-returnbox/:_id", returnBoxDelete);
+router.put("/update/:_id", returnBoxUpdate);
+router.delete("/delete/:_id", returnBoxDelete);
 
 // creating a module for usage in other files
 module.exports = router;
