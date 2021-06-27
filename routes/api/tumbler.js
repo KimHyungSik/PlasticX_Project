@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const { nextTick } = require("process");
 const controllerPath = path.resolve(__dirname, "..", "..", "controller");
 const slack = require(path.resolve(__dirname, "..", "..", "config", "slack"));
 

@@ -1,12 +1,10 @@
 const express = require("express");
 const path = require("path");
-const { sendSlackWebhookError } = require("../config/slack");
 const router = express.Router();
 const user = require(path.resolve(__dirname, "api", "user"));
 const admin = require(path.resolve(__dirname, "api", "admin"));
 const tumbler = require(path.resolve(__dirname, "api", "tumbler"));
 const returnBox = require(path.resolve(__dirname, "api", "returnbox"));
-const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 
 // /api
 router.use("/user", user);
