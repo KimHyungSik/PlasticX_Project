@@ -2,70 +2,66 @@ const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 const { User } = require(path.resolve(modelsPath, "User"));
+const { userInfo } = require("os");
 
 const DEPOSIT = 5000;
 
 const callback = async (req, res) => {
   let user;
   let tumbler;
-  let errorStack = new Array();
 
   try {
-    tumbler = await Tumbler.findOne(req.params, (err, tumblerInfo) => {
-      if (err) {
-        if (err.name === "CastError" && err.kind === "ObjectId") {
-          return errorStack.push({
-            RESULT: 401,
-            MESSAGE: "잘못된 id값 입력 on Tumbler.findOne",
-            path: err.path,
-          });
-        }
-        return errorStack.push({
-          RESULT: 500,
-          MESSAGE: "DB 에러 발생 on Tumbler.findOne",
-          error: err,
-        });
-      } else if (!tumblerInfo) {
-        return errorStack.push({
-          RESULT: 400,
-          MESSAGE: "아이디에 해당하는 텀블러 없음",
-        });
-      } else return;
+    tumbler = await Tumbler.findOne(req.params);
+  } catch (err) {
+    console.log(err);
+    if (err.name === "CastError" && err.kind === "ObjectId") {
+      return res.status(401).json({
+        RESULT: 401,
+        MESSAGE: "잘못된 텀블러 id값 입력",
+        path: err.path,
+      });
+    }
+    return res.status(500).json({
+      RESULT: 500,
+      MESSAGE: "DB 에러 발생 (Tumbler Collection)",
+      error: err,
     });
-  } catch (error) {
-    throw error;
+  }
+  if (!tumbler) {
+    return res.status(400).json({
+      RESULT: 400,
+      MESSAGE: "아이디에 해당하는 텀블러 없음",
+    });
   }
 
   let userQuery = new Object();
   userQuery._id = req.body.to_id;
 
   try {
-    user = await User.findOne(userQuery, (err, userInfo) => {
-      if (err) {
-        if (err.name === "CastError" && err.kind === "ObjectId") {
-          return errorStack.push({
-            RESULT: 401,
-            MESSAGE: "잘못된 id값 입력 on User.findOne",
-            path: err.path,
-          });
-        }
-        return errorStack.push({
-          RESULT: 500,
-          MESSAGE: "DB 에러 발생 on User.findOne",
-          error: err,
+    user = await User.findOne(userQuery);
+  } catch (err) {
+    console.log(JSON.stringify(err));
+    if (err) {
+      if (err.name === "CastError" && err.kind === "ObjectId") {
+        return res.status(411).json({
+          RESULT: 411,
+          MESSAGE: "잘못된 유저 id값 입력",
+          path: err.path,
         });
       }
-      if (!userInfo) {
-        return errorStack.push({
-          RESULT: 400,
-          MESSAGE: "아이디에 해당하는 유저 없음",
-        });
-      } else return;
-    });
-  } catch (error) {
-    throw error;
+      return res.status(500).json({
+        RESULT: 500,
+        MESSAGE: "DB 에러 발생 (User Collection)",
+        error: err,
+      });
+    }
   }
-
+  if (!user) {
+    return res.status(410).json({
+      RESULT: 410,
+      MESSAGE: "아이디에 해당하는 유저 없음",
+    });
+  }
   // 1. 텀블러 대여 중인가 (state = false)
   // 2. user 보증금 >= 5000 인가
   // 3. 위에 두개 만족하면 state = true
@@ -75,6 +71,7 @@ const callback = async (req, res) => {
   // date 추가
   let tumblerUpdate = new Tumbler(tumbler);
   let userUpdate = new User(user);
+
   if (tumbler.state == false && user.deposit >= DEPOSIT) {
     userUpdate.deposit -= 5000;
     tumblerUpdate.state = true;
@@ -85,44 +82,56 @@ const callback = async (req, res) => {
 
     tumblerUpdate.from_id = tumbler.to_id;
     tumblerUpdate.to_id = req.body.to_id;
+
+    const session = await User.startSession();
     try {
-      await userUpdate.save((err, saveResult) => {
-        if (err) {
-          if (err.name === "CastError" && err.kind === "ObjectId") {
-            return errorStack.push({
-              RESULT: 401,
-              MESSAGE: "잘못된 id값 입력 on User.findOne",
-              path: err.path,
+      /*
+      await userUpdate.save((err, userResult) => {
+        tumblerUpdate.save((err, tumblerResult) => {
+          if (err) {
+            if (err.name === "CastError" && err.kind === "ObjectId") {
+              return res.status(500).json({
+                RESULT: 401,
+                MESSAGE: `잘못된 id값 입력, (Tumbler Collection)`,
+                path: err.path,
+              });
+            }
+            return res.status(500).json({
+              RESULT: 500,
+              MESSAGE: `DB 에러 발생 , (Tumbler Collection)`,
+              error: err,
             });
           }
-          return errorStack.push({
-            RESULT: 500,
-            MESSAGE: "DB 에러 발생 on User.findOne",
-            error: err,
-          });
-        } else {
-          tumblerUpdate.save((err, saveResult) => {
-            if (err) {
-              if (err.name === "CastError" && err.kind === "ObjectId") {
-                return errorStack.push({
-                  RESULT: 401,
-                  MESSAGE: "잘못된 id값 입력 on Tumbler.findOne",
-                  path: err.path,
-                });
-              }
-              return errorStack.push({
-                RESULT: 500,
-                MESSAGE: "DB 에러 발생 on Tumbler.findOne",
-                error: err,
-              });
-            } else return;
-          });
-        }
+        });
       });
-    } catch (error) {
-      throw error;
+      */
+      await session.withTransaction(async () => {
+        await User.findByIdAndUpdate(userUpdate._id, userUpdate);
+        await Tumbler.findByIdAndUpdate(tumblerUpdate._id, tumblerUpdate);
+      });
+    } catch (err) {
+      console.log(err);
+      if (err.name === "CastError" && err.kind === "ObjectId") {
+        return res.status(500).json({
+          RESULT: 401,
+          MESSAGE: `잘못된 id값 입력, (${
+            err.message.split('"').reverse()[1]
+          } Collection)`,
+          path: err.path,
+        });
+      }
+      return res.status(500).json({
+        RESULT: 500,
+        MESSAGE: `DB 에러 발생 , (${
+          err.message.split('"').reverse()[1]
+        } Collection)`,
+        error: err,
+      });
+    } finally {
+      await session.endSession();
     }
   }
+
   if (
     user.deposit - userUpdate.deposit >= 5000 &&
     tumbler.state != tumblerUpdate.state
@@ -143,7 +152,7 @@ const callback = async (req, res) => {
       MESSAGE: "보증금 부족",
       DEPOSIT: `현재 보증금 : ${user.deposit}`,
     });
-  } else return res.status(500).json(errorStack);
+  }
 };
 
 module.exports = callback;
