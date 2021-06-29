@@ -31,14 +31,7 @@ const router = express.Router();
 
 // /api/tumbler
 
-router.post(
-  "/:_id",
-  (req, res, next) => {
-    slack.sendSlackWebhookRequest(req);
-    next();
-  },
-  tumblerDepositCheck
-);
+// 텀블러 생성
 router.post(
   "/",
   (req, res, next) => {
@@ -51,16 +44,36 @@ router.post(
     slack.sendSlackWebhookRequest(req);
     next();
   },
-  tumblerInsert
+  tumblerInsert.api
 );
+
+// 텀블러 조회
 router.get(
   "/:_id",
   (req, res, next) => {
     slack.sendSlackWebhookRequest(req);
     next();
   },
-  tumblerSelect
+  tumblerSelect,
+  (req, res) => {
+    return res.json({
+      currentTime: Date(Date.now()),
+      dueTime: Date(Date.now()),
+    });
+  }
 );
+
+// 텀블러 사용유무, 보증금 확인
+router.post(
+  "/:_id",
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerDepositCheck
+);
+
+// 텀블러 위치에 따른 to_id, from_id 변경
 router.put(
   "/:_id",
   (req, res, next) => {
@@ -75,20 +88,8 @@ router.put(
   },
   tumblerUpdate
 );
-// router.delete("/:_id", tumblerDelete);
 
-router.get(
-  "/:id",
-  (req, res, next) => {
-    slack.sendSlackWebhookRequest(req);
-    next();
-  },
-  (req, res) => {
-    return res.json({
-      currentTime: Date(Date.now()),
-      dueTime: Date(Date.now()),
-    });
-  }
-);
+// 텀블러 삭제
+// router.delete("/:_id", tumblerDelete);
 
 module.exports = router;
