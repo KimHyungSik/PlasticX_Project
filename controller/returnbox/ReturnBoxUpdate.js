@@ -29,7 +29,7 @@ const callback = (req, res) => {
     req.body.isFull = true;
     req.body.isConnected = true;
     req.body.isWorking = true;
-    req.body.lastUpdates = Date.now;
+    req.body.lastUpdated = Date.now;
     
     return ReturnBox.updateOne(req.params, req.body, (err, updateResult) => {
       if (err) {
