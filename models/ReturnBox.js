@@ -34,7 +34,7 @@ const returnBoxSchema = mongoose.Schema({
   lastUpdated: 
   { 
     type: Date, 
-    default: Date.now,
+    default: Date.now(),
     required: false
   }, 
 
@@ -50,6 +50,7 @@ const returnBoxSchema = mongoose.Schema({
     coordindates:
     {
       type: [Number],
+      default: ['37.492584', '127.005157'],
       required: false
     }
   }

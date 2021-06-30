@@ -1,6 +1,3 @@
-// this program tells express 
-// what to do in case of an insert/post
-
 // configuring path settings
 const express = require("express");
 const path = require("path");
