@@ -63,9 +63,9 @@ const callback = async (req, res) => {
     });
   }
   // 1. 텀블러 대여 중인가 (state = false)
-  // 2. user 보증금 >= 5000 인가
+  // 2. user 보증금 >= DEPOSIT 인가
   // 3. 위에 두개 만족하면 state = true
-  // 4. user 보증금 - 5000
+  // 4. user 보증금 - DEPOSIT
   // from_id = to_id
   // to_id = user_id
   // date 추가
@@ -73,7 +73,7 @@ const callback = async (req, res) => {
   let userUpdate = new User(user);
 
   if (tumbler.state == false && user.deposit >= DEPOSIT) {
-    userUpdate.deposit -= 5000;
+    userUpdate.deposit -= DEPOSIT;
     tumblerUpdate.state = true;
 
     var date = new Date();
@@ -133,7 +133,7 @@ const callback = async (req, res) => {
   }
 
   if (
-    user.deposit - userUpdate.deposit >= 5000 &&
+    user.deposit - userUpdate.deposit >= DEPOSIT &&
     tumbler.state != tumblerUpdate.state
   ) {
     return res.status(200).json({
@@ -146,7 +146,7 @@ const callback = async (req, res) => {
       RESULT: 301,
       MESSAGE: "텀블러 사용중",
     });
-  } else if (user.deposit < 5000) {
+  } else if (user.deposit < DEPOSIT) {
     return res.status(300).json({
       RESULT: 300,
       MESSAGE: "보증금 부족",

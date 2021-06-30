@@ -2,22 +2,34 @@ const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 
-const callback = (req, res) => {
-  const tumbler = new Tumbler(req.body);
-
-  tumbler.save((err, tumblerInfo) => {
-    if (err) {
-      return res.status(500).json({
-        RESULT: 500,
-        MESSAGE: "실패",
-      });
-    }
-    return res.status(200).json({
-      RESULT: 200,
-      MESSAGE: "텀블러 생성 성공",
-      tumbler_id: tumblerInfo._id,
-    });
-  });
+const webCallback = async (req, res) => {
+  let result = await register(req.body);
+  console.log(req.date);
+  res.render("tumbler/register", result);
 };
 
-module.exports = callback;
+const apiCallback = async (req, res) => {
+  let result = await register(req.body);
+  console.log(result);
+  res.status(result.RESULT).json(result);
+};
+
+const register = async (data) => {
+  let tumbler = new Tumbler(data);
+  try {
+    await tumbler.save();
+  } catch (err) {
+    result = {
+      RESULT: 500,
+      MESSAGE: "실패",
+    };
+  }
+  result = {
+    RESULT: 200,
+    MESSAGE: "텀블러 생성 성공",
+    tumbler_id: tumbler._id,
+  };
+  return result;
+};
+
+module.exports = { api: apiCallback, web: webCallback };

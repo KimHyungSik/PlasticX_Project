@@ -61,17 +61,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/err", (req, res) => {
   res.render("test", { error: 500 });
 });
-app.use("/web", web);
 app.use("/api", api);
-app.get("/", (req, res) => {
-  res.redirect("/web");
-});
+app.use("/", web);
 
 app.use(err_logger);
 app.use((err, req, res, next) => {
   slack.sendSlackWebhookError(err);
   next(err);
 });
-app.use(err_response);
+// app.use(err_response);
 
 module.exports = app;
