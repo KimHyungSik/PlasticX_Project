@@ -4,6 +4,7 @@ const {ReturnBox} = require(path.resolve(modelsPath, "ReturnBox"));
 
 const checkReturnBox = async (returnBoxID) => {
   let returnBox = await ReturnBox.findById(returnBoxID);
+  // if it has been or more than 10 minutes since the last update, disconnect
   if((Date.now() - returnBox.lastUpdated) >= 600000) 
   {
     returnBox.isConnected = false;
@@ -11,7 +12,10 @@ const checkReturnBox = async (returnBoxID) => {
     const time = new Date(returnBox.lastUpdated).toString();
     console.log("returnbox._id : " + returnBox._id + ", last updated : " + time);
     console.log("returnbox._id : " + returnBox._id + " [disconnected]...");
-  } else {
+  } 
+  
+  else 
+  {
     returnBox.isConnected = true;
     returnBox.save();
     const time = new Date(returnBox.lastUpdated).toString();
@@ -27,7 +31,7 @@ const callback = async () => {
   returnBoxes.forEach((item, index) => {
     // every 10 minutes, run checkReturnBox function to 
     // setInterval(checkReturnBox, 5000, item._id);
-    setInterval(checkReturnBox, 30000, item._id);
+    setInterval(checkReturnBox, 10000, item._id);
   });
 };
 

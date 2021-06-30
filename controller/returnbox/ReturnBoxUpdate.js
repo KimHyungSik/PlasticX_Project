@@ -24,15 +24,6 @@ const callback = (req, res) => {
       });
     }
   
-    /*
-    // add if statement here. this is just for testing purposes.
-    req.body.location = ['37.492584', '127.005157'];
-    req.body.isFull = true;
-    req.body.isConnected = true;
-    req.body.isWorking = true;
-    req.body.lastUpdated = Date.now();
-    */
-
     req.body.lastUpdated = Date.now();
 
     return ReturnBox.updateOne(req.params, req.body, (err, updateResult) => {
@@ -53,7 +44,7 @@ const callback = (req, res) => {
       return res.status(200).json({
         RESULT: 200,
         MESSAGE: "리터박스 수정 성공",
-        //update: updateResult,
+        update: updateResult,
         returnBox_id: returnBoxInfo,
       });
     });
