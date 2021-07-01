@@ -1,0 +1,21 @@
+{{! 텀블러 조회하기 }}
+
+텀블러를 조회 해보자
+<div>
+  {{#each tumblers}}
+    {{#with this}}
+      <div class="qr-code"></div>
+      <div class="id-string">{{_id}}</div>
+    {{/with}}
+  {{/each}}
+</div>
+{{!-- <div>{{#test testObj}}Hello World! b is {{b}}{{/test}}</div> --}}
+
+{{#sect_in "script_head"}}
+  <script src="../library/jquery.min.js"></script>
+  <script src="../library/qrcode.js"></script>
+{{/sect_in}}
+{{#sect_in "style"}}{{/sect_in}}
+{{#sect_in "script_body"}}
+  <script src="../js/qrcode.js"></script>
+{{/sect_in}}
