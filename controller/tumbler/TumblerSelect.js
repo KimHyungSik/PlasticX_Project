@@ -46,7 +46,7 @@ const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 
 const apiCallback = (req, res) => {
   if (!Object.keys(req.params).length) {
-    return res.status(401).json({
+    return res.status(200).json({
       RESULT: 401,
       MESSAGE: "요청 값 없음",
     });
@@ -54,19 +54,19 @@ const apiCallback = (req, res) => {
   Tumbler.findOne(req.params, (err, tumblerInfo) => {
     if (err) {
       if (err.name === "CastError" && err.kind === "ObjectId") {
-        return res.status(401).json({
+        return res.status(200).json({
           RESULT: 401,
           MESSAGE: "잘못된 id값 입력",
           path: err.path,
         });
       }
-      return res.status(500).json({
+      return res.status(200).json({
         RESULT: 500,
         MESSAGE: "DB 에러 발생",
         error: err,
       });
     } else if (!tumblerInfo) {
-      return res.status(400).json({
+      return res.status(200).json({
         RESULT: 400,
         MESSAGE: "텀블러 없음",
       });

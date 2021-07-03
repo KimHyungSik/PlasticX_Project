@@ -15,20 +15,20 @@ const callback = async (req, res) => {
   } catch (err) {
     console.log(err);
     if (err.name === "CastError" && err.kind === "ObjectId") {
-      return res.status(401).json({
+      return res.status(200).json({
         RESULT: 401,
         MESSAGE: "잘못된 텀블러 id값 입력",
         path: err.path,
       });
     }
-    return res.status(500).json({
+    return res.status(200).json({
       RESULT: 500,
       MESSAGE: "DB 에러 발생 (Tumbler Collection)",
       error: err,
     });
   }
   if (!tumbler) {
-    return res.status(400).json({
+    return res.status(200).json({
       RESULT: 400,
       MESSAGE: "아이디에 해당하는 텀블러 없음",
     });
@@ -43,13 +43,13 @@ const callback = async (req, res) => {
     console.log(JSON.stringify(err));
     if (err) {
       if (err.name === "CastError" && err.kind === "ObjectId") {
-        return res.status(411).json({
+        return res.status(200).json({
           RESULT: 411,
           MESSAGE: "잘못된 유저 id값 입력",
           path: err.path,
         });
       }
-      return res.status(500).json({
+      return res.status(200).json({
         RESULT: 500,
         MESSAGE: "DB 에러 발생 (User Collection)",
         error: err,
@@ -112,7 +112,7 @@ const callback = async (req, res) => {
     } catch (err) {
       console.log(err);
       if (err.name === "CastError" && err.kind === "ObjectId") {
-        return res.status(500).json({
+        return res.status(200).json({
           RESULT: 401,
           MESSAGE: `잘못된 id값 입력, (${
             err.message.split('"').reverse()[1]
@@ -120,7 +120,7 @@ const callback = async (req, res) => {
           path: err.path,
         });
       }
-      return res.status(500).json({
+      return res.status(200).json({
         RESULT: 500,
         MESSAGE: `DB 에러 발생 , (${
           err.message.split('"').reverse()[1]
@@ -142,12 +142,12 @@ const callback = async (req, res) => {
       DEPOSIT: userUpdate.deposit,
     });
   } else if (tumbler.state == true) {
-    return res.status(301).json({
+    return res.status(200).json({
       RESULT: 301,
       MESSAGE: "텀블러 사용중",
     });
   } else if (user.deposit < DEPOSIT) {
-    return res.status(300).json({
+    return res.status(200).json({
       RESULT: 300,
       MESSAGE: "보증금 부족",
       DEPOSIT: `현재 보증금 : ${user.deposit}`,

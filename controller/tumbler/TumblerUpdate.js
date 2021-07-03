@@ -6,7 +6,7 @@ const callback = (req, res) => {
   Tumbler.findOne(req.params, (err, tumblerInfo) => {
     if (err) {
       if (err.name === "CastError" && err.kind === "ObjectId") {
-        return res.status(401).json({
+        return res.status(200).json({
           RESULT: 401,
           MESSAGE: "잘못된 id값 입력",
           path: err.path,
