@@ -57,7 +57,7 @@ const callback = async (req, res) => {
     }
   }
   if (!user) {
-    return res.status(410).json({
+    return res.status(200).json({
       RESULT: 410,
       MESSAGE: "아이디에 해당하는 유저 없음",
     });
@@ -72,14 +72,18 @@ const callback = async (req, res) => {
   let tumblerUpdate = new Tumbler(tumbler);
   let userUpdate = new User(user);
 
+  let tumblerQuery = tumblerUpdate._id;
+
   if (tumbler.state == false && user.deposit >= DEPOSIT) {
     userUpdate.deposit -= DEPOSIT;
     tumblerUpdate.state = true;
 
+    // 날짜 업데이트
     var date = new Date();
     date.setHours(date.getHours() + 9);
     tumblerUpdate.date = date.toISOString();
 
+    // from, to 업데이트
     tumblerUpdate.from_id = tumbler.to_id;
     tumblerUpdate.to_id = req.body.to_id;
 
@@ -136,6 +140,8 @@ const callback = async (req, res) => {
     user.deposit - userUpdate.deposit >= DEPOSIT &&
     tumbler.state != tumblerUpdate.state
   ) {
+    console.log(userQuery);
+    console.log(tumblerQuery);
     return res.status(200).json({
       RESULT: 200,
       MESSAGE: "텀블러 대여 성공",

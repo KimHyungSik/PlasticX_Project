@@ -1,7 +1,31 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const tumblerSchema = mongoose.Schema({
-  id: mongoose.Schema.Types.ObjectId, 
+const imageSchema = new Schema({
+  width: { type: Number, default: 200 },
+  height: { type: Number, default: 200 },
+  _id: false,
+});
+
+const modelSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    default: "텀블러1",
+  },
+  image: {
+    type: imageSchema,
+    default: {},
+  },
+  _id: false,
+});
+
+const tumblerSchema = new Schema({
+  id: mongoose.Schema.Types.ObjectId,
+  design: {
+    type: modelSchema,
+    default: {},
+  },
   from_id: {
     type: mongoose.Types.ObjectId,
     default: null,
