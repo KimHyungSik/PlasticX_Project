@@ -11,7 +11,7 @@ const modelSchema = new Schema({
   name: {
     type: String,
     required: true,
-    default: "텀블러1",
+    maxlength: 10,
   },
   image: {
     type: imageSchema,

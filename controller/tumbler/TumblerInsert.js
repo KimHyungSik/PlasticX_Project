@@ -9,12 +9,12 @@ const webCallback = async (req, res) => {
 };
 
 const apiCallback = async (req, res) => {
-  let result = await register(req.body);
+  let result = await register(req.body, res);
   console.log(result);
   res.status(result.RESULT).json(result);
 };
 
-const register = async (data) => {
+const register = async (data, tumblerInfo) => {
   let tumbler = new Tumbler(data);
   try {
     await tumbler.save();
@@ -28,6 +28,7 @@ const register = async (data) => {
     RESULT: 200,
     MESSAGE: "텀블러 생성 성공",
     tumbler_id: tumbler._id,
+    name: tumbler.design.name,
   };
   return result;
 };
