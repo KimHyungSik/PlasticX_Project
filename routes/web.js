@@ -8,7 +8,8 @@ const slack = require(path.resolve(__dirname, "..", "config", "slack"));
 // /web
 
 router.get("/", (req, res) => {
-  res.status(200).render("home");
+  //res.status(200).render("home");
+  //res.status(200).render("./client/plasticx-react/build/index.html");
 });
 
 router.use("/tumbler", tumbler);

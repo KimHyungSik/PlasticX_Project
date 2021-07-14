@@ -4,44 +4,65 @@ const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 const { User } = require(path.resolve(modelsPath, "User"));
 
 const callback = (req, res) => {
-  let tumbler_id = [];
-  let tumbler_model = [];
-  Tumbler.find(req.params, async (err, tumblerInfo) => {
-    let user;
-    try {
-      user = await User.findOne({ _id: req.params.to_id });
-    } catch (error) {}
-    if (err) {
-      if (err.name === "CastError" && err.kind === "ObjectId") {
+  let tumblers = [];
+
+  Tumbler.find(req.params)
+    .populate("model")
+    .populate("from_id")
+    .exec(async (err, tumblerInfo) => {
+      let user;
+      try {
+        user = await User.findOne({ _id: req.params.to_id });
+      } catch (error) {}
+      if (err) {
+        if (err.name === "CastError" && err.kind === "ObjectId") {
+          return res.status(200).json({
+            RESULT: 401,
+            MESSAGE: "잘못된 id값 입력",
+            path: err.path,
+          });
+        }
         return res.status(200).json({
-          RESULT: 401,
-          MESSAGE: "잘못된 id값 입력",
-          path: err.path,
+          RESULT: 500,
+          MESSAGE: "DB 에러 발생",
+          error: err,
+        });
+      } else if (!user) {
+        return res.status(200).json({
+          RESULT: 400,
+          MESSAGE: "해당하는 유저 없음",
         });
       }
-      return res.status(200).json({
-        RESULT: 500,
-        MESSAGE: "DB 에러 발생",
-        error: err,
+      tumblerInfo.forEach((e) => {
+        let temp = new Object();
+        temp.id = e._id;
+
+        temp.borrowed_date = e.date;
+        // 사용가능 기간 ((빌린날짜 + 7day) - 빌린날짜)
+        //temp.usabled_period =
+
+        if (e.from_id === null || e.from_id.name === null) {
+          temp.shop = "";
+        } else {
+          temp.shop = e.from_id.name;
+        }
+
+        if (e.model === null) {
+          temp.model = "";
+        } else {
+          temp.model = e.model.name;
+        }
+
+        tumblers.push(temp);
+        console.log(tumblerInfo);
       });
-    } else if (!user) {
-      return res.status(200).json({
-        RESULT: 400,
-        MESSAGE: "해당하는 유저 없음",
+
+      return res.json({
+        RESULT: 200,
+        MESSAGE: "검색 성공",
+        tumblers: tumblers,
       });
-    }
-    tumblerInfo.forEach((e) => {
-      tumbler_id.push(e._id);
-      tumbler_model.push(e.design);
-      console.log(e.date);
     });
-    return res.json({
-      RESULT: 200,
-      MESSAGE: "검색 성공",
-      tumbler_id: tumbler_id,
-      tumbler_model: tumbler_model,
-    });
-  });
 };
 
 module.exports = callback;

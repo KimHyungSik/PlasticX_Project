@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "dev": "nodemon web"
+    "dev": "webpack ./client"
   },
   "dependencies": {
     "@slack/webhook": "^6.0.0",

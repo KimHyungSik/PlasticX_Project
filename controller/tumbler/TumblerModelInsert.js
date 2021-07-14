@@ -1,6 +1,12 @@
 const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
-const { Owner } = require(path.resolve(modelsPath, "Owner"));
+const { TumblerModel } = require(path.resolve(modelsPath, "TumblerModel"));
+
+// const webCallback = async (req, res) => {
+//   let result = await register(req.body);
+//   console.log(req.date);
+//   res.render("tbmodel/register", result);
+// };
 
 const apiCallback = async (req, res) => {
   let result = await create(req.body, res);
@@ -8,10 +14,10 @@ const apiCallback = async (req, res) => {
   res.status(result.RESULT).json(result);
 };
 
-const create = async (data, ownerInfo) => {
-  let owner = new Owner(data);
+const create = async (data, tumblerInfo) => {
+  let tumblerModel = new TumblerModel(data);
   try {
-    await owner.save();
+    await tumblerModel.save();
   } catch (err) {
     result = {
       RESULT: 500,
@@ -20,9 +26,9 @@ const create = async (data, ownerInfo) => {
   }
   result = {
     RESULT: 200,
-    MESSAGE: "카페 생성 성공",
-    shop_id: owner._id,
-    shop_name: owner.name,
+    MESSAGE: "텀블러 모델 생성 성공",
+    tumbler_model_id: tumblerModel._id,
+    tumbler_model_name: tumblerModel.name,
   };
   return result;
 };

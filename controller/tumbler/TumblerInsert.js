@@ -28,7 +28,7 @@ const register = async (data, tumblerInfo) => {
     RESULT: 200,
     MESSAGE: "텀블러 생성 성공",
     tumbler_id: tumbler._id,
-    name: tumbler.design.name,
+    //name: tumbler.design.name,
   };
   return result;
 };

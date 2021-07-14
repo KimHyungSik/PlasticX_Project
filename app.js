@@ -34,39 +34,39 @@ mongoose
   });
 
 // 여기에 태스크 코드
-returnBoxTask();
+//returnBoxTask();
 
-app.engine(
-  "hbs",
-  hbs({
-    extname: "hbs",
-    defaultLayout: "layout",
-    layoutsDir: __dirname + "/views/layouts",
-    partialsDir: __dirname + "/views/partials",
-    helpers: {
-      sect_in: (item, options) => {
-        if (!this._sections) this._sections = {};
-        this._sections[item] = options.fn(this);
-        return null;
-      },
-      sect_out: (item, options) => {
-        if (!this._sections) return null;
-        return this._sections[item];
-      },
-      /*
-      test: (item, options) => {
-        let testString = "";
-        for (let i = 0; i < item.a; i++) {
-          testString += options.fn(item);
-        }
-        return testString;
-      },
-      */
-    },
-  })
-);
-app.set("view engine", "hbs");
-app.set("views", __dirname + "/views");
+// app.engine(
+//   "hbs",
+//   hbs({
+//     extname: "hbs",
+//     defaultLayout: "layout",
+//     layoutsDir: __dirname + "/views/layouts",
+//     partialsDir: __dirname + "/views/partials",
+//     helpers: {
+//       sect_in: (item, options) => {
+//         if (!this._sections) this._sections = {};
+//         this._sections[item] = options.fn(this);
+//         return null;
+//       },
+//       sect_out: (item, options) => {
+//         if (!this._sections) return null;
+//         return this._sections[item];
+//       },
+//       /*
+//       test: (item, options) => {
+//         let testString = "";
+//         for (let i = 0; i < item.a; i++) {
+//           testString += options.fn(item);
+//         }
+//         return testString;
+//       },
+//       */
+//     },
+//   })
+// );
+// app.set("view engine", "hbs");
+// app.set("views", __dirname + "/views");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -76,7 +76,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "client")));
 
 app.get("/err", (req, res) => {
   res.render("test", { error: 500 });
