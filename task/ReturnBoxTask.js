@@ -31,7 +31,7 @@ const callback = async () => {
   returnBoxes.forEach((item, index) => {
     // every 10 minutes, run checkReturnBox function to 
     // setInterval(checkReturnBox, 5000, item._id);
-    setInterval(checkReturnBox, 10000, item._id);
+    setInterval(checkReturnBox, 600000, item._id);
   });
 };
 
