@@ -8,12 +8,12 @@ const callback = (req, res) => {
   user.save((err, userInfo) => {
     if (err) {
       if (err.code === 11000 && Object.keys(err.keyPattern).includes("email")) {
-        return res.status(400).json({
+        return res.status(200).json({
           RESULT: 400,
           MESSAGE: "계정이 이미 존재합니다.",
         });
       }
-      return res.status(500).json({
+      return res.status(200).json({
         RESULT: 500,
         MESSAGE: "사용자 등록 실패",
         error: err,

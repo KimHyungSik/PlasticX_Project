@@ -8,12 +8,12 @@ const callback = (req, res) => {
   admin.save((err, adminInfo) => {
     if (err) {
       if (err.code === 11000 && Object.keys(err.keyPattern).includes("email")) {
-        return res.status(400).json({
+        return res.status(200).json({
           RESULT: 400,
           MESSAGE: "관리자 계정이 이미 존재합니다.",
         });
       }
-      return res.status(500).json({
+      return res.status(200).json({
         RESULT: 500,
         MESSAGE: "관리자 등록 실패",
         error: err,

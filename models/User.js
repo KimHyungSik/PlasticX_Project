@@ -3,7 +3,18 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const saltRounds = 10;
 
+// const userHaveTumblerSchema = mongoose.Schema({
+//   _id: {
+//     type: String,
+//     default: "텀블러id",
+//   },
+// });
+
 const userSchema = mongoose.Schema({
+  // haveTumbler_id: {
+  //   type: userHaveTumblerSchema,
+  //   default: {},
+  // },
   id: mongoose.Schema.Types.ObjectId,
   // 회원번호,
   name: {

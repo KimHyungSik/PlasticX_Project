@@ -9,13 +9,28 @@ const tumblerInsert = require(path.resolve(
   "TumblerInsert"
 ));
 
+const tumblerSelect = require(path.resolve(
+  controllerPath,
+  "tumbler",
+  "TumblerSelect"
+));
+
+const tumblerDelete = require(path.resolve(
+  controllerPath,
+  "tumbler",
+  "TumblerDelete"
+));
+
 const router = express.Router();
 
 // /tumbler
 
 // 텀블러 생성
+router.get("/register", (req, res) => {
+  res.status(200).render("tumbler/register");
+});
 router.post(
-  "/",
+  "/register",
   (req, res, next) => {
     var date = new Date();
     date.setHours(date.getHours() + 9);
@@ -29,12 +44,22 @@ router.post(
   tumblerInsert.web
 );
 
-// 텀블러 조회
-router.get("/", (req, res) => {
-  res.status(200).render("tumbler/register");
+// 텀블러 목록 조회
+router.get("/inquire", tumblerSelect.web);
+
+// 텀블러 보기
+router.get("/view", (req, res) => {
+  res.status(200).render("tumbler/view");
 });
 
 // 텀블러 삭제
-// router.delete("/:_id", tumblerDelete);
+router.delete(
+  "/",
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerDelete
+);
 
 module.exports = router;

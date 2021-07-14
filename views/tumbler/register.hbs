@@ -1,20 +1,17 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../library/jquery.min.js"></script>
-    <script src="../library/qrcode.js"></script>
-    <link rel="stylesheet" href="../stylesheets/style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div>qr 코드</div>
-    <div id="idString">{{tumbler_id}}</div>
-    <div id="qrcode"></div>
-    <form action="" method="post">
-      <button type="submit">생성</button>
-    </form>
-    <script src="../js/qrcode.js"></script>
-  </body>
-</html>
+{{! 텀블러 등록하기 }}
+<div>qr 코드</div>
+<div class="id-string">{{tumbler_id}}</div>
+<div class="qr-code"></div>
+<form action="" method="post">
+  <button type="submit">생성</button>
+</form>
+{{#sect_in "style"}}
+  <link rel="stylesheet" href="../stylesheets/style.css" />
+{{/sect_in}}
+{{#sect_in "script_head"}}
+  <script src="../library/jquery.min.js"></script>
+  <script src="../library/qrcode.js"></script>
+{{/sect_in}}
+{{#sect_in "script_body"}}
+  <script src="../js/qrcode.js"></script>
+{{/sect_in}}

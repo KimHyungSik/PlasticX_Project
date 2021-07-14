@@ -27,6 +27,12 @@ const tumblerDepositCheck = require(path.resolve(
   "TumblerDepositCheck"
 ));
 
+const tumblerDelete = require(path.resolve(
+  controllerPath,
+  "tumbler",
+  "TumblerDelete"
+));
+
 const router = express.Router();
 
 // /api/tumbler
@@ -54,7 +60,7 @@ router.get(
     slack.sendSlackWebhookRequest(req);
     next();
   },
-  tumblerSelect,
+  tumblerSelect.api,
   (req, res) => {
     return res.json({
       currentTime: Date(Date.now()),
@@ -90,6 +96,13 @@ router.put(
 );
 
 // 텀블러 삭제
-// router.delete("/:_id", tumblerDelete);
+router.delete(
+  "/:_id",
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerDelete
+);
 
 module.exports = router;
