@@ -1,0 +1,23 @@
+@import url(../../../Style.css);
+
+body {
+  margin: var(--body-base-margin);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.plasticx_logo {
+  width: 300px;
+  height: 140px;
+}

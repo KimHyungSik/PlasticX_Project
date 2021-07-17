@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "dev": "webpack ./client"
+    "admin": "nodemon ./bin/www",
+    "client": "nodemon ./bin/www2",
+    "dev": "concurrently \"npm run admin\" \"npm run start --prefix client\""
   },
   "dependencies": {
     "@slack/webhook": "^6.0.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
+    "concurrently": "^6.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",

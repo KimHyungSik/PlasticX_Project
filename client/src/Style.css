@@ -1,0 +1,26 @@
+:root {
+  /* color */
+  --color-black: #3f454d;
+  --color-white: #ffffff;
+  --color-blue: #3b88c3;
+  --color-hoverblue: #79aed6;
+  --color-yellow: #fbbe28;
+  --color-hoveryellow: #fde198;
+  --color-pink: #fd7f84;
+  --color-hoverpink: #faafb1;
+  --color-light-grey: #dfdfdf;
+
+  /* animation */
+  --animation-duration: transform 300ms ease;
+
+  /* size */
+  --size-button: 60px;
+  --font-size-colorButton: 20px;
+  --base-space: 8px;
+
+  /* radius */
+  --base-border-radius: 4px;
+
+  /* body layout */
+  --body-base-margin: 20px;
+}

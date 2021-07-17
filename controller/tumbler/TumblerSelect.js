@@ -9,32 +9,39 @@ const apiCallback = (req, res) => {
       MESSAGE: "요청 값 없음",
     });
   }
-  Tumbler.findOne(req.params, (err, tumblerInfo) => {
-    if (err) {
-      if (err.name === "CastError" && err.kind === "ObjectId") {
+  Tumbler.findOne(req.params)
+    .populate("model")
+    .populate("from_id")
+    .exec(async (err, tumblerInfo) => {
+      let temp = new Object();
+      temp.model = tumblerInfo.model.name;
+      temp.from_id = tumblerInfo.from_id.name;
+
+      if (err) {
+        if (err.name === "CastError" && err.kind === "ObjectId") {
+          return res.status(200).json({
+            RESULT: 401,
+            MESSAGE: "잘못된 id값 입력",
+            path: err.path,
+          });
+        }
         return res.status(200).json({
-          RESULT: 401,
-          MESSAGE: "잘못된 id값 입력",
-          path: err.path,
+          RESULT: 500,
+          MESSAGE: "DB 에러 발생",
+          error: err,
+        });
+      } else if (!tumblerInfo) {
+        return res.status(200).json({
+          RESULT: 400,
+          MESSAGE: "텀블러 없음",
         });
       }
       return res.status(200).json({
-        RESULT: 500,
-        MESSAGE: "DB 에러 발생",
-        error: err,
+        RESULT: 200,
+        MESSAGE: "성공",
+        RETURN: temp,
       });
-    } else if (!tumblerInfo) {
-      return res.status(200).json({
-        RESULT: 400,
-        MESSAGE: "텀블러 없음",
-      });
-    }
-    return res.status(200).json({
-      RESULT: 200,
-      MESSAGE: "성공",
-      RETURN: tumblerInfo,
     });
-  });
 };
 
 const webCallback = async (req, res) => {

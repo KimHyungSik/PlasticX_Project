@@ -1,14 +1,18 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
+  name: "wordrelay-setting",
+  mode: "development", // 실서비스: production
   devtool: "eval",
   resolve: {
     extensions: [".js", ".jsx"],
   },
+
+  // 입력
   entry: {
-    app: "./home",
+    app: ["./index"],
   },
+
   module: {
     rules: [
       {
@@ -20,8 +24,10 @@ module.exports = {
       },
     ],
   },
+
+  // 출력
   output: {
-    filename: "app.js",
     path: path.join(__dirname, "dist"),
+    filename: "app.js",
   },
 };
