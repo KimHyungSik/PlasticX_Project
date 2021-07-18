@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 
+import "./HomePage.css";
+
 class HomePage extends React.Component {
   render() {
     return <div>HomePage</div>;

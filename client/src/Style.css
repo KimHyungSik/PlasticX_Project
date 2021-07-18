@@ -10,17 +10,30 @@
   --color-hoverpink: #faafb1;
   --color-light-grey: #dfdfdf;
 
+  --color-primary: #35b8be;
+  --color-light-primary: #44ccd3;
+
   /* animation */
   --animation-duration: transform 300ms ease;
 
   /* size */
-  --size-button: 60px;
-  --font-size-colorButton: 20px;
-  --base-space: 8px;
+  --base-logo-width: 340px;
+  --base-logo-height: 120px;
+
+  --base-space-top-bottom: 8px;
+  --base-space-left-right: 12px;
+
+  --base-btn-font-size: 18px;
 
   /* radius */
   --base-border-radius: 4px;
 
   /* body layout */
-  --body-base-margin: 20px;
+  --body-base-width: 100vw;
+  --body-base-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-black);
 }
