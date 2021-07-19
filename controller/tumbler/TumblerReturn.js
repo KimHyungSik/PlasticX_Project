@@ -35,10 +35,13 @@ const callback = async (req, res) => {
     });
   }
 
+  console.log(tumbler);
+
   // set userQuery._id as to_id [user_id]
   // finding user
   let userQuery = new Object();
-  userQuery._id = req.body.to_id;
+  //userQuery._id = req.body.to_id;
+  userQuery._id = tumbler.to_id;
 
   try {
     user = await User.findOne(userQuery);
@@ -77,7 +80,7 @@ const callback = async (req, res) => {
 
   let tumblerQuery = tumblerUpdate._id;
 
-  if (tumbler.state == true && user.deposit <= DEPOSIT) {
+  if (tumbler.state == true) {
     userUpdate.deposit += DEPOSIT;
     tumblerUpdate.state = false;
 
@@ -87,38 +90,11 @@ const callback = async (req, res) => {
     tumblerUpdate.date = date.toISOString();
 
     // from, to 업데이트
-    //tumblerUpdate.from_id = userUpdate._id;
-    //tumblerUpdate.to_id = returnBox._id;
-    
-    tumblerUpdate.from_id = user._id;
-    tumblerUpdate.to_id = returnBox._id;
-    
-    // OG
-    // tumblerUpdate.from_id = tumbler.to_id;
-    // tumblerUpdate.to_id = req.body.to_id;
+    tumblerUpdate.from_id = tumbler.to_id;
+    tumblerUpdate.to_id = req.body.to_id;
         
     const session = await User.startSession();
     try {
-      /*
-      await userUpdate.save((err, userResult) => {
-        tumblerUpdate.save((err, tumblerResult) => {
-          if (err) {
-            if (err.name === "CastError" && err.kind === "ObjectId") {
-              return res.status(500).json({
-                RESULT: 401,
-                MESSAGE: `잘못된 id값 입력, (Tumbler Collection)`,
-                path: err.path,
-              });
-            }
-            return res.status(500).json({
-              RESULT: 500,
-              MESSAGE: `DB 에러 발생 , (Tumbler Collection)`,
-              error: err,
-            });
-          }
-        });
-      });
-      */
       await session.withTransaction(async () => {
         await User.findByIdAndUpdate(userUpdate._id, userUpdate);
         await Tumbler.findByIdAndUpdate(tumblerUpdate._id, tumblerUpdate);
@@ -147,8 +123,8 @@ const callback = async (req, res) => {
   }
 
   if (
-    user.deposit - userUpdate.deposit <= DEPOSIT &&
-    tumbler.state == tumblerUpdate.state
+    userUpdate.deposit - user.deposit == DEPOSIT &&
+    tumbler.state != tumblerUpdate.state
   ) {
     console.log(userQuery);
     console.log(tumblerQuery);
@@ -157,11 +133,11 @@ const callback = async (req, res) => {
       MESSAGE: "텀블러 반납 성공",
       DEPOSIT: userUpdate.deposit,
     });
-  } else if (user.deposit < DEPOSIT) {
+  } else {
     return res.status(200).json({
       RESULT: 300,
-      MESSAGE: "보증금 부족",
-      DEPOSIT: `현재 보증금 : ${user.deposit}`,
+      MESSAGE: "내부 에러 발생",
+      DEPOSIT: `현재 보증금 : ${userUpdate.deposit}`,
     });
   }
 };
