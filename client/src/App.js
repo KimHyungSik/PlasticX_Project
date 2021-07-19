@@ -39,8 +39,8 @@ class App extends React.Component {
           <Route path="/contact" component={Contact} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Footer />
         </Router>
-        <Footer />
       </>
     );
   }

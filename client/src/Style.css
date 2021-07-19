@@ -17,11 +17,14 @@
   --animation-duration: transform 300ms ease;
 
   /* size */
-  --base-logo-width: 340px;
-  --base-logo-height: 120px;
+  --base-logo-width: 380px;
+  --base-logo-height: 140px;
 
   --base-space-top-bottom: 8px;
   --base-space-left-right: 12px;
+  --nav-space-top-bottom: 1rem;
+  --nav-space-left-right: 4rem;
+  --content-space-top-bottom: 2.5rem;
 
   --base-btn-font-size: 18px;
 

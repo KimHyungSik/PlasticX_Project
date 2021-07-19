@@ -1,0 +1,24 @@
+.footer {
+  width: 100%;
+  max-width: 90rem;
+  height: calc(var(--body-base-height) / 2);
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  padding: var(--content-space-top-bottom) calc(var(--nav-space-left-right));
+  background-color: powderblue;
+}
+
+.footer-plasticx-logo,
+.footer-menu {
+  margin: auto 0;
+}
+
+.footer-menu-items {
+  padding-left: 0;
+  margin: 0;
+}
+
+.footer-menu-items .nav-links {
+  list-style: none;
+  transform: scale(1);
+}

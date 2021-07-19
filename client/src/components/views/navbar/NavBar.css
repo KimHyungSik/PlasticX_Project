@@ -4,10 +4,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: var(--nav-space-top-bottom) var(--nav-space-left-right);
 }
 
-.plasticx_logo {
+.plasticx-logo {
   width: var(--base-logo-width);
   height: var(--base-logo-height);
   cursor: pointer;
@@ -37,14 +37,16 @@
   display: none;
 }
 
-@media screen and (max-width: 1100px) {
-  .nav-menu {
-    display: none;
-  }
-
-  .plasticx_logo {
+@media screen and (max-width: 1150px) {
+  .plasticx-logo {
     width: calc(var(--base-logo-width) / 1.4);
     height: calc(var(--base-logo-height) / 1.4);
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .nav-menu {
+    display: none;
   }
 
   .nav-collapse-menu {

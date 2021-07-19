@@ -15,7 +15,7 @@ function NavBar() {
         <div>
           <Link to="/">
             <img
-              className="plasticx_logo"
+              className="plasticx-logo"
               alt="plasticx_logo"
               src="img/plasticx_logo.png"
             />
@@ -24,21 +24,23 @@ function NavBar() {
         <ul className="nav-menu">
           {MenuItems.map((item, index) => {
             return (
-              <li className={item.cName} key={index}>
-                <Link to={item.url}>{item.title}</Link>
-              </li>
+              <Link to={item.url}>
+                <li className={item.cName} key={index}>
+                  {item.title}
+                </li>
+              </Link>
             );
           })}
-          <li>
-            <Link to="/login">
+          <Link to="/login">
+            <li>
               <Button>Login</Button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/register">
+            </li>
+          </Link>
+          <Link to="/register">
+            <li>
               <Button>Sign In</Button>
-            </Link>
-          </li>
+            </li>
+          </Link>
         </ul>
         <div
           className="collapsible"

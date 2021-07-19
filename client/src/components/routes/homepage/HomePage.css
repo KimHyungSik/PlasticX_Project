@@ -1,0 +1,15 @@
+.home {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  padding: var(--content-space-top-bottom) calc(var(--nav-space-left-right));
+}
+
+.tumbler-img {
+  width: 600px;
+  height: 600px;
+}
+
+.home-article {
+  margin: auto 0;
+}
