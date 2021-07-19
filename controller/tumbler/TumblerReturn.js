@@ -1,7 +1,14 @@
+const express = require("express");
+var router = express.Router();
+
 const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
+const fcmPath = path.resolve(__dirname, "..", "..", "config");
+
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 const { User } = require(path.resolve(modelsPath, "User"));
+const FCM = require(path.resolve(fcmPath, "fcm"));
+
 const { userInfo } = require("os");
 
 const DEPOSIT = 5000;
@@ -128,6 +135,25 @@ const callback = async (req, res) => {
   ) {
     console.log(userQuery);
     console.log(tumblerQuery);
+    
+    // 알림
+    var { Client } = require("node-rest-client");
+    var client = new Client();
+
+    await router.post("/", (req, res, next) => {
+      let args = {
+        data: {
+          to: "dgciBqRgQDCkBD1VtX9mS1:APA91bGEEpoI3ZnuFKZ1hCHTpXIKA775XDHZZ2ndz-UNpElsI6VMGvCWZFXKiPL8Vmx6EmDbobPeNy78-ny_2Qzu9bGsFFsMxp7vaieCVM8hpTlX173JvmCYmvhbqGNYYont8Or9S-Q-",
+          notification: { title: "yubin", content: "hi i am happy" },
+        },
+        headers: { "Content-Type": "application/json", Authorization: FCM.TOKEN },
+      };
+      client.post(FCM.BASE_URI + FCM.SEND_URI, args, (data, result) => {
+        console.log(data);
+      });
+    });
+    // 알림
+
     return res.status(200).json({
       RESULT: 200,
       MESSAGE: "텀블러 반납 성공",
