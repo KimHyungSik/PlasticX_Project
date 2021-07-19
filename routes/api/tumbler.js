@@ -33,6 +33,12 @@ const tumblerDelete = require(path.resolve(
   "TumblerDelete"
 ));
 
+const tumblerReturn = require(path.resolve(
+  controllerPath,
+  "tumbler",
+  "TumblerReturn"
+));
+
 const router = express.Router();
 
 // /api/tumbler
@@ -103,6 +109,16 @@ router.delete(
     next();
   },
   tumblerDelete
+);
+
+// 텀블러 반납
+router.put(
+  "/return/:_id",
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
+    next();
+  },
+  tumblerReturn
 );
 
 module.exports = router;
