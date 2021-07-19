@@ -1,0 +1,8 @@
+@import url(./Style.css);
+
+body {
+  width: var(--body-base-width);
+  max-width: 90rem;
+  height: var(--body-base-height);
+  margin: 0 auto;
+}

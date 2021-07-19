@@ -1,33 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const imageSchema = new Schema({
-  width: { type: Number, default: 200 },
-  height: { type: Number, default: 200 },
-  _id: false,
-});
-
-const modelSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 10,
-  },
-  image: {
-    type: imageSchema,
-    default: {},
-  },
-  _id: false,
-});
+const { TumblerModel } = require("./TumblerModel");
+const { Owner } = require("./Owner");
 
 const tumblerSchema = new Schema({
   id: mongoose.Schema.Types.ObjectId,
-  design: {
-    type: modelSchema,
-    default: {},
-  },
   from_id: {
     type: mongoose.Types.ObjectId,
+    ref: Owner,
     default: null,
     required: false,
   },
@@ -42,6 +23,12 @@ const tumblerSchema = new Schema({
   },
   date: {
     type: Date,
+  },
+  model: {
+    type: mongoose.Types.ObjectId,
+    ref: TumblerModel,
+    default: null,
+    required: false,
   },
 });
 

@@ -89,26 +89,6 @@ const callback = async (req, res) => {
 
     const session = await User.startSession();
     try {
-      /*
-      await userUpdate.save((err, userResult) => {
-        tumblerUpdate.save((err, tumblerResult) => {
-          if (err) {
-            if (err.name === "CastError" && err.kind === "ObjectId") {
-              return res.status(500).json({
-                RESULT: 401,
-                MESSAGE: `잘못된 id값 입력, (Tumbler Collection)`,
-                path: err.path,
-              });
-            }
-            return res.status(500).json({
-              RESULT: 500,
-              MESSAGE: `DB 에러 발생 , (Tumbler Collection)`,
-              error: err,
-            });
-          }
-        });
-      });
-      */
       await session.withTransaction(async () => {
         await User.findByIdAndUpdate(userUpdate._id, userUpdate);
         await Tumbler.findByIdAndUpdate(tumblerUpdate._id, tumblerUpdate);
@@ -142,9 +122,13 @@ const callback = async (req, res) => {
   ) {
     console.log(userQuery);
     console.log(tumblerQuery);
+    let tempDate = new Date(tumblerUpdate.date);
+    tempDate.setDate(tempDate.getDate() + 7);
     return res.status(200).json({
       RESULT: 200,
       MESSAGE: "텀블러 대여 성공",
+      BORROWED_DATE: tumblerUpdate.date,
+      USABlE_PERIOD: tempDate,
       DEPOSIT: userUpdate.deposit,
     });
   } else if (tumbler.state == true) {

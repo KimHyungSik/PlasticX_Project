@@ -1,0 +1,74 @@
+@import url(../../../Style.css);
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+}
+
+.plasticx_logo {
+  width: var(--base-logo-width);
+  height: var(--base-logo-height);
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(7, auto);
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav-links {
+  padding: var(--base-space-top-bottom) var(--base-space-left-right);
+  cursor: pointer;
+}
+
+.nav-links:hover {
+  transform: scale(1.15);
+  transition: all 0.2s ease-out;
+}
+
+.collapsible,
+.nav-collapse-menu {
+  display: none;
+}
+
+@media screen and (max-width: 1100px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .plasticx_logo {
+    width: calc(var(--base-logo-width) / 1.4);
+    height: calc(var(--base-logo-height) / 1.4);
+  }
+
+  .nav-collapse-menu {
+    background-color: var(--color-white);
+  }
+
+  #navCollapseMenu .nav-collapse-menu {
+    display: grid;
+    grid-gap: var(--base-space-top-bottom);
+    grid-template-rows: repeat(7, auto);
+    text-align: center;
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  #navCollapseMenu .nav-links:hover {
+    transform: scale(1);
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .collapsible {
+    display: flex;
+    cursor: pointer;
+  }
+}

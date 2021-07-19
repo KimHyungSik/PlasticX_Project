@@ -1,8 +1,9 @@
 {{! 텀블러 등록하기 }}
-<div>qr 코드</div>
-<div class="id-string">{{tumbler_id}}</div>
+<h2>QR Code 생성 관리자 페이지 입니다.</h2>
 <div class="qr-code"></div>
+<div class="id-string">{{tumbler_id}}</div>
 <form action="" method="post">
+  <input type="" id="tumblerName" name="name" maxlength="10" />
   <button type="submit">생성</button>
 </form>
 {{#sect_in "style"}}

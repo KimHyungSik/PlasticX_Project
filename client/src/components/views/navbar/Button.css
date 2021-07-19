@@ -1,0 +1,44 @@
+@import url(../../../Style.css);
+
+.button {
+  padding: var(--base-space-top-bottom) var(--base-space-left-right);
+  border-radius: var(--base-border-radius);
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  padding: var(--base-space-top-bottom) var(--base-space-left-right);
+  transition: all 0.3s ease-out;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transition: 250ms;
+}
+
+.button--primary {
+  background-color: var(--color-primary);
+}
+
+.button--outline {
+  padding: var(--base-space-top-bottom) var(--base-space-left-right);
+  border-radius: var(--base-border-radius);
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  transition: all 0.3s ease-out;
+}
+
+.button--medium {
+  padding: var(--base-space-top-bottom) var(--base-space-left-right);
+  border-radius: var(--base-border-radius);
+  font-size: var(--base-btn-font-size);
+  color: var(--color-white);
+}
+
+.button--large {
+  padding: 12px 26px;
+  border-radius: var(--base-border-radius);
+  font-size: 20px;
+  color: var(--color-white);
+}

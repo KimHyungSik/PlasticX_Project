@@ -1,4 +1,4 @@
-var app = require("../app");
+var app = require("../app2");
 var debug = require("debug")("plasticx:server");
 var http = require("http");
 
