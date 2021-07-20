@@ -7,12 +7,15 @@ const callback = (req, res) => {
     { _id: req.user._id },
     { token: "" },
     (err, userInfo) => {
-      if (err) return res.json({
-        success: false,
-        err
-      });
+      if (err)
+        return res.json({
+          RESULT: 500,
+          MESSAGE: "내부에러",
+          error: err,
+        });
       return res.status(200).send({
-        success: true,
+        RESULT: 200,
+        MESSAGE: "로그아웃 성공",
       });
     }
   );

@@ -12,24 +12,27 @@
 
   --color-primary: #35b8be;
   --color-light-primary: #44ccd3;
+  --color-footer-background: #e9feff;
 
   /* animation */
   --animation-duration: transform 300ms ease;
 
   /* size */
-  --base-logo-width: 340px;
-  --base-logo-height: 120px;
+  --base-logo-width: 400px;
+  --base-logo-height: 140px;
 
   --base-space-top-bottom: 8px;
   --base-space-left-right: 12px;
+  --nav-space-top-bottom: 2rem;
+  --nav-space-left-right: 20rem;
 
   --base-btn-font-size: 18px;
 
   /* radius */
   --base-border-radius: 4px;
 
-  /* body layout */
-  --body-base-width: 100vw;
+  /* layout */
+  --body-base-width: 95vw;
   --body-base-height: 100vh;
 }
 
