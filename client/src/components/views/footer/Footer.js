@@ -17,17 +17,15 @@ function Footer() {
       </div>
       <div className="footer-menu">
         <span>PLASTICX</span>
-        <ul className="footer-menu-items">
+        <div className="footer-menu-items">
           {MenuItems.map((item, index) => {
             return (
-              <Link to={item.url}>
-                <li className={item.cName} key={index}>
-                  {item.title}
-                </li>
+              <Link to={item.url} className={item.cName}>
+                <span key={index}>{item.title}</span>
               </Link>
             );
           })}
-        </ul>
+        </div>
       </div>
     </div>
   );

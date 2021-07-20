@@ -37,14 +37,14 @@
   display: none;
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1300px) {
   .plasticx-logo {
     width: calc(var(--base-logo-width) / 1.4);
     height: calc(var(--base-logo-height) / 1.4);
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1200px) {
   .nav-menu {
     display: none;
   }

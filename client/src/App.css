@@ -1,8 +1,30 @@
 @import url(./Style.css);
 
 body {
-  width: var(--body-base-width);
-  max-width: 90rem;
+  width: calc(var(--body-base-width)-5);
   height: var(--body-base-height);
-  margin: 0 auto;
+}
+
+@media screen and (max-width: 1800px) {
+  .navbar,
+  .home,
+  .footer {
+    padding: var(--nav-space-top-bottom) calc(var(--nav-space-left-right) / 2);
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .navbar,
+  .home,
+  .footer {
+    padding: var(--nav-space-top-bottom) calc(var(--nav-space-left-right) / 3);
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .navbar,
+  .home,
+  .footer {
+    padding: var(--nav-space-top-bottom) calc(var(--nav-space-left-right) / 4);
+  }
 }
