@@ -1,15 +1,11 @@
-const express = require("express");
-var router = express.Router();
-
 const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const fcmPath = path.resolve(__dirname, "..", "..", "config");
 
+const { Client } = require("node-rest-client");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 const { User } = require(path.resolve(modelsPath, "User"));
 const FCM = require(path.resolve(fcmPath, "fcm"));
-
-const { userInfo } = require("os");
 
 const DEPOSIT = 5000;
 
@@ -41,8 +37,6 @@ const callback = async (req, res) => {
       MESSAGE: "아이디에 해당하는 텀블러 없음",
     });
   }
-
-  console.log(tumbler);
 
   // set userQuery._id as to_id [user_id]
   // finding user
@@ -85,8 +79,6 @@ const callback = async (req, res) => {
   let tumblerUpdate = new Tumbler(tumbler);
   let userUpdate = new User(user);
 
-  let tumblerQuery = tumblerUpdate._id;
-
   if (tumbler.state == true) {
     userUpdate.deposit += DEPOSIT;
     tumblerUpdate.state = false;
@@ -99,7 +91,7 @@ const callback = async (req, res) => {
     // from, to 업데이트
     tumblerUpdate.from_id = tumbler.to_id;
     tumblerUpdate.to_id = req.body.to_id;
-        
+
     const session = await User.startSession();
     try {
       await session.withTransaction(async () => {
@@ -130,34 +122,27 @@ const callback = async (req, res) => {
   }
 
   if (
-    userUpdate.deposit - user.deposit == DEPOSIT &&
+    userUpdate.deposit > user.deposit &&
     tumbler.state != tumblerUpdate.state
   ) {
-    console.log(userQuery);
-    console.log(tumblerQuery);
-    
     // 알림
-    var { Client } = require("node-rest-client");
     var client = new Client();
 
-    await router.post("/", (req, res, next) => {
-      let args = {
-        data: {
-          to: "dgciBqRgQDCkBD1VtX9mS1:APA91bGEEpoI3ZnuFKZ1hCHTpXIKA775XDHZZ2ndz-UNpElsI6VMGvCWZFXKiPL8Vmx6EmDbobPeNy78-ny_2Qzu9bGsFFsMxp7vaieCVM8hpTlX173JvmCYmvhbqGNYYont8Or9S-Q-",
-          notification: { title: "yubin", content: "hi i am happy" },
-        },
-        headers: { "Content-Type": "application/json", Authorization: FCM.TOKEN },
-      };
-      client.post(FCM.BASE_URI + FCM.SEND_URI, args, (data, result) => {
-        console.log(data);
+    console.log(userUpdate);
+    let args = {
+      data: {
+        to: userUpdate.fcm_token,
+        notification: { title: "반납되었습니다." },
+      },
+      headers: { "Content-Type": "application/json", Authorization: FCM.TOKEN },
+    };
+    await client.post(FCM.BASE_URI + FCM.SEND_URI, args, (data, result) => {
+      console.log(data);
+      return res.status(200).json({
+        RESULT: 200,
+        MESSAGE: "텀블러 반납 성공",
+        DEPOSIT: userUpdate.deposit,
       });
-    });
-    // 알림
-
-    return res.status(200).json({
-      RESULT: 200,
-      MESSAGE: "텀블러 반납 성공",
-      DEPOSIT: userUpdate.deposit,
     });
   } else {
     return res.status(200).json({

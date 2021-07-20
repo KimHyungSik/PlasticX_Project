@@ -30,6 +30,10 @@ const userSchema = mongoose.Schema({
   token: {
     type: String,
   },
+  fcm_token: {
+    type: String,
+    unique: true,
+  },
   deposit: {
     type: Number,
     default: 10000,

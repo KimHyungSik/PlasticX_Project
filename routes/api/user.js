@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const slack = require(path.resolve(__dirname, "..", "..", "config", "slack"));
 const controllerPath = path.resolve(__dirname, "..", "..", "controller");
 const middlewarePath = path.resolve(__dirname, "..", "..", "middleware");
 
@@ -25,7 +26,14 @@ router.get("/info/:_id", userDetail);
 router.get("/list/:to_id", userRentList);
 
 router.post("/register", userRegist);
-router.post("/login", userLogin);
+router.post(
+  "/login",
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
+    next();
+  },
+  userLogin
+);
 
 router.put("/", (req, res) => {
   res.status(400).json({
