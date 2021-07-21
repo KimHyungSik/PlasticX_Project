@@ -19,7 +19,6 @@ const callback = (req, res) => {
         error: err,
       });
     }
-    console.log(userInfo);
     return res.status(200).json({
       RESULT: 200,
       MESSAGE: "회원가입 성공",
