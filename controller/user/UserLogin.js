@@ -7,6 +7,12 @@ const callback = (req, res) => {
     { email: req.body.email },
     { fcm_token: req.body.fcm_token },
     (err, userInfo) => {
+      if (err) {
+        return res.json({
+          RESULT: 500,
+          MESSAGE: "내부 오류 발생",
+        });
+      }
       if (!userInfo) {
         return res.status(200).json({
           RESULT: 400,
