@@ -1,9 +1,9 @@
 .footer {
-  height: calc(var(--body-base-height) / 2.4);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--nav-space-left-right);
+  padding: calc(var(--nav-space-top-bottom) * 3)
+    calc(var(--nav-space-left-right) * 1.6);
   background-color: var(--color-footer-background);
 }
 
@@ -12,8 +12,9 @@
   height: 90px;
 }
 
-.footer-menu {
-  padding-right: var(--nav-space-left-right);
+.footer-menu .footer-logo-name {
+  letter-spacing: 5px;
+  padding: var(--base-space-top-bottom) var(--base-space-left-right);
 }
 
 .footer-plasticx-logo {
@@ -27,10 +28,6 @@
   display: flex;
   flex-direction: column;
 }
-
-/* .footer-menu-items .nav-links {
-  
-} */
 
 .footer-menu-items .nav-links:hover {
   transition: all 0.2s;

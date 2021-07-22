@@ -4,11 +4,45 @@
   padding: calc(var(--nav-space-top-bottom) * 2) var(--nav-space-left-right);
 }
 
+.home-article {
+  margin: auto 0;
+}
+
+.home-article h1 {
+  font-size: var(--home-main-article-size);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.home-article h5 {
+  font-size: var(--home-sub-article-size);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.manual {
+  margin-top: 4rem;
+}
+
+.manual button {
+  padding: var(--normal-btn-space-top-bottom)
+    var(--normal-btn-space-lefet-right);
+  border-radius: var(--base-border-radius);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: 250ms;
+}
+
+.manual button:hover {
+  background-color: var(--color-dark-primary);
+  color: var(--color-white);
+  transition: 250ms;
+}
+
 .tumbler-img {
   width: 100%;
   height: 100%;
-}
-
-.home-article {
-  margin: auto 0;
 }

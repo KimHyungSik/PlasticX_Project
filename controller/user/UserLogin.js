@@ -41,31 +41,44 @@ const login = (req, res) => {
 };
 
 const kakao_login = (req, res) => {
-  User.findByIdAndUpdate(
-    req.body._id,
-    { fcm_token: req.body.fcm_token },
-    (err, userInfo) => {
-      if (err) {
-        return res.json({
-          RESULT: 500,
-          MESSAGE: "내부 오류 발생",
-        });
-      }
-      if (!userInfo) {
-        return res.status(200).json({
-          RESULT: 400,
-          MESSAGE: "등록되지 않은 유저입니다.",
-        });
-      }
-      // userInfo.comparePassword(req.body.password, (err, isMatch) => {
-      //   if (!isMatch) {
-      //     return res.status(200).json({
-      //       RESULT: 401,
-      //       MESSAGE: "비밀번호가 틀렸습니다.",
-      //     });
-      //   }
+  let kakao_user = new User(req.body);
 
-      // 비밀번호가 맞다면 토큰 생성
+  User.findByIdAndUpdate(kakao_user._id, kakao_user, (err, userInfo) => {
+    if (err) {
+      return res.json({
+        RESULT: 500,
+        MESSAGE: "내부 오류 발생",
+      });
+    }
+    if (!userInfo) {
+      kakao_user.name = "kaka_user";
+      kakao_user.save((err, userInfo) => {
+        console.log(userInfo);
+        if (err) {
+          return res.json({
+            RESULT: 500,
+            MESSAGE: "내부 오류 발생",
+          });
+        }
+        kakao_user.generateToken((err, user) => {
+          if (err) return res.status(200).send(err);
+          res
+            .cookie("x_auth", user.token)
+            .status(200)
+            .json({ RESULT: 200, MESSAGE: "로그인 성공", user_id: user._id });
+        });
+      });
+    }
+    // userInfo.comparePassword(req.body.password, (err, isMatch) => {
+    //   if (!isMatch) {
+    //     return res.status(200).json({
+    //       RESULT: 401,
+    //       MESSAGE: "비밀번호가 틀렸습니다.",
+    //     });
+    //   }
+
+    // 비밀번호가 맞다면 토큰 생성
+    else {
       userInfo.generateToken((err, user) => {
         if (err) return res.status(200).send(err);
         res
@@ -73,9 +86,9 @@ const kakao_login = (req, res) => {
           .status(200)
           .json({ RESULT: 200, MESSAGE: "로그인 성공", user_id: user._id });
       });
-      //});
     }
-  );
+    //});
+  });
 };
 
 const callback = (req, res) => {

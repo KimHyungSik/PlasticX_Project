@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { NavBar, Footer } from "./components/views/ViewsIndex";
 import {
   HomePage,
+  Manual,
   LoginPage,
   RegisterPage,
   Company,
@@ -33,6 +34,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
 
           {/* NavMenu */}
+          <Route path="/manual" component={Manual} />
           <Route path="/company" component={Company} />
           <Route path="/shop" component={Shop} />
           <Route path="/faq" component={FAQ} />

@@ -1,5 +1,3 @@
-@import url(../../../Style.css);
-
 .button {
   padding: var(--base-space-top-bottom) var(--base-space-left-right);
   border-radius: var(--base-border-radius);
