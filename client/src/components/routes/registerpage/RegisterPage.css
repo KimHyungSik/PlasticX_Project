@@ -1,0 +1,78 @@
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: var(--base-border-radius);
+  font-size: small;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+  border: 1px solid #2f5ffa;
+  transition: 500ms;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 6px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: var(--base-border-radius);
+  transition: 250ms;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  background-color: var(--color-dark-primary);
+  color: var(--color-white);
+  transition: 250ms;
+}
+
+/* Add padding to containers */
+.container {
+  margin: -10px 25px 25px 25px;
+}
+
+.login-page {
+  width: 300px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.login-page h2 {
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 25px;
+}
+
+.login-page b {
+  font-size: small;
+  font-weight: 500;
+}
+
+.another-approach {
+  font-size: small;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 550;
+  color: #a5a9c4;
+}
+
+.another-approach a:hover {
+  transition: 250ms;
+  color: #2f5ffa;
+}
