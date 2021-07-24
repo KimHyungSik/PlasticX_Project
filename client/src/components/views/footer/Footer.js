@@ -16,8 +16,8 @@ function Footer() {
         <span>A Life Changer</span>
       </div>
       <div className="footer-menu">
-        <span>PLASTICX</span>
         <div className="footer-menu-items">
+          <span className="footer-logo-name">PLASTICX</span>
           {MenuItems.map((item, index) => {
             return (
               <Link to={item.url} className={item.cName}>

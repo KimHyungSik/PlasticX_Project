@@ -1,0 +1,99 @@
+.faq-title {
+  text-align: center;
+  width: 100%;
+  padding: calc(var(--nav-space-top-bottom) * 5) 0;
+  background-color: var(--color-footer-background);
+}
+
+.faq-title h1 {
+  font-size: var(--home-main-article-size);
+  font-weight: bold;
+  margin: 0;
+}
+
+.faq-title span {
+  color: var(--color-primary);
+}
+
+.faq-list {
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  width: 50%;
+  padding: calc(var(--nav-space-top-bottom) * 1.4) 0;
+}
+
+.faq-list-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: var(--home-sub-article-size);
+  padding: calc(var(--nav-space-top-bottom) * 1.4) 0 var(--nav-space-top-bottom)
+    0;
+  margin-bottom: 1.2rem;
+  border-bottom: solid 1px var(--color-light-grey);
+  word-break: keep-all;
+}
+
+.faq-list-question:hover {
+  cursor: pointer;
+}
+
+.faq-list-answer {
+  font-size: var(--home-sub-article-size);
+  color: var(--color-black);
+  word-break: keep-all;
+}
+
+@media screen and (max-width: 1300px) {
+  .faq-title h1 {
+    font-size: calc(var(--home-main-article-size) / 1.4);
+  }
+
+  .faq-list {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .faq-list {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .faq-title {
+    padding: calc(var(--nav-space-top-bottom) * 4) 0;
+  }
+
+  .faq-list {
+    width: 70%;
+  }
+}
+
+/*
+@media screen and (max-width: 1023px) {
+  .faq-title {
+    padding: calc(var(--nav-space-top-bottom) * 5)
+      calc(var(--nav-space-left-right) * 1.4);
+  }
+
+  .faq-list {
+    padding: calc(var(--nav-space-top-bottom) * 2)
+      calc(var(--nav-space-left-right) * 1.4);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .faq-title {
+    padding: calc(var(--nav-space-top-bottom) * 5)
+      calc(var(--nav-space-left-right) * 1.4);
+  }
+
+  .faq-list {
+    padding: calc(var(--nav-space-top-bottom) * 2)
+      calc(var(--nav-space-left-right) * 1.4);
+  }
+} */

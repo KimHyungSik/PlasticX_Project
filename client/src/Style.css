@@ -11,8 +11,9 @@
   --color-light-grey: #dfdfdf;
 
   --color-primary: #35b8be;
+  --color-dark-primary: #399ca1;
   --color-light-primary: #44ccd3;
-  --color-footer-background: #e9feff;
+  --color-footer-background: #eef2f3;
 
   /* animation */
   --animation-duration: transform 300ms ease;
@@ -23,17 +24,21 @@
 
   --base-space-top-bottom: 8px;
   --base-space-left-right: 12px;
+  --normal-btn-space-top-bottom: 18px;
+  --normal-btn-space-lefet-right: 24px;
   --nav-space-top-bottom: 2rem;
   --nav-space-left-right: 20rem;
 
+  --home-main-article-size: 60px;
+  --home-sub-article-size: 18px;
   --base-btn-font-size: 18px;
 
   /* radius */
   --base-border-radius: 4px;
 
   /* layout */
-  --body-base-width: 95vw;
-  --body-base-height: 100vh;
+  --body-base-width: 100%;
+  --body-base-height: 100%;
 }
 
 a {
