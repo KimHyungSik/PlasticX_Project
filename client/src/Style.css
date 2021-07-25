@@ -8,6 +8,7 @@
   --color-hoveryellow: #fde198;
   --color-pink: #fd7f84;
   --color-hoverpink: #faafb1;
+  --color-grey: #a5a9c4;
   --color-light-grey: #dfdfdf;
 
   --color-primary: #35b8be;
@@ -27,11 +28,14 @@
   --normal-btn-space-top-bottom: 18px;
   --normal-btn-space-lefet-right: 24px;
   --nav-space-top-bottom: 2rem;
-  --nav-space-left-right: 20rem;
+  --nav-space-left-right: 2rem;
 
   --home-main-article-size: 60px;
   --home-sub-article-size: 18px;
   --base-btn-font-size: 18px;
+
+  --login-form-width-size: 20rem;
+  --login-space-top-bottom: 6rem;
 
   /* radius */
   --base-border-radius: 4px;

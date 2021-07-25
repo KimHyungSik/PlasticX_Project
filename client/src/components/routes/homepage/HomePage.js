@@ -8,7 +8,7 @@ import "./HomePage.css";
 class HomePage extends React.Component {
   render() {
     return (
-      <section className="home">
+      <section className="home global-width">
         <div className="home-article">
           <h1>여기에 메인 내용이 들어갑니다.</h1>
           <h5>여기에 서브 내용이 들어갑니다.</h5>

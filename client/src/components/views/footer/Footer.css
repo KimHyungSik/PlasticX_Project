@@ -1,9 +1,12 @@
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: calc(var(--nav-space-top-bottom) * 3)
     calc(var(--nav-space-left-right) * 1.6);
+}
+
+.footer-back {
   background-color: var(--color-footer-background);
 }
 

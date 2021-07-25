@@ -10,8 +10,8 @@ function NavBar() {
   let [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      <nav className="navbar">
+    <div className="nav-container">
+      <nav className="navbar global-width">
         <div>
           <Link to="/">
             <img
@@ -78,7 +78,7 @@ function NavBar() {
           </ul>
         </div>
       </Collapse>
-    </>
+    </div>
   );
 }
 

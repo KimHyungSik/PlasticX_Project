@@ -1,8 +1,3 @@
-/* Bordered form */
-form {
-  border: 3px solid #f1f1f1;
-}
-
 /* Full-width inputs */
 input[type="text"],
 input[type="password"] {
@@ -42,15 +37,9 @@ button:hover {
   transition: 250ms;
 }
 
-/* Add padding to containers */
-.container {
-  margin: -10px 25px 25px 25px;
-}
-
 .login-page {
-  width: 300px;
-  margin: auto;
-  margin-bottom: 40px;
+  width: var(--login-form-width-size);
+  margin: var(--login-space-top-bottom) auto;
 }
 
 .login-page h2 {
@@ -65,14 +54,8 @@ button:hover {
 }
 
 .another-approach {
-  font-size: small;
   text-align: center;
-  margin-top: 10px;
-  font-weight: 550;
+  font-size: small;
+  font-weight: 600;
   color: #a5a9c4;
-}
-
-.another-approach a:hover {
-  transition: 250ms;
-  color: #2f5ffa;
 }
