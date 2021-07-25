@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import Button from "../../views/navbar/Button";
 import "./HomePage.css";
 
 class HomePage extends React.Component {

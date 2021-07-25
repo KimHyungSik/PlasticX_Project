@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./LoginPage.css";
 
@@ -34,15 +35,14 @@ class LoginPage extends React.Component {
               onChange={this.handleChange}
               required
             />
-
             <b>비밀번호</b>
             <input type="password" placeholder="비밀번호" required></input>
-
             <button type="submit" value="Submit">
               Log In
             </button>
             <div className="another-approach">
-              아직 계정이 없으신가요? <a href="/register">계정 만들기</a>
+              아직 계정이 없으신가요? &emsp;
+              <Link to="/register">계정 만들기</Link>
             </div>
           </form>
         </div>

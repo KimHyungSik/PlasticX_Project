@@ -17,26 +17,6 @@ input[type="password"]:hover {
   transition: 500ms;
 }
 
-/* Set a style for all buttons */
-button {
-  background-color: var(--color-primary);
-  color: white;
-  padding: 6px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: var(--base-border-radius);
-  transition: 250ms;
-}
-
-/* Add a hover effect for buttons */
-button:hover {
-  background-color: var(--color-dark-primary);
-  color: var(--color-white);
-  transition: 250ms;
-}
-
 .login-page {
   width: var(--login-form-width-size);
   margin: var(--login-space-top-bottom) auto;
@@ -53,9 +33,29 @@ button:hover {
   font-weight: 500;
 }
 
+/* Set a style for all buttons */
+.login-page button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--base-space-top-bottom) 20px;
+  margin: calc(var(--base-space-top-bottom) * 2) 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: var(--base-border-radius);
+  transition: 250ms;
+}
+
+/* Add a hover effect for buttons */
+.login-page button:hover {
+  background-color: var(--color-dark-primary);
+  color: var(--color-white);
+  transition: 250ms;
+}
+
 .another-approach {
   text-align: center;
   font-size: small;
   font-weight: 600;
-  color: #a5a9c4;
+  color: var(--color-grey);
 }
