@@ -1,54 +1,77 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import loginUser from "../../../_actions/user_action";
 
 import "./LoginPage.css";
 
-class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: "" };
+function LoginPage(props) {
+  const dispath = useDispatch();
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
 
-  handleSubmit(event) {
-    alert("A name was submitted: " + this.state.value);
+  const onEmailHandler = (event) => {
+    setEmail(event.currentTarget.value);
+  };
+
+  const onPasswordHandler = (event) => {
+    setPassword(event.currentTarget.value);
+  };
+
+  const onSubmitHandler = (event) => {
     event.preventDefault();
-  }
 
-  render() {
-    return (
-      <section className="login">
-        <div className="login-page">
-          <form onSubmit={this.handleSubmit}>
-            <h2>로그인</h2>
-            <hr></hr>
-            <b>이메일</b>
-            <input
-              type="text"
-              placeholder="이메일"
-              value={this.state.value}
-              onChange={this.handleChange}
-              required
-            />
-            <b>비밀번호</b>
-            <input type="password" placeholder="비밀번호" required></input>
-            <button type="submit" value="Submit">
-              Log In
-            </button>
-            <div className="another-approach">
-              아직 계정이 없으신가요? &emsp;
-              <Link to="/register">계정 만들기</Link>
-            </div>
-          </form>
-        </div>
-      </section>
-    );
-  }
+    let body = {
+      email: Email,
+      password: Password,
+    };
+
+    dispath(loginUser(body)).then((response) => {
+      if (response.payload.loginSuccess) {
+        props.history.push("/");
+      } else {
+        alert("Error");
+      }
+    });
+  };
+
+  return (
+    <section className="login">
+      <div className="login-page">
+        <form onSubmit={onSubmitHandler}>
+          <h2>로그인</h2>
+          <hr></hr>
+          <label htmlFor="user_email">이메일</label>
+          <input
+            type="email"
+            id="user_email"
+            placeholder="이메일"
+            value={Email}
+            onChange={onEmailHandler}
+            required
+          ></input>
+          <label htmlFor="user_password">비밀번호</label>
+          <input
+            type="password"
+            id="user_password"
+            value={Password}
+            onChange={onPasswordHandler}
+            placeholder="비밀번호"
+            required
+          ></input>
+          <button type="submit" value="Submit">
+            Log In
+          </button>
+          <div className="another-approach">
+            아직 계정이 없으신가요? &emsp;
+            <Link to="/register">계정 만들기</Link>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
 }
 
 export default LoginPage;
