@@ -29,7 +29,8 @@ function LoginPage(props) {
     };
 
     dispath(loginUser(body)).then((response) => {
-      if (response.payload.loginSuccess) {
+      console.log(response.payload.RESULT);
+      if (response.payload.RESULT == 200) {
         props.history.push("/");
       } else {
         alert("Error");

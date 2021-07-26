@@ -57,6 +57,10 @@
   word-break: keep-all;
 }
 
+.step p {
+  margin: 1rem;
+}
+
 @media screen and (max-width: 767px) {
   .scene-img {
     max-width: 60%;
