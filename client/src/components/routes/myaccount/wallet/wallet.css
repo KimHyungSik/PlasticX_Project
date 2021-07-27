@@ -1,0 +1,97 @@
+.myaccount {
+  width: calc(var(--login-form-width-size) * 2);
+  margin: var(--login-space-top-bottom) auto;
+}
+
+.page-header {
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 25px;
+}
+
+.container {
+  display: flex;
+}
+
+.container-sidebar {
+  width: 48%;
+}
+
+.container-main {
+  /* Take the remaining width */
+  flex: 1;
+
+  /* Make it scrollable */
+  overflow: auto;
+}
+
+.container-main b {
+  font-size: large;
+}
+
+.wallet-container {
+  background-color: #f5ed0f;
+
+  padding: 8px;
+  margin: calc(var(--base-space-top-bottom) * 2) 0;
+  width: var(--login-form-width-size);
+  height: calc(var(--login-form-width-size) / 1.75);
+  border-radius: 10px;
+  transition: 250ms;
+}
+
+.wallet-container button {
+  color: white;
+  font-weight: bold;
+
+  background-color: var(--color-primary);
+  border-radius: var(--base-border-radius);
+  border: none;
+}
+
+.name {
+  font-weight: bold;
+  font-size: small;
+  text-align: left;
+
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  padding-left: 3px;
+}
+
+.userid {
+  font-size: small;
+  text-align: left;
+
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 3px;
+}
+
+.deposit {
+  font-weight: bolder;
+  font-size: larger;
+  text-align: center;
+
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.charge {
+  text-decoration: underline;
+  width: 50%;
+  float: left;
+  font-size: small;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.see-history {
+  text-decoration: underline;
+  float: right;
+  width: 50%;
+  font-size: small;
+  text-align: center;
+  margin-bottom: 0;
+}
