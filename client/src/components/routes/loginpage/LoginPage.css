@@ -60,5 +60,5 @@ input[type="password"]:hover {
   text-align: center;
   font-size: small;
   font-weight: 600;
-  color: var(--color-grey);
+  color: #9c9c9c;
 }

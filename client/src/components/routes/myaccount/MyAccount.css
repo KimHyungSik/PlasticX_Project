@@ -1,0 +1,8 @@
+.page-header {
+  width: calc(var(--login-form-width-size) * 2);
+  margin: var(--login-space-top-bottom) auto;
+}
+
+.page-header h2 {
+  font-weight: 900;
+}

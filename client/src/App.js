@@ -12,6 +12,7 @@ import {
   Contact,
   FAQ,
   Shop,
+  MyAccount,
 } from "./components/routes/RoutesIndex";
 
 import "./App.css";
@@ -42,6 +43,7 @@ class App extends React.Component {
           <Route path="/contact" component={Contact} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/myaccount" component={MyAccount} />
           <Footer />
         </Router>
       </>
