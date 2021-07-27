@@ -7,7 +7,7 @@ import loginUser from "../../../_actions/user_action";
 import "./LoginPage.css";
 
 function LoginPage(props) {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -28,12 +28,15 @@ function LoginPage(props) {
       password: Password,
     };
 
-    dispath(loginUser(body)).then((response) => {
+    dispatch(loginUser(body)).then((response) => {
       console.log(response.payload.RESULT);
       if (response.payload.RESULT == 200) {
         props.history.push("/");
-      } else {
-        alert("Error");
+      } else if (
+        response.payload.RESULT == 400 ||
+        response.payload.RESULT == 401
+      ) {
+        alert("이메일 또는 비밀번호가 틀립니다.");
       }
     });
   };
