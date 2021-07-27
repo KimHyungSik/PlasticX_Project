@@ -38,7 +38,7 @@ class App extends React.Component {
           {/* NavMenu */}
           <Route path="/manual" component={Manual} />
           <Route path="/company" component={Company} />
-          <Route path="/shop" component={Shop} />
+          {/* <Route path="/shop" component={Shop} /> */}
           <Route path="/faq" component={FAQ} />
           <Route path="/contact" component={Contact} />
           <Route path="/login" component={LoginPage} />
