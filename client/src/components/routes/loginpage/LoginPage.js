@@ -1,14 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import loginUser from "../../../_actions/user_action";
+import { withRouter } from "react-router";
 
 import "./LoginPage.css";
 
 function LoginPage(props) {
-  const dispatch = useDispatch();
-
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
@@ -20,22 +17,19 @@ function LoginPage(props) {
     setPassword(event.currentTarget.value);
   };
 
+  let body = {
+    email: Email,
+    password: Password,
+  };
+
   const onSubmitHandler = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
-    let body = {
-      email: Email,
-      password: Password,
-    };
-
-    dispatch(loginUser(body)).then((response) => {
-      console.log(response.payload.RESULT);
-      if (response.payload.RESULT == 200) {
+    axios.post("/api/user/login", body).then((response) => {
+      if (response.data.RESULT == 200) {
         props.history.push("/");
-      } else if (
-        response.payload.RESULT == 400 ||
-        response.payload.RESULT == 401
-      ) {
+        //setIsLoggedIn(true);
+      } else if (response.data.RESULT == 400 || response.data.RESULT == 401) {
         alert("이메일 또는 비밀번호가 틀립니다.");
       }
     });
@@ -78,4 +72,4 @@ function LoginPage(props) {
   );
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

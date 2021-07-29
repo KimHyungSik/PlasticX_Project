@@ -11,10 +11,10 @@ import {
   Company,
   Contact,
   FAQ,
-  Shop,
   MyAccount,
 } from "./components/routes/RoutesIndex";
 
+import Auth from "./hoc/auth";
 import "./App.css";
 
 class App extends React.Component {
@@ -22,28 +22,28 @@ class App extends React.Component {
     isLoading: true,
   };
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 5000);
-  }
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.setState({ isLoading: false });
+  //   }, 5000);
+  // }
 
   render() {
     return (
       <>
         <Router>
           <NavBar />
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={Auth(HomePage, null)} />
 
           {/* NavMenu */}
-          <Route path="/manual" component={Manual} />
-          <Route path="/company" component={Company} />
+          <Route path="/manual" component={Auth(Manual, null)} />
+          <Route path="/company" component={Auth(Company, null)} />
           {/* <Route path="/shop" component={Shop} /> */}
-          <Route path="/faq" component={FAQ} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/myaccount" component={MyAccount} />
+          <Route path="/faq" component={Auth(FAQ, null)} />
+          <Route path="/contact" component={Auth(Contact, null)} />
+          <Route path="/login" component={Auth(LoginPage, false)} />
+          <Route path="/register" component={Auth(RegisterPage, false)} />
+          <Route path="/myaccount" component={Auth(MyAccount, true)} />
           <Footer />
         </Router>
       </>
