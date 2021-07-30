@@ -1,5 +1,5 @@
 .page-header {
-  width: calc(var(--login-form-width-size) * 2);
+  width: var(--login-form-width-size);
   margin: var(--login-space-top-bottom) auto;
 }
 
