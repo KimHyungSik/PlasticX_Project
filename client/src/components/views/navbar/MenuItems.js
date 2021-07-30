@@ -19,11 +19,6 @@ const MenuItems = [
     url: "/contact",
     cName: "nav-links",
   },
-  {
-    title: "My Account",
-    url: "/myaccount",
-    cName: "nav-links",
-  },
 ];
 
 export default MenuItems;

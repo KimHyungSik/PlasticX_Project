@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import registerUser from "../../../_actions/user_action";
+import axios from "axios";
+import { withRouter } from "react-router";
 
 import "./RegisterPage.css";
 
 function RegisterPage(props) {
-  let dispatch = useDispatch();
-
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -42,13 +40,11 @@ function RegisterPage(props) {
       password: Password,
     };
 
-    console.log(dispatch);
-    dispatch(registerUser(body)).then((response) => {
-      console.log(response);
-      if (response.payload.RESULT == 200) {
+    axios.post("/api/user/register", body).then((response) => {
+      if (response.data.RESULT == 200) {
         props.history.push("/login");
         alert("성공적으로 회원가입되었습니다.");
-      } else if (response.payload.RESULT == 400) {
+      } else if (response.data.RESULT == 400) {
         alert("계정이 이미 존재합니다.");
       }
     });
@@ -114,4 +110,4 @@ function RegisterPage(props) {
   );
 }
 
-export default RegisterPage;
+export default withRouter(RegisterPage);

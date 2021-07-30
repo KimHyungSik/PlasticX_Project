@@ -1,31 +1,81 @@
 .home {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  padding: calc(var(--nav-space-top-bottom) * 2) var(--nav-space-left-right);
+  display: flex;
+  justify-content: space-around;
+  padding: calc(var(--nav-space-top-bottom) * 2.4) var(--nav-space-left-right);
 }
 
-.home-article {
+.article {
   margin: auto 0;
+  width: 50%;
 }
 
-.home-article h1 {
+.article span {
+  color: var(--color-primary);
+}
+
+.article h1 {
   font-size: var(--home-main-article-size);
   font-weight: 700;
   margin-bottom: 1rem;
   word-break: keep-all;
+  animation-name: animateLeft;
+  animation-duration: 2s;
 }
 
-.home-article h5 {
+.article h5 {
   font-size: var(--home-sub-article-size);
+  word-break: keep-all;
   font-weight: 400;
   margin-bottom: 1rem;
 }
 
-.manual {
+.article-1 h1 {
+  animation-name: animateLeft;
+  animation-duration: 2s;
+}
+
+.article-1 h4 {
+  animation-name: animateLeft;
+  animation-duration: 2.5s;
+}
+
+.article-1 h5 {
+  animation-name: animateLeft;
+  animation-duration: 3s;
+}
+
+.article-2 {
+  text-align: right;
+}
+
+.article-1 h4,
+.article-2 h4 {
+  line-height: 150%;
+  word-break: keep-all;
+}
+
+.article-2 h1 {
+  animation-name: animateRight;
+  animation-duration: 2s;
+}
+
+.article-2 h4 {
+  animation-name: animateRight;
+  animation-duration: 2.5s;
+}
+
+.article-2 h5 {
+  animation-name: animateRight;
+  animation-duration: 3s;
+}
+
+.manual,
+.more {
   margin-top: 4rem;
 }
 
-.manual button {
+.manual button,
+.more button {
   padding: var(--normal-btn-space-top-bottom)
     var(--normal-btn-space-lefet-right);
   border-radius: var(--base-border-radius);
@@ -39,14 +89,16 @@
   transition: 250ms;
 }
 
-.manual button:hover {
+.manual button:hover,
+.more button:hover {
   background-color: var(--color-dark-primary);
   color: var(--color-white);
   transition: 250ms;
 }
 
-.tumbler-img {
-  max-width: 100%;
+.tumbler-img,
+.earth-img {
+  max-width: 540px;
   height: auto;
 }
 
@@ -57,7 +109,29 @@
     text-align: center;
   }
 
-  .home-article h1 {
+  .article h1 {
     font-size: calc(var(--home-main-article-size) / 1.4);
+  }
+}
+
+@keyframes animateLeft {
+  from {
+    margin-left: -200px;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes animateRight {
+  from {
+    margin-right: -200px;
+    opacity: 0;
+  }
+  to {
+    margin-right: 0px;
+    opacity: 1;
   }
 }

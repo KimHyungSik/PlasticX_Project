@@ -5,9 +5,26 @@ import Collapse from "react-bootstrap/Collapse";
 import MenuItems from "./MenuItems";
 import Button from "./Button";
 import "./NavBar.css";
+import axios from "axios";
 
 function NavBar() {
   let [isOpen, setIsOpen] = useState(false);
+  let [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const onClickHandler = () => {
+    axios.get("/api/user/logout").then((response) => {
+      alert("정상적으로 로그아웃 되었습니다.");
+      setIsLoggedIn(false);
+    });
+  };
+
+  useEffect(() => {
+    axios.get("/api/user/auth").then((response) => {
+      !(response.data.RESULT === 400)
+        ? setIsLoggedIn(true)
+        : setIsLoggedIn(false);
+    });
+  }, isLoggedIn);
 
   return (
     <div className="nav-container">
@@ -31,16 +48,34 @@ function NavBar() {
               </Link>
             );
           })}
-          <Link to="/login">
-            <li>
-              <Button>Login</Button>
-            </li>
-          </Link>
-          <Link to="/register">
-            <li>
-              <Button>Sign In</Button>
-            </li>
-          </Link>
+
+          {isLoggedIn ? (
+            <>
+              <Link to="/myaccount">
+                <li className="nav-links">
+                  <span>My Account</span>
+                </li>
+              </Link>
+              <Link to="/">
+                <li>
+                  <Button onClick={onClickHandler}>Logout</Button>
+                </li>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <li>
+                  <Button>Login</Button>
+                </li>
+              </Link>
+              <Link to="/register">
+                <li>
+                  <Button>Sign In</Button>
+                </li>
+              </Link>
+            </>
+          )}
         </ul>
         <div
           className="collapsible"
@@ -65,16 +100,33 @@ function NavBar() {
                 </Link>
               );
             })}
-            <li>
-              <Link to="/login">
-                <Button>Login</Button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/register">
-                <Button>Sign In</Button>
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <>
+                <Link to="/myaccount">
+                  <li className="nav-links">
+                    <span>My Account</span>
+                  </li>
+                </Link>
+                <Link to="/">
+                  <li>
+                    <Button onClick={onClickHandler}>Logout</Button>
+                  </li>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <li>
+                    <Button>Login</Button>
+                  </li>
+                </Link>
+                <Link to="/register">
+                  <li>
+                    <Button>Sign In</Button>
+                  </li>
+                </Link>
+              </>
+            )}
           </ul>
         </div>
       </Collapse>
