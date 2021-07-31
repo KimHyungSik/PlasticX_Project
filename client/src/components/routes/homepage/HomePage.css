@@ -18,8 +18,6 @@
   font-weight: 700;
   margin-bottom: 1rem;
   word-break: keep-all;
-  animation-name: animateLeft;
-  animation-duration: 2s;
 }
 
 .article h5 {
@@ -100,6 +98,16 @@
 .earth-img {
   max-width: 540px;
   height: auto;
+}
+
+.article-3 {
+  width: 100%;
+  text-align: center;
+  padding: calc(var(--nav-space-top-bottom) * 8) 0;
+}
+
+.article-3 h1 {
+  margin-bottom: 2rem;
 }
 
 @media screen and (max-width: 1200px) {
