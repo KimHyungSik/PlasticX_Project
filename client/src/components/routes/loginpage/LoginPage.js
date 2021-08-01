@@ -23,16 +23,18 @@ function LoginPage(props) {
   };
 
   const onSubmitHandler = (event) => {
-    axios.post("/api/user/login", body).then((response) => {
-      console.log(response);
-      if (response.data.RESULT == 200) {
-        props.history.push("/");
-        //event.preventDefault();
-        //setIsLoggedIn(true);
-      } else if (response.data.RESULT == 400 || response.data.RESULT == 401) {
-        alert("이메일 또는 비밀번호가 틀립니다.");
-      }
-    });
+    event.preventDefault(
+      axios.post("/api/user/login", body).then((response) => {
+        console.log(response);
+        if (response.data.RESULT == 200) {
+          props.history.push("/");
+          window.location.reload();
+          //setIsLoggedIn(true);
+        } else if (response.data.RESULT == 400 || response.data.RESULT == 401) {
+          alert("이메일 또는 비밀번호가 틀립니다.");
+        }
+      })
+    );
   };
 
   return (

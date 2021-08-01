@@ -20,12 +20,10 @@ function NavBar() {
 
   useEffect(() => {
     axios.get("/api/user/auth").then((response) => {
-      console.log(response);
-      !(response.data.RESULT === 400)
-        ? setIsLoggedIn(true)
-        : setIsLoggedIn(false);
+      // RESULT === 400 이면 로그인 실패
+      response.data.RESULT !== 400 ? setIsLoggedIn(true) : setIsLoggedIn(false);
     });
-  }, isLoggedIn);
+  }, [isLoggedIn]);
 
   return (
     <div className="nav-container">
