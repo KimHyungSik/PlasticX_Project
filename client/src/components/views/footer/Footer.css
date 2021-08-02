@@ -35,3 +35,9 @@
 .footer-menu-items .nav-links:hover {
   transition: all 0.2s;
 }
+
+@media screen and (max-width: 600px) {
+  .footer {
+    justify-content: space-between;
+  }
+}

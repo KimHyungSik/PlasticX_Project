@@ -42,6 +42,26 @@
   display: none;
 }
 
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.nav-overlay-show {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+  position: fixed;
+}
+
 @media screen and (max-width: 1300px) {
   .plasticx-logo {
     width: calc(var(--base-logo-width) / 1.4);

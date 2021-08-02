@@ -43,6 +43,7 @@
 
 .faq-list-answer {
   font-size: var(--home-sub-article-size);
+  font-weight: bold;
   color: var(--color-black);
   word-break: keep-all;
 }

@@ -4,7 +4,6 @@ const { Owner } = require(path.resolve(modelsPath, "Owner"));
 
 const apiCallback = async (req, res) => {
   let result = await create(req.body, res);
-  console.log(result);
   res.status(result.RESULT).json(result);
 };
 
