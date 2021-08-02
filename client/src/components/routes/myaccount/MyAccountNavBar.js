@@ -6,7 +6,7 @@ import "./MyAccountNavBar.css";
 
 function MyAccountNavBar() {
   return (
-    <div className="nav-container">
+    <div className="nav-wallet">
       <nav className="navbar global-width">
         <ul className="nav-menu">
           {MyAccountItems.map((item, index) => {

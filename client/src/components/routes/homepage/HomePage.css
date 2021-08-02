@@ -96,7 +96,7 @@
 
 .tumbler-img,
 .earth-img {
-  max-width: 540px;
+  max-width: var(--home-base-img-size);
   height: auto;
 }
 
@@ -112,13 +112,42 @@
 
 @media screen and (max-width: 1200px) {
   .home {
-    grid-template-columns: repeat(1, auto);
+    flex-direction: column;
     padding: calc(var(--nav-space-top-bottom) * 3) var(--nav-space-left-right);
     text-align: center;
+    align-items: center;
+    float: none;
+  }
+
+  .article {
+    width: 100%;
+  }
+
+  .article-2 {
+    text-align: center;
+  }
+
+  .tumbler-img,
+  .earth-img {
+    max-width: calc(var(--home-base-img-size) / 1.2);
+    height: auto;
   }
 
   .article h1 {
     font-size: calc(var(--home-main-article-size) / 1.4);
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tumbler-img,
+  .earth-img {
+    max-width: calc(var(--home-base-img-size) / 1.6);
+    height: auto;
+  }
+
+  .article h1 {
+    font-size: calc(var(--home-main-article-size) / 1.6);
   }
 }
 

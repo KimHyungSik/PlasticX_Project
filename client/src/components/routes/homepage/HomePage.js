@@ -16,7 +16,9 @@ class HomePage extends React.Component {
             <h1>
               <span>Stop</span> using Plastic
             </h1>
-            <h4>일회용 플라스틱 컵 대신 텀블러를 사용해보세요.</h4>
+            <h4>
+              일회용 플라스틱 컵 대신 <span>텀블러</span>를 사용해보세요.
+            </h4>
             <h5 className="manual">
               <Link to="/manual">
                 <button>사용법</button>
@@ -38,7 +40,7 @@ class HomePage extends React.Component {
             </h1>
             <h4>
               버려지는 일회용 컵 하루 7000만 개 <br></br> 줄이고 재활용하면
-              지구를 지킬 수 있어요.
+              <span>지구</span>를 지킬 수 있어요.
             </h4>
             <h5 className="more">
               <a
@@ -53,7 +55,7 @@ class HomePage extends React.Component {
 
         <section className="home global-width">
           <div className="article article-3">
-            <div data-aos="zoom-out" data-aos-duration="1500">
+            <div data-aos="zoom-in" data-aos-duration="1500">
               <h1>
                 Meet <span>PLASTICX</span> at a nearby cafe right now.
               </h1>

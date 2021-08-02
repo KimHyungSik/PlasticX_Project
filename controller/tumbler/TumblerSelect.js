@@ -13,6 +13,7 @@ const apiCallback = (req, res) => {
     .populate("model")
     .populate("from_id")
     .exec(async (err, tumblerInfo) => {
+      console.log(tumblerInfo);
       let temp = new Object();
       temp.model = tumblerInfo.model.name;
       temp.from_id = tumblerInfo.from_id.name;

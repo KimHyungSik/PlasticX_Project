@@ -26,70 +26,19 @@ function NavBar() {
   }, [isLoggedIn]);
 
   return (
-    <div className="nav-container">
-      <nav className="navbar global-width">
-        <div>
-          <Link to="/">
-            <img
-              className="plasticx-logo"
-              alt="plasticx_logo"
-              src="img/plasticx_logo.png"
-            />
-          </Link>
-        </div>
-        <ul className="nav-menu">
-          {MenuItems.map((item, index) => {
-            return (
-              <Link to={item.url}>
-                <li className={item.cName} key={index}>
-                  {item.title}
-                </li>
-              </Link>
-            );
-          })}
-
-          {isLoggedIn ? (
-            <>
-              <Link to="/myaccount">
-                <li className="nav-links">
-                  <span>My Account</span>
-                </li>
-              </Link>
-              <Link to="/">
-                <li>
-                  <Button onClick={onClickHandler}>Logout</Button>
-                </li>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link to="/login">
-                <li>
-                  <Button>Login</Button>
-                </li>
-              </Link>
-              <Link to="/register">
-                <li>
-                  <Button>Sign In</Button>
-                </li>
-              </Link>
-            </>
-          )}
-        </ul>
-        <div
-          className="collapsible"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-controls="navCollapseMenu"
-          aria-expanded={isOpen}
-        >
-          <Button>
-            <i className={isOpen ? "fas fa-times" : "fas fa-bars"}></i>
-          </Button>
-        </div>
-      </nav>
-      <Collapse in={isOpen}>
-        <div id="navCollapseMenu">
-          <ul className="nav-collapse-menu">
+    <>
+      <div className="nav-container">
+        <nav className="navbar global-width">
+          <div>
+            <Link to="/">
+              <img
+                className="plasticx-logo"
+                alt="plasticx_logo"
+                src="img/plasticx_logo.png"
+              />
+            </Link>
+          </div>
+          <ul className="nav-menu">
             {MenuItems.map((item, index) => {
               return (
                 <Link to={item.url}>
@@ -99,6 +48,7 @@ function NavBar() {
                 </Link>
               );
             })}
+
             {isLoggedIn ? (
               <>
                 <Link to="/myaccount">
@@ -127,9 +77,66 @@ function NavBar() {
               </>
             )}
           </ul>
-        </div>
-      </Collapse>
-    </div>
+          <div
+            id="navMenuButton"
+            className="collapsible"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-controls="navCollapseMenu"
+            aria-expanded={isOpen}
+          >
+            <Button>
+              <i className={isOpen ? "fas fa-times" : "fas fa-bars"}></i>
+            </Button>
+          </div>
+        </nav>
+        <Collapse in={isOpen}>
+          <div id="navCollapseMenu">
+            <ul className="nav-collapse-menu">
+              {MenuItems.map((item, index) => {
+                return (
+                  <Link to={item.url}>
+                    <li className={item.cName} key={index}>
+                      {item.title}
+                    </li>
+                  </Link>
+                );
+              })}
+              {isLoggedIn ? (
+                <>
+                  <Link to="/myaccount">
+                    <li className="nav-links">
+                      <span>My Account</span>
+                    </li>
+                  </Link>
+                  <Link to="/">
+                    <li>
+                      <Button onClick={onClickHandler}>Logout</Button>
+                    </li>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <li>
+                      <Button>Login</Button>
+                    </li>
+                  </Link>
+                  <Link to="/register">
+                    <li>
+                      <Button>Sign In</Button>
+                    </li>
+                  </Link>
+                </>
+              )}
+            </ul>
+          </div>
+        </Collapse>
+      </div>
+      <div
+        className={isOpen ? "nav-overlay nav-overlay-show" : "nav-overlay"}
+        onClick={() => setIsOpen(!isOpen)}
+      ></div>
+    </>
   );
 }
 
