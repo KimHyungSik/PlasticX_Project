@@ -1,0 +1,21 @@
+.company-page {
+  width: calc(var(--login-form-width-size) * 4);
+  margin: var(--login-space-top-bottom) auto;
+}
+
+.images {
+  width: 8%;
+  text-align: center;
+  padding: 20px;
+}
+
+.images::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.user-img {
+  max-width: 100%;
+  height: auto;
+}
