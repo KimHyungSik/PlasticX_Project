@@ -51,9 +51,9 @@ function NavBar() {
 
             {isLoggedIn ? (
               <>
-                <Link to="/myaccount">
+                <Link to="/mypage/account">
                   <li className="nav-links">
-                    <span>My Account</span>
+                    <span>My Page</span>
                   </li>
                 </Link>
                 <Link to="/">
@@ -103,9 +103,9 @@ function NavBar() {
               })}
               {isLoggedIn ? (
                 <>
-                  <Link to="/myaccount">
+                  <Link to="/mypage/account">
                     <li className="nav-links">
-                      <span>My Account</span>
+                      <span>My Page</span>
                     </li>
                   </Link>
                   <Link to="/">
