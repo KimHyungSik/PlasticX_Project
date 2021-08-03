@@ -1,0 +1,61 @@
+.page-header {
+  width: var(--login-form-width-size);
+  margin: var(--login-space-top-bottom) auto
+    calc(var(--login-space-top-bottom) / 2) auto;
+  text-align: center;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.page-hidden-navbar {
+  max-width: 700px;
+  margin: 0 auto calc(var(--base-space-top-bottom) * 3) auto;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+
+.page-hidden-navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.page-hidden-navbar .mypage-nav-links {
+  padding: var(--base-space-top-bottom);
+  border-radius: calc(var(--base-border-radius) * 2);
+  transition: 0.2s;
+}
+
+.page-hidden-navbar a:hover {
+  color: #000;
+}
+
+.page-hidden-navbar .mypage-nav-links:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  transition: 0.2s;
+}
+
+.mypage-content {
+  max-width: 700px;
+  margin: 0 auto calc(var(--login-space-top-bottom) / 2) auto;
+}
+
+.mypage-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .page-hidden-navbar {
+    display: flex;
+  }
+}
