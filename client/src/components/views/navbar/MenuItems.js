@@ -10,11 +10,6 @@ const MenuItems = [
     cName: "nav-links",
   },
   {
-    title: "Shop",
-    url: "/shop",
-    cName: "nav-links",
-  },
-  {
     title: "FAQ",
     url: "/faq",
     cName: "nav-links",
@@ -22,11 +17,6 @@ const MenuItems = [
   {
     title: "Contact",
     url: "/contact",
-    cName: "nav-links",
-  },
-  {
-    title: "My Account",
-    url: "/myaccount",
     cName: "nav-links",
   },
 ];

@@ -10,6 +10,7 @@ input[type="password"] {
   box-sizing: border-box;
   border-radius: var(--base-border-radius);
   font-size: small;
+  transition: 500ms;
 }
 
 input[type="text"]:hover,
@@ -30,7 +31,7 @@ input[type="password"]:hover {
   margin-bottom: 25px;
 }
 
-.login-page b {
+.login-page label {
   font-size: small;
   font-weight: 500;
 }
@@ -38,7 +39,7 @@ input[type="password"]:hover {
 /* Set a style for all buttons */
 .login-page button {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-white);
   padding: var(--base-space-top-bottom) 20px;
   margin: calc(var(--base-space-top-bottom) * 2) 0;
   border: none;

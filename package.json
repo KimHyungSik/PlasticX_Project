@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@slack/webhook": "^6.0.0",
+    "aos": "^2.3.4",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
     "concurrently": "^6.2.0",
