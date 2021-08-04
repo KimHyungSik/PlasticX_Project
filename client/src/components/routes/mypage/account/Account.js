@@ -1,11 +1,44 @@
 import React from "react";
 import Button from "../../../views/navbar/Button";
 import { Link } from "react-router-dom";
+import AccountUser from "./AccountUser";
+import AccountCurrentTumbler from "./AccountCurrentTumbler";
 
 import "./Account.css";
+import axios from "axios";
 
 class Account extends React.Component {
+  state = {
+    userInfo: [],
+    tumblersInfo: [],
+  };
+
+  getUser = async () => {
+    const {
+      data: { _id },
+    } = await axios.get("/api/user/auth");
+
+    const userInfo = await axios.get(`/api/user/info/${_id}`);
+    this.setState({ userInfo: userInfo.data });
+  };
+
+  getCurrentTumbler = async () => {
+    const {
+      data: { _id },
+    } = await axios.get("/api/user/auth");
+
+    const tumblersInfo = await axios.get(`/api/user/list/${_id}`);
+    this.setState({ tumblersInfo: tumblersInfo.data.tumblers });
+    console.log(tumblersInfo.data.tumblers);
+  };
+
+  componentDidMount() {
+    this.getUser();
+    this.getCurrentTumbler();
+  }
+
   render() {
+    const { userInfo, tumblersInfo } = this.state;
     return (
       <section className="mypage-content">
         <span>내 정보</span>
@@ -19,38 +52,61 @@ class Account extends React.Component {
           <ul>
             <li>
               <label>이름</label>
-              <h3>PlasticMan</h3>
+              <AccountUser name={userInfo.name} />
             </li>
             <li>
               <label>이메일</label>
-              <h5>plastic@naver.com</h5>
+              <AccountUser email={userInfo.email} />
             </li>
             <li>
               <label>잔액</label>
-              <h5>21-08-03 ~ 21-08-10</h5>
+              <AccountUser deposit={userInfo.deposit} />
             </li>
           </ul>
         </div>
         <span>현재 사용중인 텀블러</span>
-        <div className="mypage-tumbler-content">
-          <div>
-            <img className="tumbler-example" src="../img/tumbler_example.jpg" />
-          </div>
-          <ul>
-            <li>
-              <label>Name</label>
-              <h3>깔쌈한 텀블러</h3>
+        {tumblersInfo.map((tumbler) => {
+          return (
+            <div className="mypage-tumbler-content">
+              <div>
+                <img
+                  className="tumbler-example"
+                  src="../img/tumbler_example.jpg"
+                />
+              </div>
+              <ul>
+                <li>
+                  <label>Name</label>
+                  <AccountCurrentTumbler model={tumbler.model} />
+                  <label>Cafe</label>
+                  <AccountCurrentTumbler shop={tumbler.shop} />
+                  <label>Rental Period</label>
+                  <AccountCurrentTumbler
+                    borrowed_date={tumbler.borrowed_date}
+                  />
+                  <AccountCurrentTumbler
+                    usable_period_date={tumbler.usable_period_date}
+                  />
+                  {/* <label>Name</label>
+              <AccountCurrentTumbler model={tumblersInfo.model} />
             </li>
             <li>
               <label>Cafe</label>
-              <h5>스타벅스 강남점</h5>
+              <AccountCurrentTumbler shop={tumblersInfo.shop} />
             </li>
             <li>
               <label>Rental Period</label>
-              <h5>21-08-03 ~ 21-08-10</h5>
-            </li>
-          </ul>
-        </div>
+              <AccountCurrentTumbler
+                borrowed_date={tumblersInfo.borrowed_date}
+              />
+              <AccountCurrentTumbler
+                usable_period_date={tumblersInfo.usable_period_date}
+              /> */}
+                </li>
+              </ul>
+            </div>
+          );
+        })}
       </section>
     );
   }
