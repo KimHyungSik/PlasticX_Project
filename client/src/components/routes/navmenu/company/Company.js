@@ -13,7 +13,7 @@ function Company() {
         <div className="khs">
           <img className="user-img" alt="user" src="img/company_khs.svg" />
           <p className="names">김형식</p>
-          <p className="duty">앱 개발자</p>
+          <p className="duty">팀장/앱 개발자</p>
         </div>
 
         <div className="pky">

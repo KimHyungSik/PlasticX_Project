@@ -1,6 +1,13 @@
 const express = require("express");
 const path = require("path");
 const router = express.Router();
+const { emailController } = require(path.resolve(
+  __dirname,
+  "..",
+  "config",
+  "mail"
+));
+
 const user = require(path.resolve(__dirname, "api", "user"));
 const admin = require(path.resolve(__dirname, "api", "admin"));
 const owner = require(path.resolve(__dirname, "api", "owner"));
@@ -22,5 +29,7 @@ router.use((err, req, res, next) => {
   });
   next(err);
 });
+
+router.post("/contact", emailController);
 
 module.exports = router;
