@@ -21,7 +21,9 @@
   width: 15%;
   height: auto;
   margin-bottom: 20px;
-  display: flex;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .names {
@@ -54,11 +56,15 @@
 
 @media screen and (max-width: 1250px) {
   .company-page {
-    width: 70%;
+    width: 75%;
   }
 
   .images {
     width: 100%;
+  }
+
+  .user-img {
+    width: 20%;
   }
 }
 
@@ -70,6 +76,10 @@
   .images {
     width: 100%;
   }
+
+  .user-img {
+    width: 20%;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -79,5 +89,23 @@
 
   .images {
     width: 100%;
+  }
+
+  .user-img {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .company-page {
+    width: 80%;
+  }
+
+  .images {
+    width: 100%;
+  }
+
+  .user-img {
+    width: 20%;
   }
 }

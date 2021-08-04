@@ -11,25 +11,27 @@ function Company() {
 
       <div className="images">
         <div className="khs">
-          <img className="user-img" alt="user" src="img/user.svg" />
+          <img className="user-img" alt="user" src="img/company_khs.svg" />
           <p className="names">김형식</p>
           <p className="duty">앱 개발자</p>
         </div>
 
         <div className="pky">
-          <img className="user-img" alt="user" src="img/user.svg" />
+          <img className="user-img" alt="user" src="img/company_pky.svg" />
           <p className="names">박경용</p>
           <p className="duty">기계 개발자</p>
         </div>
 
         <div className="jjh">
-          <img className="user-img" alt="user" src="img/user.svg" />
+          <img className="user-img" alt="user" src="img/company_jjh.svg" />
           <p className="names">주정하</p>
           <p className="duty">API/웹 개발자</p>
         </div>
 
         <div className="jyb">
-          <img className="user-img" alt="user" src="img/user.svg" />
+          <div className="circle">
+            <img className="user-img" alt="user" src="img/company_jyb.svg" />
+          </div>
           <p className="names">조유빈</p>
           <p className="duty">API/웹 디자인</p>
         </div>
