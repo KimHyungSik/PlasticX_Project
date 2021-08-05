@@ -13,23 +13,27 @@
 .images {
   width: calc(var(--login-form-width-size) * 3);
   margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .user-img {
   width: 15%;
-  height: 15%;
-  margin: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
-  align-items: center;
+  height: auto;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-td {
+.names {
   text-align: center;
   font-weight: bold;
+  margin-bottom: 2px;
 }
 
 .duty {
+  text-align: center;
   font-size: smaller;
   font-weight: normal;
 }
@@ -50,38 +54,58 @@ td {
   color: grey;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1250px) {
   .company-page {
-    width: 70%;
+    width: 75%;
   }
 
   .images {
-    width: 70%;
-    margin-bottom: 100px;
+    width: 100%;
   }
 
   .user-img {
     width: 20%;
-    height: 20%;
-    margin: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1045px) {
+  .company-page {
+    width: 75%;
   }
 
-  .first-header,
-  .second-header {
-    text-align: right;
-    font-weight: bold;
-    margin-left: 10%;
-    margin-bottom: 50px;
+  .images {
+    width: 100%;
   }
 
-  .block-one,
-  .block-two {
-    text-align: left;
-    margin-right: 10%;
-    margin-bottom: 50px;
-    font-size: smaller;
+  .user-img {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .company-page {
+    width: 80%;
+  }
+
+  .images {
+    width: 100%;
+  }
+
+  .user-img {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .company-page {
+    width: 80%;
+  }
+
+  .images {
+    width: 100%;
+  }
+
+  .user-img {
+    width: 20%;
   }
 }

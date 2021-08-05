@@ -142,12 +142,16 @@
 @media screen and (max-width: 600px) {
   .tumbler-img,
   .earth-img {
-    max-width: calc(var(--home-base-img-size) / 1.6);
+    max-width: calc(var(--home-base-img-size) / 1.8);
     height: auto;
   }
 
   .article h1 {
-    font-size: calc(var(--home-main-article-size) / 1.6);
+    font-size: calc(var(--home-main-article-size) / 1.8);
+  }
+
+  .article h4 {
+    font-size: var(--home-sub-article-size);
   }
 }
 

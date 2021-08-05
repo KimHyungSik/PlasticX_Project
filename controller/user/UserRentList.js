@@ -35,11 +35,15 @@ const callback = (req, res) => {
       }
       tumblerInfo.forEach((e) => {
         let temp = new Object();
-        temp.id = e._id;
+        let usabledDate = new Date(e.date);
 
+        temp.id = e._id;
         temp.borrowed_date = e.date;
+
+        usabledDate.setDate(usabledDate.getDate() + 7);
+        temp.usable_period_date = usabledDate;
+
         // 사용가능 기간 ((빌린날짜 + 7day) - 빌린날짜)
-        //temp.usabled_period =
 
         if (e.from_id === null || e.from_id.name === null) {
           temp.shop = "";
@@ -54,7 +58,6 @@ const callback = (req, res) => {
         }
 
         tumblers.push(temp);
-        console.log(tumblerInfo);
       });
 
       return res.json({

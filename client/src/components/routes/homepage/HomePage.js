@@ -39,7 +39,7 @@ class HomePage extends React.Component {
               <span>Earth</span> is not disposable
             </h1>
             <h4>
-              버려지는 일회용 컵 하루 7000만 개 <br></br> 줄이고 재활용하면
+              버려지는 일회용 컵 하루 7000만 개 <br></br> 줄이고 재활용하면{" "}
               <span>지구</span>를 지킬 수 있어요.
             </h4>
             <h5 className="more">

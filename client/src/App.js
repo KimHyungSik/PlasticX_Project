@@ -11,7 +11,7 @@ import {
   Company,
   Contact,
   FAQ,
-  MyAccount,
+  MyPage,
 } from "./components/routes/RoutesIndex";
 
 import Auth from "./hoc/auth";
@@ -43,7 +43,7 @@ class App extends React.Component {
           <Route path="/contact" component={Auth(Contact, null)} />
           <Route path="/login" component={Auth(LoginPage, false)} />
           <Route path="/register" component={Auth(RegisterPage, false)} />
-          <Route path="/myaccount" component={Auth(MyAccount, true)} />
+          <Route path="/mypage" component={Auth(MyPage, true)} />
           <Footer />
         </Router>
       </>

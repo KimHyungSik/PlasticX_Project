@@ -9,36 +9,33 @@ function Company() {
         <hr></hr>
       </div>
 
-      <table className="images">
-        <tr className="separator">
-          <td>
-            <img className="user-img" alt="user" src="img/user.svg" />
-          </td>
-          <td>
-            <img className="user-img" alt="user" src="img/user.svg" />
-          </td>
-          <td>
-            <img className="user-img" alt="user" src="img/user.svg" />
-          </td>
-          <td>
-            <img className="user-img" alt="user" src="img/user.svg" />
-          </td>
-        </tr>
+      <div className="images">
+        <div className="khs">
+          <img className="user-img" alt="user" src="img/company_khs.svg" />
+          <p className="names">김형식</p>
+          <p className="duty">팀장/앱 개발자</p>
+        </div>
 
-        <tr>
-          <td>김형식</td>
-          <td>박경용</td>
-          <td>주정하</td>
-          <td>조유빈</td>
-        </tr>
+        <div className="pky">
+          <img className="user-img" alt="user" src="img/company_pky.svg" />
+          <p className="names">박경용</p>
+          <p className="duty">기계 개발자</p>
+        </div>
 
-        <tr>
-          <td className="duty">앱 개발자</td>
-          <td className="duty">기계 개발자</td>
-          <td className="duty">API/웹 개발자</td>
-          <td className="duty">API/웹 디자인</td>
-        </tr>
-      </table>
+        <div className="jjh">
+          <img className="user-img" alt="user" src="img/company_jjh.svg" />
+          <p className="names">주정하</p>
+          <p className="duty">API/웹 개발자</p>
+        </div>
+
+        <div className="jyb">
+          <div className="circle">
+            <img className="user-img" alt="user" src="img/company_jyb.svg" />
+          </div>
+          <p className="names">조유빈</p>
+          <p className="duty">API/웹 디자인</p>
+        </div>
+      </div>
 
       <h4 className="first-header">
         회사의 가치관, 영감, 다음 옥표 그리고 하고 싶은 말 내용 넣어주세요

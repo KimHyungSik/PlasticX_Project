@@ -11,6 +11,10 @@ function RegisterPage(props) {
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
 
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
   };

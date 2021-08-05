@@ -120,8 +120,6 @@ const callback = async (req, res) => {
     user.deposit - userUpdate.deposit >= DEPOSIT &&
     tumbler.state != tumblerUpdate.state
   ) {
-    console.log(userQuery);
-    console.log(tumblerQuery);
     let tempDate = new Date(tumblerUpdate.date);
     tempDate.setDate(tempDate.getDate() + 7);
     return res.status(200).json({

@@ -14,6 +14,7 @@
   --color-primary: #35b8be;
   --color-dark-primary: #399ca1;
   --color-light-primary: #44ccd3;
+  --color-very-light-primary: #b9fcff;
   --color-footer-background: #eef2f3;
 
   /* animation */
@@ -45,6 +46,12 @@
   /* layout */
   --body-base-width: 100%;
   --body-base-height: 100%;
+
+  /* shadow */
+  --tw-ring-offset-shadow: 0 0 transparent;
+  --tw-ring-shadow: 0 0 transparent;
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 a {
