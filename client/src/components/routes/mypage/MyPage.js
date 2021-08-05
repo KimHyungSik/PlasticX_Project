@@ -17,6 +17,7 @@ class MyPage extends React.Component {
         </div>
         <section className="mypage global-width">
           <Router>
+            {/* 창 사이즈 1200px 일때 나오는 mypage nav */}
             <nav className="page-hidden-navbar">
               <ul>
                 {MyPageItems.map((item, index) => {

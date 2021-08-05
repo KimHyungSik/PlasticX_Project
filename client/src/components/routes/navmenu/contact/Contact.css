@@ -7,6 +7,10 @@ select {
   width: 100%;
 }
 
+.contact-form label {
+  font-weight: bold;
+}
+
 input[type="name"],
 input[type="email"] {
   width: 100%;

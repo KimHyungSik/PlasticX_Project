@@ -18,16 +18,6 @@ import Auth from "./hoc/auth";
 import "./App.css";
 
 class App extends React.Component {
-  state = {
-    isLoading: true,
-  };
-
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     this.setState({ isLoading: false });
-  //   }, 5000);
-  // }
-
   render() {
     return (
       <>

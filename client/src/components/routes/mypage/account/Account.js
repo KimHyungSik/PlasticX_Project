@@ -11,6 +11,7 @@ class Account extends React.Component {
   state = {
     userInfo: [],
     tumblersInfo: [],
+    isLoading: true,
   };
 
   getUser = async () => {
@@ -19,7 +20,7 @@ class Account extends React.Component {
     } = await axios.get("/api/user/auth");
 
     const userInfo = await axios.get(`/api/user/info/${_id}`);
-    this.setState({ userInfo: userInfo.data });
+    this.setState({ userInfo: userInfo.data, isLoading: false });
   };
 
   getCurrentTumbler = async () => {
@@ -28,7 +29,10 @@ class Account extends React.Component {
     } = await axios.get("/api/user/auth");
 
     const tumblersInfo = await axios.get(`/api/user/list/${_id}`);
-    this.setState({ tumblersInfo: tumblersInfo.data.tumblers });
+    this.setState({
+      tumblersInfo: tumblersInfo.data.tumblers,
+      isLoading: false,
+    });
     console.log(tumblersInfo.data.tumblers);
   };
 
@@ -38,75 +42,80 @@ class Account extends React.Component {
   }
 
   render() {
-    const { userInfo, tumblersInfo } = this.state;
+    const { userInfo, tumblersInfo, isLoading } = this.state;
     return (
       <section className="mypage-content">
-        <span>내 정보</span>
-        <div className="mypage-user-content">
-          <div className="mypage-user-img">
-            <i class="far fa-user fa-5x"></i>
-            <Link to="/mypage/settings">
-              <Button>Edit Profile</Button>
-            </Link>
+        {isLoading ? (
+          <div className="loader">
+            <div className="loading_container">
+              <div className="loading"></div>
+              <div className="loader_text">Loading...</div>
+            </div>
           </div>
-          <ul>
-            <li>
-              <label>이름</label>
-              <AccountUser name={userInfo.name} />
-            </li>
-            <li>
-              <label>이메일</label>
-              <AccountUser email={userInfo.email} />
-            </li>
-            <li>
-              <label>잔액</label>
-              <AccountUser deposit={userInfo.deposit} />
-            </li>
-          </ul>
-        </div>
-        <span>현재 사용중인 텀블러</span>
-        {tumblersInfo.map((tumbler) => {
-          return (
-            <div className="mypage-tumbler-content">
-              <div>
-                <img
-                  className="tumbler-example"
-                  src="../img/tumbler_example.jpg"
-                />
+        ) : (
+          <>
+            <span className="mypage-content-title">내 정보</span>
+            <div className="mypage-user-content">
+              <div className="mypage-user-img">
+                <i class="far fa-user fa-5x"></i>
+                <Link to="/mypage/settings">
+                  <Button>Edit Profile</Button>
+                </Link>
               </div>
               <ul>
                 <li>
                   <label>Name</label>
-                  <AccountCurrentTumbler model={tumbler.model} />
-                  <label>Cafe</label>
-                  <AccountCurrentTumbler shop={tumbler.shop} />
-                  <label>Rental Period</label>
-                  <AccountCurrentTumbler
-                    borrowed_date={tumbler.borrowed_date}
+                  <AccountUser name={userInfo.name} />
+                </li>
+                <li>
+                  <label>Email</label>
+                  <AccountUser email={userInfo.email} />
+                </li>
+                <li>
+                  <label>잔액</label>
+                  <AccountUser
+                    deposit={userInfo.deposit
+                      .toString()
+                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+                      .concat("원")}
                   />
-                  <AccountCurrentTumbler
-                    usable_period_date={tumbler.usable_period_date}
-                  />
-                  {/* <label>Name</label>
-              <AccountCurrentTumbler model={tumblersInfo.model} />
-            </li>
-            <li>
-              <label>Cafe</label>
-              <AccountCurrentTumbler shop={tumblersInfo.shop} />
-            </li>
-            <li>
-              <label>Rental Period</label>
-              <AccountCurrentTumbler
-                borrowed_date={tumblersInfo.borrowed_date}
-              />
-              <AccountCurrentTumbler
-                usable_period_date={tumblersInfo.usable_period_date}
-              /> */}
                 </li>
               </ul>
             </div>
-          );
-        })}
+            <span className="mypage-content-title">현재 사용중인 텀블러</span>
+            {tumblersInfo.map((tumbler) => {
+              return (
+                <div className="mypage-tumbler-content">
+                  <div>
+                    <img
+                      className="tumbler-example"
+                      src="../img/tumbler_example.jpg"
+                    />
+                  </div>
+                  <ul>
+                    <li>
+                      <label>Name</label>
+                      <AccountCurrentTumbler model={tumbler.model} />
+                    </li>
+                    <li>
+                      <label>Cafe</label>
+                      <AccountCurrentTumbler shop={tumbler.shop} />
+                    </li>
+                    <li>
+                      <label>Rental Period</label>
+                      <AccountCurrentTumbler
+                        borrowed_date={tumbler.borrowed_date}
+                      />
+                      <AccountCurrentTumbler
+                        usable_period_date={tumbler.usable_period_date}
+                      />
+                    </li>
+                  </ul>
+                </div>
+              );
+            })}
+          </>
+        )}
       </section>
     );
   }

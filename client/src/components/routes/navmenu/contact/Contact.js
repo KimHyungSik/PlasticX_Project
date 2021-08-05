@@ -45,20 +45,12 @@ function Contact(props) {
   return (
     <section className="contact-page">
       <div className="page-header">
-        <h2>궁금한게 있으시나요?</h2>
+        <h2>문의하기</h2>
         <hr></hr>
       </div>
 
       <form className="contact-form" onSubmit={handleSubmit}>
-        <div className="dropmenu">
-          <select>
-            <option value="khs">팀장/앱 개발자, 김형식</option>
-            <option value="pky">기계 개발자, 박경용</option>
-            <option value="jjh">API/웹 개발자, 주정하</option>
-            <option value="jyb">API/웹 디자인, 조유빈</option>
-          </select>
-        </div>
-
+        <label>To. PlasticX</label>
         <div className="inquiries">
           <input
             type="name"
@@ -78,7 +70,7 @@ function Contact(props) {
           ></input>
           <textarea
             id="message"
-            placeholder="문의를 적어주세요"
+            placeholder="문의하실 내용을 적어주세요."
             value={Message}
             onChange={onMessageChange}
           ></textarea>
