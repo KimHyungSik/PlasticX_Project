@@ -37,12 +37,13 @@ textarea {
   transition: 500ms;
 }
 
+input:hover,
 textarea:hover {
   border: 1px solid #2f5ffa;
   transition: 500ms;
 }
 
-button {
+.inquires button {
   background-color: var(--color-primary);
   color: var(--color-white);
   padding: var(--base-space-top-bottom) 20px;
@@ -51,5 +52,11 @@ button {
   cursor: pointer;
   width: 100%;
   border-radius: var(--base-border-radius);
+  transition: 250ms;
+}
+
+.inquires button:hover {
+  background-color: var(--color-dark-primary);
+  color: var(--color-white);
   transition: 250ms;
 }

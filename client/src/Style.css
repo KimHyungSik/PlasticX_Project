@@ -10,6 +10,7 @@
   --color-hoverpink: #faafb1;
   --color-grey: #a5a9c4;
   --color-light-grey: #dfdfdf;
+  --color-background-color: #f9fafb;
 
   --color-primary: #35b8be;
   --color-dark-primary: #399ca1;
@@ -21,8 +22,8 @@
   --animation-duration: transform 300ms ease;
 
   /* size */
-  --base-logo-width: 400px;
-  --base-logo-height: 140px;
+  --base-logo-width: 380px;
+  --base-logo-height: 120px;
 
   --base-space-top-bottom: 8px;
   --base-space-left-right: 12px;

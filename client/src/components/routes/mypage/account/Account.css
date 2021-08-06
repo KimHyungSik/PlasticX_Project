@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background-color: var(--color-white);
   padding: var(--nav-space-top-bottom) calc(var(--nav-space-top-bottom) / 2);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent),
     var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
@@ -24,6 +25,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: var(--color-white);
   /* border: 1px solid var(--color-grey);
   border-radius: calc(var(--base-border-radius) * 4); */
   box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent),

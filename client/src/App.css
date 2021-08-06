@@ -6,6 +6,7 @@ body {
   width: var(--body-base-width);
   height: var(--body-base-height);
   font-family: "Inter", sans-serif;
+  background-color: var(--color-background-color);
 }
 
 .global-width {
