@@ -12,7 +12,8 @@ select {
 }
 
 input[type="name"],
-input[type="email"] {
+input[type="email"],
+input[type="subject"] {
   width: 100%;
   padding: 12px 15px;
   margin: 8px 0;
@@ -60,3 +61,14 @@ textarea:hover {
   color: var(--color-white);
   transition: 250ms;
 }
+/* input [type="submit"] {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--base-space-top-bottom) 20px;
+  margin: calc(var(--base-space-top-bottom) * 2) 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: var(--base-border-radius);
+  transition: 250ms;
+} */
