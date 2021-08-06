@@ -9,10 +9,10 @@ function AccountCurrentTumbler({
 }) {
   return (
     <>
-      <h3>{model}</h3>
-      <h5>{shop}</h5>
-      <span>{borrowed_date}</span>
-      <span>{usable_period_date}</span>
+      <div className="account-name">{model}</div>
+      <div>{shop}</div>
+      <div>{borrowed_date}</div>
+      <div>{usable_period_date}</div>
     </>
   );
 }
