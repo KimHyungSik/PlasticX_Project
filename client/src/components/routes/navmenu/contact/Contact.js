@@ -7,6 +7,7 @@ function Contact(props) {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Message, setMessage] = useState("");
+  const [Subject, setSubject] = useState("");
 
   const onNameChange = (event) => {
     setName(event.currentTarget.value);
@@ -16,6 +17,10 @@ function Contact(props) {
     setEmail(event.currentTarget.value);
   };
 
+  const onSubjectChange = (event) => {
+    setSubject(event.currentTarget.value);
+  };
+
   const onMessageChange = (event) => {
     setMessage(event.currentTarget.value);
   };
@@ -23,6 +28,7 @@ function Contact(props) {
   let body = {
     name: Name,
     email: Email,
+    subject: Subject,
     message: Message,
   };
 
@@ -46,6 +52,7 @@ function Contact(props) {
   function resetForm() {
     setName("");
     setEmail("");
+    setSubject("");
     setMessage("");
   }
 
@@ -74,6 +81,14 @@ function Contact(props) {
             required
             value={Email}
             onChange={onEmailChange}
+          ></input>
+          <input
+            type="subject"
+            id="subject"
+            placeholder="제목"
+            required
+            value={Subject}
+            onChange={onSubjectChange}
           ></input>
           <textarea
             id="message"
