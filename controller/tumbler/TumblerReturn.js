@@ -15,7 +15,7 @@ const callback = async (req, res) => {
 
   // finding tumbler
   try {
-    tumbler = await Tumbler.findOne(req.params);
+    tumbler = await Tumbler.findOne(req.params).populate("model");
   } catch (err) {
     console.log(err);
     if (err.name === "CastError" && err.kind === "ObjectId") {
@@ -82,6 +82,7 @@ const callback = async (req, res) => {
   if (tumbler.state == true) {
     userUpdate.deposit += DEPOSIT;
     tumblerUpdate.state = false;
+    delete tumblerUpdate.modle;
 
     // 날짜 업데이트
     var date = new Date();
@@ -103,17 +104,13 @@ const callback = async (req, res) => {
       if (err.name === "CastError" && err.kind === "ObjectId") {
         return res.status(200).json({
           RESULT: 401,
-          MESSAGE: `잘못된 id값 입력, (${
-            err.message.split('"').reverse()[1]
-          } Collection)`,
+          MESSAGE: `잘못된 id값 입력, (${err.message.split('"').reverse()[1]} Collection)`,
           path: err.path,
         });
       }
       return res.status(200).json({
         RESULT: 500,
-        MESSAGE: `DB 에러 발생 , (${
-          err.message.split('"').reverse()[1]
-        } Collection)`,
+        MESSAGE: `DB 에러 발생 , (${err.message.split('"').reverse()[1]} Collection)`,
         error: err,
       });
     } finally {
@@ -121,10 +118,7 @@ const callback = async (req, res) => {
     }
   }
 
-  if (
-    userUpdate.deposit > user.deposit &&
-    tumbler.state != tumblerUpdate.state
-  ) {
+  if (userUpdate.deposit > user.deposit && tumbler.state != tumblerUpdate.state) {
     // 알림
     var client = new Client();
 
@@ -132,7 +126,7 @@ const callback = async (req, res) => {
     let args = {
       data: {
         to: userUpdate.fcm_token,
-        notification: { title: "반납되었습니다." },
+        notification: { title: `${tumbler.model.name} 반납 완료` },
       },
       headers: { "Content-Type": "application/json", Authorization: FCM.TOKEN },
     };
