@@ -35,12 +35,19 @@ function Contact(props) {
       data: body,
     }).then((response) => {
       if (response.data.status === "success") {
-        alert("Message Sent.");
+        alert("이메일이 성공적으로 전송되었습니다.");
+        resetForm();
       } else if (response.data.status === "fail") {
-        alert("Message failed to send.");
-      }
+        alert("이메일 전송 실패.");
+      } else alert(response.data.status);
     });
   };
+
+  function resetForm() {
+    setName("");
+    setEmail("");
+    setMessage("");
+  }
 
   return (
     <section className="contact-page">
@@ -50,15 +57,6 @@ function Contact(props) {
       </div>
 
       <form className="contact-form" onSubmit={handleSubmit}>
-        <div className="dropmenu">
-          <select>
-            <option value="khs">팀장/앱 개발자, 김형식</option>
-            <option value="pky">기계 개발자, 박경용</option>
-            <option value="jjh">API/웹 개발자, 주정하</option>
-            <option value="jyb">API/웹 디자인, 조유빈</option>
-          </select>
-        </div>
-
         <div className="inquiries">
           <input
             type="name"
@@ -82,7 +80,7 @@ function Contact(props) {
             value={Message}
             onChange={onMessageChange}
           ></textarea>
-          <button>Send Message</button>
+          <button type="submit">Send Message</button>
         </div>
       </form>
     </section>
