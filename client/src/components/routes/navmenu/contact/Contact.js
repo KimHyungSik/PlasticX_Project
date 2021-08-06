@@ -57,10 +57,7 @@ function Contact(props) {
       </div>
 
       <form className="contact-form" onSubmit={handleSubmit}>
-<<<<<<< HEAD
-=======
         <label>To. PlasticX</label>
->>>>>>> d8ac39983a62139da3f8def55846c7d90b88da57
         <div className="inquiries">
           <input
             type="name"
