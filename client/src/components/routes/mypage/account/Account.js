@@ -33,7 +33,6 @@ class Account extends React.Component {
       tumblersInfo: tumblersInfo.data.tumblers,
       isLoading: false,
     });
-    console.log(tumblersInfo.data.tumblers);
   };
 
   componentDidMount() {

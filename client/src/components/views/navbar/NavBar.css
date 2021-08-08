@@ -3,13 +3,15 @@
   top: 0;
   z-index: 3;
   background-color: var(--color-white);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent),
+    var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--nav-space-top-bottom) var(--nav-space-left-right);
+  padding: calc(var(--nav-space-top-bottom) / 2) var(--nav-space-left-right);
 }
 
 .plasticx-logo {

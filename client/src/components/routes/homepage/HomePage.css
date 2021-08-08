@@ -1,6 +1,7 @@
 .home {
   display: flex;
   justify-content: space-around;
+  background-color: var(--color-white);
   padding: calc(var(--nav-space-top-bottom) * 2.4) var(--nav-space-left-right);
 }
 

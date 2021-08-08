@@ -9,6 +9,11 @@ const userLogin = require(path.resolve(controllerPath, "user", "UserLogin"));
 const userAuth = require(path.resolve(controllerPath, "user", "UserAuth"));
 const userLogout = require(path.resolve(controllerPath, "user", "UserLogout"));
 const userDetail = require(path.resolve(controllerPath, "user", "UserDetail"));
+const userInfoChange = require(path.resolve(
+  controllerPath,
+  "user",
+  "UserInfoChange"
+));
 const userRentList = require(path.resolve(
   controllerPath,
   "user",
@@ -40,6 +45,14 @@ router.put("/", (req, res) => {
     message: "Bad Request",
   });
 });
+router.put(
+  "/info/change/:_id",
+  (req, res, next) => {
+    slack.sendSlackWebhookRequest(req);
+    next();
+  },
+  userInfoChange
+);
 
 router.delete("/", (req, res) => {
   res.send("Received a DELETE request");

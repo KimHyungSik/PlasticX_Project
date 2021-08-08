@@ -1,0 +1,40 @@
+.account-setting-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--color-white);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent),
+    var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
+  margin-bottom: calc(var(--nav-space-top-bottom) * 3);
+}
+
+.account-setting-input {
+  padding: var(--nav-space-top-bottom) calc(var(--nav-space-top-bottom) / 2);
+}
+
+.account-setting-content-btn {
+  width: 100%;
+  text-align: right;
+  padding: calc(var(--nav-space-top-bottom) / 2.4) var(--nav-space-top-bottom);
+  background-color: #f9fafb;
+}
+
+.settings-btn {
+  padding: calc(var(--normal-btn-space-top-bottom) / 3)
+    calc(var(--normal-btn-space-lefet-right) / 2);
+  border-radius: var(--base-border-radius);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: 250ms;
+  font-size: 14px;
+}
+
+.settings-btn:hover {
+  background-color: var(--color-dark-primary);
+  color: var(--color-white);
+  transition: 250ms;
+}
