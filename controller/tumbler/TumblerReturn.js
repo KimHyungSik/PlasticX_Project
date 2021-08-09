@@ -2,6 +2,7 @@ const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const fcmPath = path.resolve(__dirname, "..", "..", "config");
 
+const { History } = require(path.resolve(modelsPath, "History"));
 const { Client } = require("node-rest-client");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 const { User } = require(path.resolve(modelsPath, "User"));
@@ -69,13 +70,6 @@ const callback = async (req, res) => {
       MESSAGE: "아이디에 해당하는 유저 없음",
     });
   }
-  // 1. 텀블러 대여 중인가 (state = false)
-  // 2. user 보증금 >= DEPOSIT 인가
-  // 3. 위에 두개 만족하면 state = true
-  // 4. user 보증금 - DEPOSIT
-  // from_id = to_id
-  // to_id = user_id
-  // date 추가
   let tumblerUpdate = new Tumbler(tumbler);
   let userUpdate = new User(user);
 
@@ -104,13 +98,17 @@ const callback = async (req, res) => {
       if (err.name === "CastError" && err.kind === "ObjectId") {
         return res.status(200).json({
           RESULT: 401,
-          MESSAGE: `잘못된 id값 입력, (${err.message.split('"').reverse()[1]} Collection)`,
+          MESSAGE: `잘못된 id값 입력, (${
+            err.message.split('"').reverse()[1]
+          } Collection)`,
           path: err.path,
         });
       }
       return res.status(200).json({
         RESULT: 500,
-        MESSAGE: `DB 에러 발생 , (${err.message.split('"').reverse()[1]} Collection)`,
+        MESSAGE: `DB 에러 발생 , (${
+          err.message.split('"').reverse()[1]
+        } Collection)`,
         error: err,
       });
     } finally {
@@ -118,7 +116,20 @@ const callback = async (req, res) => {
     }
   }
 
-  if (userUpdate.deposit > user.deposit && tumbler.state != tumblerUpdate.state) {
+  if (
+    userUpdate.deposit > user.deposit &&
+    tumbler.state != tumblerUpdate.state
+  ) {
+    let historyList = {
+      user: user._id,
+      tumbler: tumbler._id,
+      returnBox: tumblerUpdate.to_id,
+    };
+
+    let history = new History(historyList);
+
+    history.save();
+
     // 알림
     var client = new Client();
 

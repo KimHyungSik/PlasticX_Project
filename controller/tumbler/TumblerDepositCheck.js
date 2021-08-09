@@ -2,6 +2,7 @@ const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 const { User } = require(path.resolve(modelsPath, "User"));
+const { History } = require(path.resolve(modelsPath, "History"));
 const { userInfo } = require("os");
 
 const DEPOSIT = 5000;
@@ -120,6 +121,16 @@ const callback = async (req, res) => {
     user.deposit - userUpdate.deposit >= DEPOSIT &&
     tumbler.state != tumblerUpdate.state
   ) {
+    let historyList = {
+      user: user._id,
+      tumbler: tumbler._id,
+      owner: tumblerUpdate.from_id,
+    };
+
+    let history = new History(historyList);
+
+    history.save();
+
     let tempDate = new Date(tumblerUpdate.date);
     tempDate.setDate(tempDate.getDate() + 7);
     return res.status(200).json({

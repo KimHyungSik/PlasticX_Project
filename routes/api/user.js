@@ -20,6 +20,12 @@ const userRentList = require(path.resolve(
   "UserRentList"
 ));
 
+const userRentListHistory = require(path.resolve(
+  controllerPath,
+  "user",
+  "UserRentListHistory"
+));
+
 const { auth } = require(path.resolve(middlewarePath, "userauth"));
 const router = express.Router();
 
@@ -29,6 +35,7 @@ router.get("/auth", auth, userAuth);
 router.get("/logout", auth, userLogout);
 router.get("/info/:_id", userDetail);
 router.get("/list/:to_id", userRentList);
+router.get("/history/:user", userRentListHistory);
 
 router.post("/register", userRegist);
 router.post(

@@ -59,9 +59,19 @@ class Settings extends React.Component {
         if (response.data.RESULT == 200) {
           alert("이메일이 성공적으로 변경되었습니다.");
         } else {
-          console.log("이메일 형식으로 써주세요.");
+          console.log("이메일 변경 실패");
         }
       });
+  };
+
+  CheckEmail = (str) => {
+    var reg_email =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    if (!reg_email.test(str.target.value)) {
+      return alert("이메일 형식으로 작성하세요.");
+    } else {
+      return true;
+    }
   };
 
   componentDidMount() {
@@ -113,6 +123,7 @@ class Settings extends React.Component {
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
+                    onBlur={this.CheckEmail}
                   ></input>
                 </form>
               </div>
