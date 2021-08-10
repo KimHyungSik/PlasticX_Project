@@ -12,7 +12,7 @@ function Footer() {
           <img
             className="plasticx-only-logo"
             alt="plasticx_only_logo"
-            src="img/plasticx_only_logo.png"
+            src="/img/plasticx_only_logo.png"
           />
           <span>A Life Changer</span>
         </div>

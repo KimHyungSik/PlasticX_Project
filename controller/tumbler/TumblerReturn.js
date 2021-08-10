@@ -72,8 +72,12 @@ const callback = async (req, res) => {
   }
   let tumblerUpdate = new Tumbler(tumbler);
   let userUpdate = new User(user);
+  let owner;
 
   if (tumbler.state == true) {
+    // 카페 가져오기
+    owner = tumblerUpdate.from_id;
+
     userUpdate.deposit += DEPOSIT;
     tumblerUpdate.state = false;
     delete tumblerUpdate.model;
@@ -120,8 +124,6 @@ const callback = async (req, res) => {
     userUpdate.deposit > user.deposit &&
     tumbler.state != tumblerUpdate.state
   ) {
-    console.log(tumblerUpdate);
-
     var date = new Date();
     date.setHours(date.getHours() + 9);
 
@@ -129,6 +131,7 @@ const callback = async (req, res) => {
       user: user._id,
       tumbler: tumbler._id,
       returnBox: tumblerUpdate.to_id,
+      owner: owner,
       date: date.toISOString(),
     };
 

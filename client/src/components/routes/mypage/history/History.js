@@ -6,7 +6,7 @@ import "./History.css";
 
 class History extends React.Component {
   state = {
-    tumblersInfo: [],
+    returnedDate: [],
     isLoading: true,
   };
 
@@ -16,12 +16,11 @@ class History extends React.Component {
     } = await axios.get("/api/user/auth");
 
     const tumblersInfo = await axios.get(`/api/user/history/${_id}`);
+
     this.setState({
-      tumblersInfo: tumblersInfo.data.tumblers,
+      returnedDate: tumblersInfo.data.tumblers_returned,
       isLoading: false,
     });
-
-    console.log(tumblersInfo.data.tumblers);
   };
 
   componentDidMount() {
@@ -29,7 +28,8 @@ class History extends React.Component {
   }
 
   render() {
-    const { tumblersInfo, isLoading } = this.state;
+    const { returnedDate, isLoading } = this.state;
+    console.log(returnedDate);
     return (
       <section className="mypage-content">
         {isLoading ? (
@@ -42,35 +42,42 @@ class History extends React.Component {
         ) : (
           <>
             <span className="mypage-content-title">이용 내역</span>
-            {tumblersInfo.map((tumbler) => {
-              return (
-                <div className="mypage-history-content">
-                  <div>
-                    <img
-                      className="tumbler-example"
-                      src="../img/tumbler_example.jpg"
-                    />
-                  </div>
-                  <ul>
-                    <li>
-                      <label>Name</label>
-                      <HistoryTumbler model={tumbler.model} />
-                    </li>
-                    <li>
-                      <label>Cafe</label>
-                      <HistoryTumbler shop={tumbler.shop} />
-                    </li>
-                    <li>
-                      <label>Rental Period</label>
-                      <HistoryTumbler borrowed_date={tumbler.borrowed_date} />
-                      <HistoryTumbler
-                        usable_period_date={tumbler.usable_period_date}
-                      />
-                    </li>
-                  </ul>
-                </div>
-              );
-            })}
+            {returnedDate.length === 0 ? (
+              <div className="mypage-tumbler-content no-list">
+                <span>텀블러 이용 내역이 없습니다.</span>
+              </div>
+            ) : (
+              <>
+                {returnedDate.map((tumbler) => {
+                  return (
+                    <div className="mypage-history-content">
+                      <div>
+                        <img
+                          className="tumbler-example"
+                          src="../img/tumbler_example.jpg"
+                        />
+                      </div>
+                      <ul>
+                        <li>
+                          <label>Name</label>
+                          <HistoryTumbler model={tumbler.model} />
+                        </li>
+                        <li>
+                          <label>Cafe</label>
+                          <HistoryTumbler shop={tumbler.shop} />
+                        </li>
+                        <li>
+                          <label>Returned Date</label>
+                          <HistoryTumbler
+                            returned_date={tumbler.returned_date}
+                          />
+                        </li>
+                      </ul>
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </>
         )}
       </section>

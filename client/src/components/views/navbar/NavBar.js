@@ -34,7 +34,7 @@ function NavBar() {
               <img
                 className="plasticx-logo"
                 alt="plasticx_logo"
-                src="img/plasticx_logo.png"
+                src="/img/plasticx_logo.png"
               />
             </Link>
           </div>

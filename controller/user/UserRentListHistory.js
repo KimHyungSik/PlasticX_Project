@@ -2,36 +2,10 @@ const path = require("path");
 const modelsPath = path.resolve(__dirname, "..", "..", "models");
 const { History } = require(path.resolve(modelsPath, "History"));
 
-function dateFormat(date) {
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let hour = date.getHours();
-  let minute = date.getMinutes();
-  let second = date.getSeconds();
-
-  month = month >= 10 ? month : "0" + month;
-  day = day >= 10 ? day : "0" + day;
-  hour = hour >= 10 ? hour : "0" + hour;
-  minute = minute >= 10 ? minute : "0" + minute;
-  second = second >= 10 ? second : "0" + second;
-
-  return (
-    date.getFullYear() +
-    "-" +
-    month +
-    "-" +
-    day +
-    " " +
-    hour +
-    ":" +
-    minute +
-    ":" +
-    second
-  );
-}
-
 const callback = (req, res) => {
   let tumblers = [];
+  let borrowed = [];
+  let returned = [];
 
   History.find(req.params)
     .populate("tumbler")
@@ -56,32 +30,43 @@ const callback = (req, res) => {
         });
       }
 
-      //console.log(historyList);
-
       historyList.forEach((e) => {
         let temp = new Object();
 
         temp.id = e.tumbler._id;
         temp.model = e.tumbler.model.name;
 
-        if (e.owner) {
-          let borrowedDate = new Date(e.date);
+        if (e.returnBox) {
+          let returnedDate = new Date(e.date);
+          temp.returned_date = returnedDate.toISOString();
+          temp.returned_date =
+            temp.returned_date.slice(0, 10) +
+            " " +
+            temp.returned_date.slice(11, 16);
 
           temp.shop = e.owner.name;
-          temp.borrowed_date = borrowedDate;
-        } else {
-          let returnedDate = new Date(e.date);
-
           temp.returnbox = e.returnBox;
-          temp.returned_date = returnedDate;
-        }
 
-        tumblers.push(temp);
+          returned.push(temp);
+        } else {
+          let borrowedDate = new Date(e.date);
+
+          // temp.shop = e.owner.name;
+          temp.borrowed_date = borrowedDate.toISOString();
+          temp.borrowed_date =
+            temp.borrowed_date.slice(0, 10) +
+            " " +
+            temp.borrowed_date.slice(11, 16);
+
+          borrowed.push(temp);
+        }
       });
+
       return res.json({
         RESULT: 200,
         MESSAGE: "검색 성공",
-        tumblers: tumblers,
+        tumblers_returned: returned,
+        tumblers_borrowed: borrowed,
       });
     });
 };
