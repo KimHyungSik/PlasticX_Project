@@ -31,6 +31,8 @@ function dateFormat(date) {
 }
 
 const callback = (req, res) => {
+  let tumblers = [];
+
   History.find(req.params)
     .populate("tumbler")
     .populate("owner")
@@ -54,10 +56,32 @@ const callback = (req, res) => {
         });
       }
 
+      //console.log(historyList);
+
+      historyList.forEach((e) => {
+        let temp = new Object();
+
+        temp.id = e.tumbler._id;
+        temp.model = e.tumbler.model.name;
+
+        if (e.owner) {
+          let borrowedDate = new Date(e.date);
+
+          temp.shop = e.owner.name;
+          temp.borrowed_date = borrowedDate;
+        } else {
+          let returnedDate = new Date(e.date);
+
+          temp.returnbox = e.returnBox;
+          temp.returned_date = returnedDate;
+        }
+
+        tumblers.push(temp);
+      });
       return res.json({
         RESULT: 200,
         MESSAGE: "검색 성공",
-        tumblers: historyList,
+        tumblers: tumblers,
       });
     });
 };

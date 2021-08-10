@@ -121,10 +121,14 @@ const callback = async (req, res) => {
     user.deposit - userUpdate.deposit >= DEPOSIT &&
     tumbler.state != tumblerUpdate.state
   ) {
+    var date = new Date();
+    date.setHours(date.getHours() + 9);
+
     let historyList = {
       user: user._id,
       tumbler: tumbler._id,
       owner: tumblerUpdate.from_id,
+      date: date.toISOString(),
     };
 
     let history = new History(historyList);

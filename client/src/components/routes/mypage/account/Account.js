@@ -31,6 +31,7 @@ class Account extends React.Component {
     const tumblersInfo = await axios.get(`/api/user/list/${_id}`);
     this.setState({
       tumblersInfo: tumblersInfo.data.tumblers,
+      tumblerIsNull: tumblersInfo.data.tumblers.length,
       isLoading: false,
     });
   };
@@ -41,7 +42,7 @@ class Account extends React.Component {
   }
 
   render() {
-    const { userInfo, tumblersInfo, isLoading } = this.state;
+    const { userInfo, tumblersInfo, tumblerIsNull, isLoading } = this.state;
     return (
       <section className="mypage-content">
         {isLoading ? (
@@ -82,6 +83,11 @@ class Account extends React.Component {
               </ul>
             </div>
             <span className="mypage-content-title">현재 사용중인 텀블러</span>
+            {/* {tumblerIsNull ? (
+              <div className="mypage-tumbler-content">
+                <span className="mypage-content-title">현재 사용중인 텀블러가 없습니다.</span>
+              </div>
+              ) : ( */}
             {tumblersInfo.map((tumbler) => {
               return (
                 <div className="mypage-tumbler-content">
@@ -113,6 +119,7 @@ class Account extends React.Component {
                 </div>
               );
             })}
+            {/* )} */}
           </>
         )}
       </section>

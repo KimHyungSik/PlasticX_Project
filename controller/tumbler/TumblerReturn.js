@@ -76,7 +76,7 @@ const callback = async (req, res) => {
   if (tumbler.state == true) {
     userUpdate.deposit += DEPOSIT;
     tumblerUpdate.state = false;
-    delete tumblerUpdate.modle;
+    delete tumblerUpdate.model;
 
     // 날짜 업데이트
     var date = new Date();
@@ -120,10 +120,16 @@ const callback = async (req, res) => {
     userUpdate.deposit > user.deposit &&
     tumbler.state != tumblerUpdate.state
   ) {
+    console.log(tumblerUpdate);
+
+    var date = new Date();
+    date.setHours(date.getHours() + 9);
+
     let historyList = {
       user: user._id,
       tumbler: tumbler._id,
       returnBox: tumblerUpdate.to_id,
+      date: date.toISOString(),
     };
 
     let history = new History(historyList);
@@ -133,7 +139,6 @@ const callback = async (req, res) => {
     // 알림
     var client = new Client();
 
-    console.log(userUpdate);
     let args = {
       data: {
         to: userUpdate.fcm_token,
