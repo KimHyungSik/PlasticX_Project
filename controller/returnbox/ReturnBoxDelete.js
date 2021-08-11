@@ -42,7 +42,7 @@ const callback = (req, res) => {
       return res.status(200).json({
         RESULT: 200,
         MESSAGE: "리터박스 삭제 성공",
-        update: updateResult,
+        UPDATE: updateResult,
       });
     });
   });
