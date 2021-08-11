@@ -43,22 +43,6 @@ mongoose
     slack.sendSlackWebhookError(err);
   });
 
-<<<<<<< HEAD
-emailTransporter.verify((error, success) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Server is ready to take messages");
-  }
-});
-
-// 여기에 태스크 코드
-returnBoxTask();
-tumblerNotifTask();
-adminNotifTask();
-
-=======
->>>>>>> 3e9668bdb80be69ce9573876eb30d4e7e0a7a60d
 app.engine(
   "hbs",
   hbs({
