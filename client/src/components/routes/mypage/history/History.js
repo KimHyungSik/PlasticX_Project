@@ -16,6 +16,7 @@ class History extends React.Component {
     } = await axios.get("/api/user/auth");
 
     const tumblersInfo = await axios.get(`/api/user/history/${_id}`);
+    console.log(tumblersInfo);
 
     this.setState({
       returnedDate: tumblersInfo.data.tumblers_returned,
@@ -29,7 +30,6 @@ class History extends React.Component {
 
   render() {
     const { returnedDate, isLoading } = this.state;
-    console.log(returnedDate);
     return (
       <section className="mypage-content">
         {isLoading ? (

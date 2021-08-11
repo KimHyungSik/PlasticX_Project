@@ -36,6 +36,9 @@
 
 .nav-links:hover {
   transform: scale(1.15);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
 
@@ -50,6 +53,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(3px);

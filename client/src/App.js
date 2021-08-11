@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavBar, Footer } from "./components/views/ViewsIndex";
+import { NavBar, Footer, Privacy } from "./components/views/ViewsIndex";
 
 import {
   HomePage,
@@ -34,6 +34,7 @@ class App extends React.Component {
           <Route path="/login" component={Auth(LoginPage, false)} />
           <Route path="/register" component={Auth(RegisterPage, false)} />
           <Route path="/mypage" component={Auth(MyPage, true)} />
+          <Route path="/privacy" component={Auth(Privacy, true)} />
           <Footer />
         </Router>
       </>

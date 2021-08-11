@@ -26,6 +26,9 @@ function Footer() {
                 </Link>
               );
             })}
+            <Link to="/privacy" className="nav-links">
+              <span>Privacy</span>
+            </Link>
           </div>
         </div>
       </div>

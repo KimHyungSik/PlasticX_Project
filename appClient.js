@@ -4,12 +4,10 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const hbs = require("express-handlebars");
 const cors = require("cors");
 
 const mongoose = require("mongoose");
 
-const web = require(path.resolve(__dirname, "routes", "web"));
 const api = require(path.resolve(__dirname, "routes", "api"));
 const config = require(path.resolve(__dirname, "config", "key"));
 const slack = require(path.resolve(__dirname, "config", "slack"));
@@ -33,6 +31,14 @@ mongoose
     console.log(err);
     slack.sendSlackWebhookError(err);
   });
+
+emailTransporter.verify((error, success) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Server is ready to take messages");
+  }
+});
 
 // 여기에 태스크 코드
 returnBoxTask();
