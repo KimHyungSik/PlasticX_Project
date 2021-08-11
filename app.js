@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const hbs = require("express-handlebars");
-const cors = require("cors");
 
 const mongoose = require("mongoose");
 
@@ -44,6 +43,7 @@ mongoose
     slack.sendSlackWebhookError(err);
   });
 
+<<<<<<< HEAD
 emailTransporter.verify((error, success) => {
   if (error) {
     console.log(error);
@@ -57,6 +57,8 @@ returnBoxTask();
 tumblerNotifTask();
 adminNotifTask();
 
+=======
+>>>>>>> 3e9668bdb80be69ce9573876eb30d4e7e0a7a60d
 app.engine(
   "hbs",
   hbs({
@@ -90,7 +92,6 @@ app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
 app.use(logger("dev"));
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
