@@ -103,7 +103,6 @@ app.get("/err", (req, res) => {
 //   res.send("안녕하세유");
 // });
 
-app.use("/api", api);
 app.use("/", web);
 
 app.use(err_logger);

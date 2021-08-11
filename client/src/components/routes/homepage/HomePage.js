@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Aos from "aos";
 
@@ -69,11 +69,4 @@ class HomePage extends React.Component {
     );
   }
 }
-
-// function HomePage() {
-//    useEffect(() => {
-//      axios.get("/api/hello").then((response) => console.log(response.data));
-//   }, []);
-// }
-
 export default HomePage;
