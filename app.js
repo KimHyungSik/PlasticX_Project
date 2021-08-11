@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const hbs = require("express-handlebars");
-const cors = require("cors");
 
 const mongoose = require("mongoose");
 
@@ -33,17 +32,6 @@ mongoose
     console.log(err);
     slack.sendSlackWebhookError(err);
   });
-
-emailTransporter.verify((error, success) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Server is ready to take messages");
-  }
-});
-
-// 여기에 태스크 코드
-returnBoxTask();
 
 app.engine(
   "hbs",
@@ -78,7 +66,6 @@ app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
 app.use(logger("dev"));
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
