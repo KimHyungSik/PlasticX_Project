@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "admin": "nodemon ./bin/www",
-    "client": "nodemon ./bin/www2",
+    "client": "nodemon ./bin/wwwClient",
     "dev": "concurrently \"npm run admin\" \"npm run start --prefix client\""
   },
   "dependencies": {
