@@ -22,6 +22,11 @@ const tumblerNotifTask = require(path.resolve(
   "task",
   "TumblerNotifTask"
 ));
+const adminNotifTask = require(path.resolve(
+  __dirname,
+  "task",
+  "AdminNotifTask"
+));
 
 const app = express();
 
@@ -50,6 +55,7 @@ emailTransporter.verify((error, success) => {
 // 여기에 태스크 코드
 returnBoxTask();
 tumblerNotifTask();
+adminNotifTask();
 
 app.engine(
   "hbs",

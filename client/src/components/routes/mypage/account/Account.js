@@ -7,7 +7,9 @@ import AccountCurrentTumbler from "./AccountCurrentTumbler";
 import "./Account.css";
 import axios from "axios";
 
-//const path = require("path");
+const path = require("path");
+
+import TumblerNotifTask from "../../../../../../task/TumblerNotifTask";
 // const modelsPath = path.resolve(
 //   __dirname,
 //   "..",
@@ -75,6 +77,8 @@ class Account extends React.Component {
     } = await axios.get("/api/user/auth");
 
     const tumblersInfo = await axios.get(`/api/user/list/${_id}`);
+
+    //TumblerNotifTask.checkTumbler(tumblersInfo);
 
     //   let tumbler = await Tumbler.findOne({ _id: tumblersInfo }).populate(
     //     "model"
