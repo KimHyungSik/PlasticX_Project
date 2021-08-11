@@ -17,6 +17,11 @@ const err_logger = require(path.resolve(__dirname, "config", "log"));
 const err_response = require(path.resolve(__dirname, "config", "error"));
 const { emailTransporter } = require(path.resolve(__dirname, "config", "mail"));
 const returnBoxTask = require(path.resolve(__dirname, "task", "ReturnBoxTask"));
+const tumblerNotifTask = require(path.resolve(
+  __dirname,
+  "task",
+  "TumblerNotifTask"
+));
 
 const app = express();
 
@@ -44,6 +49,7 @@ emailTransporter.verify((error, success) => {
 
 // 여기에 태스크 코드
 returnBoxTask();
+tumblerNotifTask();
 
 app.engine(
   "hbs",
