@@ -3,11 +3,12 @@ import "./Privacy.css";
 
 function Privacy() {
   return (
-    <div className="global-width privacy-home">
-      " PlasticX " ('http://plasticx.roddyd.net/'이하 'PlasticX')은(는)
-      「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와
-      관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이
-      개인정보 처리방침을 수립·공개합니다. <br></br>
+    <div className="privacy-home">
+      <h2 className="privacy-title">개인정보처리방침</h2>" PlasticX "
+      ('http://plasticx.roddyd.net/'이하 'PlasticX')은(는) 「개인정보 보호법」
+      제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고
+      원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을
+      수립·공개합니다. <br></br>
       <br></br> ○ 이 개인정보처리방침은 2021년 8월 11부터 적용됩니다. <br></br>
       <br></br>
       <br></br>
