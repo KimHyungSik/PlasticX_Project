@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavBar, Footer } from "./components/views/ViewsIndex";
+import { NavBar, Footer, Privacy } from "./components/views/ViewsIndex";
 
 import {
   HomePage,
@@ -14,6 +14,7 @@ import {
   MyPage,
 } from "./components/routes/RoutesIndex";
 
+import ScrollToTop from "./components/ScrollToTop";
 import Auth from "./hoc/auth";
 import "./App.css";
 
@@ -22,6 +23,7 @@ class App extends React.Component {
     return (
       <>
         <Router>
+          <ScrollToTop />
           <NavBar />
           <Route exact path="/" component={Auth(HomePage, null)} />
 
@@ -34,6 +36,7 @@ class App extends React.Component {
           <Route path="/login" component={Auth(LoginPage, false)} />
           <Route path="/register" component={Auth(RegisterPage, false)} />
           <Route path="/mypage" component={Auth(MyPage, true)} />
+          <Route path="/privacy" component={Auth(Privacy, null)} />
           <Footer />
         </Router>
       </>

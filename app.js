@@ -9,11 +9,11 @@ const hbs = require("express-handlebars");
 const mongoose = require("mongoose");
 
 const web = require(path.resolve(__dirname, "routes", "web"));
-const api = require(path.resolve(__dirname, "routes", "api"));
 const config = require(path.resolve(__dirname, "config", "key"));
 const slack = require(path.resolve(__dirname, "config", "slack"));
 const err_logger = require(path.resolve(__dirname, "config", "log"));
 const err_response = require(path.resolve(__dirname, "config", "error"));
+<<<<<<< HEAD
 const { emailTransporter } = require(path.resolve(__dirname, "config", "mail"));
 const returnBoxTask = require(path.resolve(__dirname, "task", "ReturnBoxTask"));
 const tumblerNotifTask = require(path.resolve(
@@ -26,6 +26,8 @@ const adminNotifTask = require(path.resolve(
   "task",
   "AdminNotifTask"
 ));
+=======
+>>>>>>> 0f20ab0c3ff630ffc2a0554ecd65f8128bc09e41
 
 const app = express();
 

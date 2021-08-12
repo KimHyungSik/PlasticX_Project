@@ -160,8 +160,7 @@ class Account extends React.Component {
                   <label>잔액</label>
                   <AccountUser
                     deposit={userInfo.deposit
-                      .toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+                      .toLocaleString("ko-KR")
                       .concat("원")}
                   />
                 </li>
