@@ -44,8 +44,8 @@ const callback = (req, res) => {
       return res.status(200).json({
         RESULT: 200,
         MESSAGE: "리터박스 수정 성공",
-        update: updateResult,
-        returnBox_id: returnBoxInfo,
+        UPDATE: updateResult,
+        RETURN: returnBoxInfo,
       });
     });
   });

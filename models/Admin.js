@@ -32,6 +32,10 @@ const adminSchema = mongoose.Schema({
   token: {
     type: String,
   },
+  fcm_token: {
+    type: String,
+    unique: true,
+  },
 });
 
 // 회원가입 save 되기 전 bcrypt로 비밀번호 암호화

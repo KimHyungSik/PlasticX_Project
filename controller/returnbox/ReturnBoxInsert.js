@@ -13,14 +13,14 @@ const callback = (req, res) => {
     if (err) {
       return res.status(200).json({
         RESULT: 500,
-        MESSAGE: "실패",
+        MESSAGE: "리턴박스 생성 실패",
       });
     }
 
     return res.status(200).json({
       RESULT: 200,
-      MSSAGE: "리턴박스 생성 성공",
-      returnBox_id: returnBoxInfo,
+      MESSAGE: "리턴박스 생성 성공",
+      RETURN: returnBoxInfo,
     });
   });
 };

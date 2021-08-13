@@ -6,6 +6,7 @@ const { History } = require(path.resolve(modelsPath, "History"));
 const { Client } = require("node-rest-client");
 const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
 const { User } = require(path.resolve(modelsPath, "User"));
+const { ReturnBox } = require(path.resolve(modelsPath, "ReturnBox"));
 const FCM = require(path.resolve(fcmPath, "fcm"));
 
 const DEPOSIT = 5000;
@@ -70,11 +71,38 @@ const callback = async (req, res) => {
       MESSAGE: "아이디에 해당하는 유저 없음",
     });
   }
+  let returnBox;
+  try {
+    returnBox = ReturnBox.findById(req.body.to_id);
+  } catch (error) {
+    if (err) {
+      if (err.name === "CastError" && err.kind === "ObjectId") {
+        return res.status(200).json({
+          RESULT: 411,
+          MESSAGE: "잘못된 리턴 박스 id값 입력",
+          path: err.path,
+        });
+      }
+      return res.status(200).json({
+        RESULT: 500,
+        MESSAGE: "DB 에러 발생 (Return Box Collection)",
+        error: err,
+      });
+    }
+  }
+  if (!returnBox) {
+    return res.status(200).json({
+      RESULT: 410,
+      MESSAGE: "아이디에 해당하는 리턴 박스 없음",
+    });
+  }
+
   let tumblerUpdate = new Tumbler(tumbler);
   let userUpdate = new User(user);
+  let returnBoxUpdate = new ReturnBox(returnBox);
   let owner;
 
-  if (tumbler.state == true) {
+  if (tumbler.state == true && returnBox.tumblerCount < 6) {
     // 카페 가져오기
     owner = tumblerUpdate.from_id;
 
@@ -91,11 +119,15 @@ const callback = async (req, res) => {
     tumblerUpdate.from_id = tumbler.to_id;
     tumblerUpdate.to_id = req.body.to_id;
 
+    // returnbox에 tumblerCount 업데이트 해주기
+    returnBoxUpdate.tumblerCount += 1;
+
     const session = await User.startSession();
     try {
       await session.withTransaction(async () => {
         await User.findByIdAndUpdate(userUpdate._id, userUpdate);
         await Tumbler.findByIdAndUpdate(tumblerUpdate._id, tumblerUpdate);
+        await ReturnBox.findByIdAndUpdate(returnBoxUpdate._id, returnBoxUpdate);
       });
     } catch (err) {
       console.log(err);
@@ -122,7 +154,8 @@ const callback = async (req, res) => {
 
   if (
     userUpdate.deposit > user.deposit &&
-    tumbler.state != tumblerUpdate.state
+    tumbler.state != tumblerUpdate.state &&
+    returnBox.tumblerCount != returnBoxUpdate.tumblerCount
   ) {
     var date = new Date();
     date.setHours(date.getHours() + 9);
