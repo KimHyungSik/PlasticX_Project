@@ -32,7 +32,6 @@ const userSchema = mongoose.Schema({
   },
   fcm_token: {
     type: String,
-    unique: true,
   },
   deposit: {
     type: Number,
