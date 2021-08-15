@@ -26,6 +26,9 @@ const adminSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  fcm_token: {
+    type: String,
+  },
   token: {
     type: String,
   },

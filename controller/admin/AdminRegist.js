@@ -5,6 +5,8 @@ const { Admin } = require(path.resolve(modelsPath, "Admin"));
 const callback = (req, res) => {
   const admin = new Admin(req.body);
 
+  console.log(req.body);
+
   admin.save((err, adminInfo) => {
     if (err) {
       if (err.code === 11000 && Object.keys(err.keyPattern).includes("email")) {
