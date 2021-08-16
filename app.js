@@ -77,10 +77,6 @@ app.get("/err", (req, res) => {
   res.render("test", { error: 500 });
 });
 
-// app.get("/api/hello", (req, res) => {
-//   res.send("안녕하세유");
-// });
-
 app.use("/", web);
 
 app.use(err_logger);
