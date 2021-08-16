@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="library/jquery.min.js"></script>
+    <script src="library/qrcode.js"></script>
+    <title>Sample</title>
+  </head>
+  <body>
+    <div>
+      <% tumblers.forEach((tumbler, index) => { %> <% if (tumbler.testCase) { %>
+      <div class="qr-code"></div>
+      <div class="model"><%= tumbler.model.name %></div>
+      <div class="state"><%= tumbler.state?"대여 중":"대여 가능" %></div>
+      <div class="id-string"><%= tumbler._id %></div>
+      <% } %> <% }) %>
+    </div>
+    <script src="js/qrcode.js"></script>
+  </body>
+</html>

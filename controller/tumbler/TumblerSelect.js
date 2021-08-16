@@ -46,7 +46,8 @@ const apiCallback = (req, res) => {
 };
 
 const webCallback = async (req, res) => {
-  let tumblers = await Tumbler.find().lean();
+  let tumblers = await Tumbler.find().populate("model").lean();
+  console.log(tumblers);
   res.render("sample", {
     tumblers: tumblers,
   });
