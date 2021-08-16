@@ -1,0 +1,117 @@
+<meta charset="UTF-8" />
+<title>PlasticX 관리자 페이지</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+/>
+<style>
+  :root {
+    /* color */
+    --color-black: #3f454d;
+    --color-white: #ffffff;
+    --color-blue: #3b88c3;
+    --color-hoverblue: #79aed6;
+    --color-yellow: #fbbe28;
+    --color-hoveryellow: #fde198;
+    --color-pink: #fd7f84;
+    --color-hoverpink: #faafb1;
+    --color-grey: #a5a9c4;
+    --color-light-grey: #dfdfdf;
+    --color-background-color: #f9fafb;
+
+    --color-primary: #35b8be;
+    --color-dark-primary: #399ca1;
+    --color-light-primary: #44ccd3;
+    --color-very-light-primary: #b9fcff;
+    --color-footer-background: #eef2f3;
+
+    /* animation */
+    --animation-duration: transform 300ms ease;
+
+    /* size */
+    --base-logo-width: 320px;
+    --base-logo-height: 80px;
+
+    --base-space-top-bottom: 8px;
+    --base-space-left-right: 12px;
+    --normal-btn-space-top-bottom: 18px;
+    --normal-btn-space-lefet-right: 24px;
+    --nav-space-top-bottom: 2rem;
+    --nav-space-left-right: 2rem;
+
+    --home-main-article-size: 60px;
+    --home-sub-article-size: 18px;
+    --base-btn-font-size: 18px;
+    --label-font-size: 0.75rem;
+
+    --login-form-width-size: 20rem;
+    --login-space-top-bottom: 6rem;
+
+    --query-form-width-size: 30rem;
+    --query-space-top-bottom: 5rem;
+
+    --home-base-img-size: 540px;
+
+    /* radius */
+    --base-border-radius: 4px;
+
+    /* layout */
+    --body-base-width: 100%;
+    --body-base-height: 100%;
+
+    /* shadow */
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .query-form {
+    width: var(--query-form-width-size);
+    margin: var(--query-space-top-bottom) auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-black);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: var(--base-border-radius);
+    font-size: small;
+    transition: 500ms;
+  }
+
+  form {
+    width: var(--login-form-width-size);
+    margin: var(--login-space-top-bottom) auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 25px;
+  }
+
+  button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--base-space-top-bottom) 20px;
+    margin: calc(var(--base-space-top-bottom) * 2) 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: var(--base-border-radius);
+    transition: 250ms;
+  }
+</style>

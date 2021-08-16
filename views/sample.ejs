@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="library/jquery.min.js"></script>
+    <script src="library/qrcode.js"></script>
+    <title>Sample</title>
+    <style>
+      .tumbler {
+        margin: 4rem 0;
+      }
+      .id-string {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <% tumblers.forEach((tumbler, index) => { %> <% if (tumbler.testCase) { %>
+      <div class="tumbler">
+        <div class="qr-code"></div>
+        <div class="model"><%= tumbler.model.name %></div>
+        <div class="state" id="state_<%= tumbler._id %>"><%= tumbler.state?"대여 중":"대여 가능" %></div>
+        <div class="id-string"><%= tumbler._id %></div>
+        <% if(tumbler.state) { %>
+        <input type="button" value="반납하기" onclick="returnTumbler('<%= tumbler._id %>');" />
+        <%} %>
+      </div>
+      <% } %> <% }) %>
+    </div>
+    <script src="js/qrcode.js"></script>
+    <script>
+      const returnTumbler = (tumblerId) => {
+        let req = new XMLHttpRequest();
+        req.open("PUT", `http://plasticx.roddyd.net/api/tumbler/return/${tumblerId}`);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.onreadystatechange = function () {
+          if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            console.log(req.responseText);
+            document.location = "/sample";
+          }
+        };
+        req.send("to_id=60daf9de3c2d993494f40a0f");
+      };
+    </script>
+  </body>
+</html>

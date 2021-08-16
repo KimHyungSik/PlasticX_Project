@@ -73,7 +73,7 @@ const callback = async (req, res) => {
   }
   let returnBox;
   try {
-    returnBox = ReturnBox.findById(req.body.to_id);
+    returnBox = await ReturnBox.findById(req.body.to_id);
   } catch (error) {
     if (err) {
       if (err.name === "CastError" && err.kind === "ObjectId") {
@@ -102,7 +102,7 @@ const callback = async (req, res) => {
   let returnBoxUpdate = new ReturnBox(returnBox);
   let owner;
 
-  if (tumbler.state == true && returnBox.tumblerCount < 6) {
+  if (tumbler.state == true && returnBox.tumblerCount < 6000) {
     // 카페 가져오기
     owner = tumblerUpdate.from_id;
 
@@ -134,17 +134,13 @@ const callback = async (req, res) => {
       if (err.name === "CastError" && err.kind === "ObjectId") {
         return res.status(200).json({
           RESULT: 401,
-          MESSAGE: `잘못된 id값 입력, (${
-            err.message.split('"').reverse()[1]
-          } Collection)`,
+          MESSAGE: `잘못된 id값 입력, (${err.message.split('"').reverse()[1]} Collection)`,
           path: err.path,
         });
       }
       return res.status(200).json({
         RESULT: 500,
-        MESSAGE: `DB 에러 발생 , (${
-          err.message.split('"').reverse()[1]
-        } Collection)`,
+        MESSAGE: `DB 에러 발생 , (${err.message.split('"').reverse()[1]} Collection)`,
         error: err,
       });
     } finally {
@@ -152,11 +148,7 @@ const callback = async (req, res) => {
     }
   }
 
-  if (
-    userUpdate.deposit > user.deposit &&
-    tumbler.state != tumblerUpdate.state &&
-    returnBox.tumblerCount != returnBoxUpdate.tumblerCount
-  ) {
+  if (userUpdate.deposit > user.deposit && tumbler.state != tumblerUpdate.state && returnBox.tumblerCount != returnBoxUpdate.tumblerCount) {
     var date = new Date();
     date.setHours(date.getHours() + 9);
 
@@ -171,6 +163,10 @@ const callback = async (req, res) => {
     let history = new History(historyList);
 
     history.save();
+
+    tumblerUpdate.from_id = tumblerUpdate.to_id;
+    tumblerUpdate.to_id = "60ee7b847ed6b5514083d422";
+    tumblerUpdate.save();
 
     // 알림
     var client = new Client();

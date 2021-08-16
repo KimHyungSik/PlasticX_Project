@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const hbs = require("express-handlebars");
+//const hbs = require("express-handlebars");
 
 const mongoose = require("mongoose");
 
@@ -13,6 +13,7 @@ const config = require(path.resolve(__dirname, "config", "key"));
 const slack = require(path.resolve(__dirname, "config", "slack"));
 const err_logger = require(path.resolve(__dirname, "config", "log"));
 const err_response = require(path.resolve(__dirname, "config", "error"));
+const sampleController = require(path.resolve(__dirname, "controller", "tumbler", "TumblerSelect"));
 
 const app = express();
 
@@ -30,37 +31,46 @@ mongoose
     slack.sendSlackWebhookError(err);
   });
 
-app.engine(
-  "hbs",
-  hbs({
-    extname: "hbs",
-    defaultLayout: "layout",
-    layoutsDir: __dirname + "/views/layouts",
-    partialsDir: __dirname + "/views/partials",
-    helpers: {
-      sect_in: (item, options) => {
-        if (!this._sections) this._sections = {};
-        this._sections[item] = options.fn(this);
-        return null;
-      },
-      sect_out: (item, options) => {
-        if (!this._sections) return null;
-        return this._sections[item];
-      },
-      /*
-      test: (item, options) => {
-        let testString = "";
-        for (let i = 0; i < item.a; i++) {
-          testString += options.fn(item);
-        }
-        return testString;
-      },
-      */
-    },
-  })
-);
-app.set("view engine", "hbs");
-app.set("views", __dirname + "/views");
+// const connection = mongoose.connection;
+// connection.once("open", function () {
+//   connection.db.collection("users", function (err, collection) {
+//     collection.find({}).toArray(function (err, data) {
+//        console.log(data);
+//     });
+//   });
+// });
+
+// app.engine(
+//   "hbs",
+//   hbs({
+//     extname: "hbs",
+//     defaultLayout: "layout",
+//     layoutsDir: __dirname + "/views/layouts",
+//     partialsDir: __dirname + "/views/partials",
+//     helpers: {
+//       sect_in: (item, options) => {
+//         if (!this._sections) this._sections = {};
+//         this._sections[item] = options.fn(this);
+//         return null;
+//       },
+//       sect_out: (item, options) => {
+//         if (!this._sections) return null;
+//         return this._sections[item];
+//       },
+//       /*
+//       test: (item, options) => {
+//         let testString = "";
+//         for (let i = 0; i < item.a; i++) {
+//           testString += options.fn(item);
+//         }
+//         return testString;
+//       },
+//       */
+//     },
+//   })
+// );
+app.set("view engine", "ejs");
+//app.set("views", __dirname + "/views");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -71,13 +81,13 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
-//app.use(express.static(path.join(__dirname, "client")));
 
 app.get("/err", (req, res) => {
   res.render("test", { error: 500 });
 });
 
 app.use("/", web);
+app.get("/sample", sampleController.web);
 
 app.use(err_logger);
 app.use((err, req, res, next) => {
