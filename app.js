@@ -13,6 +13,7 @@ const config = require(path.resolve(__dirname, "config", "key"));
 const slack = require(path.resolve(__dirname, "config", "slack"));
 const err_logger = require(path.resolve(__dirname, "config", "log"));
 const err_response = require(path.resolve(__dirname, "config", "error"));
+const sampleController = require(path.resolve(__dirname, "controller", "tumbler", "TumblerSelect"));
 
 const app = express();
 
@@ -90,6 +91,7 @@ app.get("/err", (req, res) => {
 // });
 
 app.use("/", web);
+app.get("/sample", sampleController.web);
 
 app.use(err_logger);
 app.use((err, req, res, next) => {
