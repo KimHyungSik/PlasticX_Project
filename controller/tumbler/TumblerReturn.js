@@ -102,7 +102,7 @@ const callback = async (req, res) => {
   let returnBoxUpdate = new ReturnBox(returnBox);
   let owner;
 
-  if (tumbler.state == true && returnBox.tumblerCount < 6) {
+  if (tumbler.state == true && returnBox.tumblerCount < 6000) {
     // 카페 가져오기
     owner = tumblerUpdate.from_id;
 
