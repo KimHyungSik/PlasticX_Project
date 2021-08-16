@@ -7,30 +7,41 @@
     <header><%- include('../partials/header'); %></header>
 
     <main>
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="jumbotron">
-            <ul>
-              <% returnboxes.forEach(function(returnboxes){ %>
-              <h1>returnboxes</h1>
-              <ul>
-                <%Object.keys(returnboxes).forEach(function(key){%>
-                <li><strong><%=key%></strong>: <%=returnboxes[key]%></li>
-                <%})%>
-              </ul>
-              <% }); %>
-            </ul>
-          </div>
+      <div class="jumbotron query-form">
+        <form id="read" method="POST">
+          <h2>아이디로 찾기</h2>
+          <label>아이디</label>
+          <input
+            type="text"
+            name="_id"
+            id="_id"
+            placeholder="아이디"
+            required
+          />
+          <button type="submit">찾기</button>
+        </form>
+        <hr />
+        <% returnboxes.forEach(function(returnbox){ %>
+        <div class="view">
+          <h5><%= returnbox.name %></h5>
+          <ul>
+            <li><strong>id</strong>: <%= returnbox._id %></li>
+            <li>
+              <strong>tumblerCount</strong>: <%= returnbox.tumblerCount %>
+            </li>
+            <li><strong>deposit</strong>: <%= returnbox.deposit %></li>
+            <li><strong>isConnected</strong>: <%= returnbox.isConnected %></li>
+            <li><strong>isWorking</strong>: <%= returnbox.isWorking %></li>
+            <li><strong>lastUpdated</strong>: <%= returnbox.lastUpdated %></li>
+            <li>
+              <strong>location</strong>: <%= returnbox.location.coordindates %>
+            </li>
+          </ul>
+          <br />
         </div>
-
-        <div class="col-sm-4">
-          <div class="well">
-            <h3>Look I'm A Sidebar!</h3>
-          </div>
-        </div>
+        <% }); %>
       </div>
     </main>
-
     <footer><%- include('../partials/footer'); %></footer>
   </body>
 </html>

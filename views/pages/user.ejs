@@ -58,18 +58,17 @@
         </form>
         <hr />
 
+        <% users.forEach(function(user){ %>
         <div class="view">
+          <h5><%= user.name %></h5>
           <ul>
-            <% users.forEach(function(user){ %>
-            <h4><%= user.name %></h4>
-            <ul>
-              <li><strong>id</strong>: <%= user._id %></li>
-              <li><strong>email</strong>: <%= user.email %></li>
-              <li><strong>deposit</strong>: <%= user.deposit %></li>
-            </ul>
-            <% }); %>
+            <li><strong>id</strong>: <%= user._id %></li>
+            <li><strong>email</strong>: <%= user.email %></li>
+            <li><strong>deposit</strong>: <%= user.deposit %></li>
           </ul>
+          <br />
         </div>
+        <% }); %>
       </div>
     </main>
     <footer><%- include('../partials/footer'); %></footer>

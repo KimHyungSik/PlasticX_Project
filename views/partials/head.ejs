@@ -80,7 +80,9 @@
 
   input[type="text"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="date"],
+  input[type="number"] {
     width: 100%;
     padding: 12px 15px;
     margin: 8px 0;
@@ -113,5 +115,22 @@
     width: 100%;
     border-radius: var(--base-border-radius);
     transition: 250ms;
+  }
+
+  .view {
+    text-align: justify;
+    background-color: white;
+    padding: 40px;
+    margin: 25px;
+    border-radius: 30px;
+    padding-bottom: 5px;
+  }
+
+  .view h5 {
+    text-align: center;
+  }
+
+  .view li {
+    list-style-type: square;
   }
 </style>

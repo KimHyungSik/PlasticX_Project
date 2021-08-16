@@ -7,30 +7,34 @@
     <header><%- include('../partials/header'); %></header>
 
     <main>
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="jumbotron">
-            <ul>
-              <% owners.forEach(function(owners){ %>
-              <h1>owners</h1>
-              <ul>
-                <%Object.keys(owners).forEach(function(key){%>
-                <li><strong><%=key%></strong>: <%=owners[key]%></li>
-                <%})%>
-              </ul>
-              <% }); %>
-            </ul>
-          </div>
-        </div>
+      <div class="jumbotron query-form">
+        <form id="read" method="POST">
+          <h2>이름으로 찾기</h2>
+          <label>이름</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="이름"
+            required
+          />
+          <button type="submit">찾기</button>
+        </form>
+        <hr />
 
-        <div class="col-sm-4">
-          <div class="well">
-            <h3>Look I'm A Sidebar!</h3>
-          </div>
+        <% owners.forEach(function(owner){ %>
+        <div class="view">
+          <h5><%= owner.name %></h5>
+          <ul>
+            <li><strong>id</strong>: <%= owner._id %></li>
+            <li><strong>email</strong>: <%= owner.email %></li>
+            <li><strong>deposit</strong>: <%= owner.deposit %></li>
+          </ul>
+          <br />
         </div>
+        <% }); %>
       </div>
     </main>
-
     <footer><%- include('../partials/footer'); %></footer>
   </body>
 </html>
