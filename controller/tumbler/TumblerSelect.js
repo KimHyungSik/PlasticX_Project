@@ -47,8 +47,7 @@ const apiCallback = (req, res) => {
 
 const webCallback = async (req, res) => {
   let tumblers = await Tumbler.find().lean();
-  res.render("tumbler/inquire", {
-    title: "텀블러 조회",
+  res.render("sample", {
     tumblers: tumblers,
   });
 };
