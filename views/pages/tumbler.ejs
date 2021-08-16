@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+      <div class="jumbotron query-form">
+            <!-- <form id="create">
+                <h3>텀블러 만들기</h3>
+                <label>to_id</label>
+                <input
+                type="text"
+                id="user_name"
+                placeholder="to_id"
+                required
+              ></input>
+
+              <label>from_id</label>
+                <input
+                type="email"
+                id="user_email"
+                placeholder="from_id"
+                required
+              ></input>
+
+              <label>상태</label>
+                <input
+                type="password"
+                id="user_pw"
+                placeholder="상태"
+                required
+              ></input>
+
+              <label>대여날짜</label>
+                <input
+                type="text"
+                id="user_name"
+                placeholder="대여날짜"
+                required
+              ></input>
+
+              <label>모델</label>
+              <input
+              type="text"
+              id="user_name"
+              placeholder="모델"
+              required
+              ></input>
+              <button>만들기</button>
+            </form>
+             <hr> -->
+             <form id="read" method="POST">
+              <h3>날짜로 찾기</h3>
+              <label>날짜</label>
+              <input
+              type="date"
+              id="date"
+              placeholder="날찌"
+              required
+              ></input>
+              <button type="submit">찾기</button>
+          </form>
+          <hr>
+
+          <!-- <div class="view">
+            <ul>
+              <% tumblers.forEach(function(tumbler){ %>
+              <h4><%= tumbler.date %></h4>
+              <ul>
+                <li><strong>id</strong>: <%= tumbler._id %></li>
+                <li><strong>email</strong>: <%= tumbler.email %></li>
+                <li><strong>deposit</strong>: <%= tumbler.deposit %></li>
+              </ul>
+              <% }); %>
+            </ul>
+          </div> -->
+        </div>
+      </main>
+      <footer><%- include('../partials/footer'); %></footer>
+    </body>
+  </html>
+  
