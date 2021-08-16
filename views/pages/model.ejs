@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="jumbotron">
+            <ul>
+              <% models.forEach(function(models){ %>
+              <h1>model</h1>
+              <ul>
+                <%Object.keys(models).forEach(function(key){%>
+                <li><strong><%=key%></strong>: <%=models[key]%></li>
+                <%})%>
+              </ul>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="well">
+            <h3>Look I'm A Sidebar!</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>

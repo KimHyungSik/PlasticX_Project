@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+      <div class="jumbotron query-form">
+        <!-- <form id="create" method="POST">
+              <h2>사용자 추가하기</h2>
+              <label>이름</label>
+              <input
+              type="text"
+              id="user_name"
+              placeholder="이름"
+              required />
+
+              <label>이메일</label>
+                <input
+                type="email"
+                id="user_email"
+                placeholder="이메일"
+                required
+              ></input>
+
+              <label>비밀번호</label>
+                <input
+                type="password"
+                id="user_pw"
+                placeholder="비밀번호"
+                required
+              ></input>
+
+              <label>보증금</label>
+                <input
+                type="text"
+                id="user_name"
+                placeholder="보증금"
+                required
+              ></input>
+              <button type="submit">만들기</button>
+            </form>
+            <hr>-->
+        <form id="read" method="POST">
+          <h2>이름으로 찾기</h2>
+          <label>이름</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="이름"
+            required
+          />
+          <button type="submit">찾기</button>
+        </form>
+        <hr />
+
+        <div class="view">
+          <ul>
+            <% users.forEach(function(user){ %>
+            <h4><%= user.name %></h4>
+            <ul>
+              <li><strong>id</strong>: <%= user._id %></li>
+              <li><strong>email</strong>: <%= user.email %></li>
+              <li><strong>deposit</strong>: <%= user.deposit %></li>
+            </ul>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>
