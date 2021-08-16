@@ -111,6 +111,18 @@
   margin-bottom: 2rem;
 }
 
+.google-img {
+  width: calc(var(--base-logo-width) / 1.6);
+  height: calc(var(--base-logo-height) / 1.4);
+  transition: 0.2s;
+  margin-top: var(--nav-space-top-bottom);
+}
+
+.google-img:hover {
+  transform: scale(0.95);
+  transition: 0.2s;
+}
+
 @media screen and (max-width: 1200px) {
   .home {
     flex-direction: column;

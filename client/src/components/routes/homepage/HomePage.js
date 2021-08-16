@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import Aos from "aos";
-
 import "./HomePage.css";
 
 Aos.init();
@@ -62,6 +61,17 @@ class HomePage extends React.Component {
               <h2>
                 지금 바로 가까운 카페에서 <span>PLASTICX</span>를 만나보세요.
               </h2>
+
+              <a
+                target="_blank"
+                href="https://play.google.com/store/apps/details?id=com.plasticxv.plasticx"
+              >
+                <img
+                  className="google-img"
+                  alt="google_play"
+                  src="img/google_play.png"
+                />
+              </a>
             </div>
           </div>
         </section>

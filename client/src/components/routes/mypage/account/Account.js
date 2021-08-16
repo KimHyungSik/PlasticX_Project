@@ -8,40 +8,17 @@ import "./Account.css";
 import axios from "axios";
 
 const path = require("path");
-
-//import TumblerNotifTask from "../../../../../../task/TumblerNotifTask";
-// const modelsPath = path.resolve(
-//   __dirname,
-//   "..",
-//   "..",
-//   "..",
-//   "..",
-//   "..",
-//   "..",
-//   "models"
-// );
-// const fcmPath = path.resolve(
-//   __dirname,
-//   "..",
-//   "..",
-//   "..",
-//   "..",
-//   "..",
-//   "..",
-//   "config"
-// );
-
 const { Client } = require("node-rest-client");
-//const { Tumbler } = require(path.resolve(modelsPath, "Tumbler"));
-//const { User } = require(path.resolve(modelsPath, "User"));
-//const FCM = require(path.resolve(fcmPath, "fcm"));
 
 class Account extends React.Component {
-  state = {
-    userInfo: [],
-    tumblersInfo: [],
-    isLoading: true,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: [],
+      tumblersInfo: [],
+      isLoading: true,
+    };
+  }
 
   getUser = async () => {
     const {
