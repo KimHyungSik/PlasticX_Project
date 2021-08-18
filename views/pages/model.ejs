@@ -3,34 +3,37 @@
   <head>
     <%- include('../partials/head'); %>
   </head>
+
   <body class="container">
     <header><%- include('../partials/header'); %></header>
 
     <main>
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="jumbotron">
-            <ul>
-              <% models.forEach(function(models){ %>
-              <h1>model</h1>
-              <ul>
-                <%Object.keys(models).forEach(function(key){%>
-                <li><strong><%=key%></strong>: <%=models[key]%></li>
-                <%})%>
-              </ul>
-              <% }); %>
-            </ul>
-          </div>
-        </div>
+      <div class="jumbotron query-form">
+        <form id="read" method="POST">
+          <h2>이름으로 찾기</h2>
+          <label>이름</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="이름"
+            required
+          />
+          <button type="submit">찾기</button>
+        </form>
+        <hr />
 
-        <div class="col-sm-4">
-          <div class="well">
-            <h3>Look I'm A Sidebar!</h3>
-          </div>
+        <% models.forEach(function(model){ %>
+        <div class="view">
+          <h5><%= model.name %></h5>
+          <ul>
+            <li><strong>id</strong>: <%= model._id %></li>
+          </ul>
+          <br />
         </div>
+        <% }); %>
       </div>
     </main>
-
     <footer><%- include('../partials/footer'); %></footer>
   </body>
 </html>

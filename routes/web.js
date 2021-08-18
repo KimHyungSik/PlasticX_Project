@@ -54,7 +54,7 @@ router.get("/tumbler", (req, res) => {
 });
 router.post("/tumbler", (req, res) => {
   Tumbler.find(req.body, function (err, tumblerData) {
-    res.render("pages/tumbler", { tumblers: tumblerList });
+    res.render("pages/model", { tumblers: tumblerData });
   });
 });
 
@@ -67,7 +67,7 @@ router.get("/model", (req, res) => {
 });
 router.post("/model", (req, res) => {
   TumblerModel.find(req.body, function (err, modelData) {
-    res.render("pages/model", { models: tumblerList });
+    res.render("pages/model", { models: modelData });
   });
 });
 
@@ -80,7 +80,7 @@ router.get("/returnbox", (req, res) => {
 });
 router.post("/returnbox", (req, res) => {
   ReturnBox.find(req.body, function (err, returnBoxData) {
-    res.render("pages/returnbox", { returnboxes: returnBoxList });
+    res.render("pages/returnbox", { returnboxes: returnBoxData });
   });
 });
 
