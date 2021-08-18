@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavBar, Footer, Privacy } from "./components/views/ViewsIndex";
 
@@ -22,7 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Router>
+        <BrowserRouter>
           <ScrollToTop />
           <NavBar />
           <Route exact path="/" component={Auth(HomePage, null)} />
@@ -38,7 +38,7 @@ class App extends React.Component {
           <Route path="/mypage" component={Auth(MyPage, true)} />
           <Route path="/privacy" component={Auth(Privacy, null)} />
           <Footer />
-        </Router>
+        </BrowserRouter>
       </>
     );
   }
